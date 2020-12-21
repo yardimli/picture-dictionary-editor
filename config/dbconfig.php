@@ -1,15 +1,15 @@
 <?php
 
 class Database {
-//	private $host = "phpworkspace-ssl-mysql";
-//	private $db_name = "dictionary_2";
-//	private $username = "root";
-//	private $password = "A123456b";
-
-	private $host = "localhost";
+	private $host = "phpworkspace-ssl-mysql";
 	private $db_name = "dictionary_2";
 	private $username = "root";
-	private $password = "BKZ!A123456b!";
+	private $password = "A123456b";
+
+//	private $host = "localhost";
+//	private $db_name = "dictionary_2";
+//	private $username = "root";
+//	private $password = "BKZ!A123456b!";
 
 	public $conn;
 
@@ -28,12 +28,8 @@ class Database {
 
 $thisFile = str_replace( '\\', '/', __FILE__ );
 $srvRoot  = str_replace( 'config/dbconfig.php', '', $thisFile );
-$webRoot  = '/ege-learn-surface/dict/';
-$srvpath  = '/ege-learn-surface/dict/';
-
-
-$webRoot  = '/ege-words/';
-$srvpath  = '/ege-words/';
+$webRoot  = '/picture-dictionary-editor/';
+$srvpath  = '/picture-dictionary-editor/';
 
 define( 'WEB_ROOT', $webRoot );
 define( 'SRV_ROOT', $srvRoot );
