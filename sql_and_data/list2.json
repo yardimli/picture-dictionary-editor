@@ -1,0 +1,3407 @@
+{
+  "word_list": [
+    {
+      "word": "aardvark",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/aardvark.svg"
+    },
+    {
+      "word": "acorn",
+      "image_path": "main/collections_screen/.this/modules/plants/trees_and_tree_parts/acorn.svg"
+    },
+    {
+      "word": "accordion",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/accordion.svg"
+    },
+    {
+      "word": "acrobat",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/acrobat.svg"
+    },
+    {
+      "word": "actor",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/actor.svg"
+    },
+    {
+      "word": "actress",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/actress.svg"
+    },
+    {
+      "word": "aim",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/aim.svg",
+      "senseId": "83001"
+    },
+    {
+      "word": "airplane",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_air_and_space/airplane.svg"
+    },
+    {
+      "word": "airport",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/airport.svg"
+    },
+    {
+      "word": "aisle",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/theater/aisle.svg"
+    },
+    {
+      "word": "alligator",
+      "image_path": "main/collections_screen/.this/modules/animals/reptiles_and_amphibians/alligator.svg"
+    },
+    {
+      "word": "ambulance",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/ambulance.svg"
+    },
+    {
+      "word": "apartment",
+      "image_path": "main/collections_screen/.this/modules/home/types_of_home/apartment.svg"
+    },
+    {
+      "word": "apartment building",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/apartment_building.svg"
+    },
+    {
+      "word": "angle",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/angle.svg"
+    },
+    {
+      "word": "angry",
+      "image_path": "main/collections_screen/.this/modules/you/emotions/angry.svg"
+    },
+    {
+      "word": "ant",
+      "image_path": "main/collections_screen/.this/modules/animals/insects_and_other_invertebrates/ant.svg"
+    },
+    {
+      "word": "anteater",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/anteater.svg"
+    },
+    {
+      "word": "anthill",
+      "image_path": "main/collections_screen/.this/modules/animals/where_animals_live/anthill.svg"
+    },
+    {
+      "word": "antler",
+      "image_path": "main/collections_screen/.this/modules/animals/animal_parts/antler.svg",
+      "spanish_translation": "cornamenta"
+    },
+    {
+      "word": "apple",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/apple.svg"
+    },
+    {
+      "word": "aquarium",
+      "image_path": "main/collections_screen/.this/modules/animals/where_animals_live/aquarium.svg",
+      "senseId": "201401"
+    },
+    {
+      "word": "artist",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/artist.svg"
+    },
+    {
+      "word": "ashamed",
+      "image_path": "main/collections_screen/.this/modules/you/emotions/ashamed.svg"
+    },
+    {
+      "word": "astronaut",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/astronaut.svg"
+    },
+    {
+      "word": "audience",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/theater/audience.svg"
+    },
+    {
+      "word": "avenue",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_to_drive_or_walk/avenue.svg"
+    },
+    {
+      "word": "avocado",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/avocado.svg"
+    },
+    {
+      "word": "baboon",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/baboon.svg"
+    },
+    {
+      "word": "baby",
+      "image_path": "main/collections_screen/.this/modules/animals/young_animals/baby.svg"
+    },
+    {
+      "word": "babysitter",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/babysitter.svg"
+    },
+    {
+      "word": "backpack",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_in_a_school/backpack.svg"
+    },
+    {
+      "word": "backyard",
+      "image_path": "main/collections_screen/.this/modules/home/places_at_home/backyard.svg"
+    },
+    {
+      "word": "bacon",
+      "image_path": "main/collections_screen/.this/modules/food/meat_and_seafood/bacon.svg"
+    },
+    {
+      "word": "badger",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/badger.svg"
+    },
+    {
+      "word": "baker",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/baker.svg"
+    },
+    {
+      "word": "ball",
+      "image_path": "main/world_screen/.this/modules/world/city/home/bedroom/toys_shelf/balls/soccer_ball.svg"
+    },
+    {
+      "word": "ballet",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/theater/ballet.svg"
+    },
+    {
+      "word": "bag",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/bag.svg",
+      "spanish_translation": "bolsa"
+    },
+    {
+      "word": "bake",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/bake.svg"
+    },
+    {
+      "word": "balloon",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_air_and_space/balloon.svg",
+      "senseId": "312901"
+    },
+    {
+      "word": "balloon",
+      "image_path": "main/world_screen/.this/modules/world/city/hospital/room/balloon.svg",
+      "senseId": "312903"
+    },
+    {
+      "word": "bamboo",
+      "image_path": "main/collections_screen/.this/modules/plants/types_of_plants/bamboo.svg"
+    },
+    {
+      "word": "banana",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/bananas.svg"
+    },
+    {
+      "word": "bank",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/bank.svg"
+    },
+    {
+      "word": "barber",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/barber.svg"
+    },
+    {
+      "word": "barge",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_water/barge.svg"
+    },
+    {
+      "word": "bark",
+      "senseId": "329101",
+      "image_path": "main/collections_screen/.this/modules/plants/trees_and_tree_parts/bark.svg"
+    },
+    {
+      "word": "barnacle",
+      "image_path": "main/collections_screen/.this/modules/animals/fish_and_other_sea_animals/barnacle.svg"
+    },
+    {
+      "word": "baseball",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/sports/baseball.svg"
+    },
+    {
+      "word": "basement",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/basement.svg"
+    },
+    {
+      "word": "basketball",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/sports/basketball.svg"
+    },
+    {
+      "word": "bathing suit",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/bathing_suit.svg"
+    },
+    {
+      "word": "bathrobe",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_bathroom/bathrobe.svg"
+    },
+    {
+      "word": "bathroom",
+      "image_path": "main/collections_screen/.this/modules/home/places_at_home/bathroom.svg"
+    },
+    {
+      "word": "bathtub",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_bathroom/bathtub.svg"
+    },
+    {
+      "word": "bat",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/bat.svg",
+      "senseId": "343701"
+    },
+    {
+      "word": "bay",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/bodies_of_water/bay.svg"
+    },
+    {
+      "word": "beach",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/beach.svg"
+    },
+    {
+      "word": "beak",
+      "image_path": "main/collections_screen/.this/modules/animals/animal_parts/beak.svg"
+    },
+    {
+      "word": "bean",
+      "image_path": "main/collections_screen/.this/modules/food/vegetables/bean.svg"
+    },
+    {
+      "word": "bear",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/bear.svg",
+      "senseId": "355001"
+    },
+    {
+      "word": "beaver",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/beaver.svg"
+    },
+    {
+      "word": "bed",
+      "image_path": "main/collections_screen/.this/modules/home/furniture/bed.svg"
+    },
+    {
+      "word": "bee",
+      "image_path": "main/collections_screen/.this/modules/animals/insects_and_other_invertebrates/bee.svg"
+    },
+    {
+      "word": "bedroom",
+      "image_path": "main/collections_screen/.this/modules/home/places_at_home/bedroom.svg"
+    },
+    {
+      "word": "beef",
+      "image_path": "main/collections_screen/.this/modules/food/meat_and_seafood/beef.svg"
+    },
+    {
+      "word": "beehive",
+      "image_path": "main/collections_screen/.this/modules/animals/where_animals_live/beehive.svg"
+    },
+    {
+      "word": "beer",
+      "image_path": "main/collections_screen/.this/modules/food/beverage/beer.svg"
+    },
+    {
+      "word": "beetle",
+      "image_path": "main/collections_screen/.this/modules/animals/insects_and_other_invertebrates/beetle.svg"
+    },
+    {
+      "word": "bell",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/bell.svg"
+    },
+    {
+      "word": "belt",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/belt.svg",
+      "spanish_translation": "cintur&#243;n"
+    },
+    {
+      "word": "berry",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/berries.svg"
+    },
+    {
+      "word": "bicycle",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/bicycle.svg"
+    },
+    {
+      "word": "birdhouse",
+      "image_path": "main/collections_screen/.this/modules/animals/where_animals_live/birdhouse.svg"
+    },
+    {
+      "word": "bison",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/bison.svg"
+    },
+    {
+      "word": "blouse",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/blouse.svg"
+    },
+    {
+      "word": "black",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/colors/black.svg"
+    },
+    {
+      "word": "blackboard",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_in_a_school/blackboard.svg"
+    },
+    {
+      "word": "blind",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/blind.svg"
+    },
+    {
+      "word": "blossom",
+      "image_path": "main/collections_screen/.this/modules/plants/flowers_and_flower_parts/blossom.svg"
+    },
+    {
+      "word": "blue",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/colors/blue.svg"
+    },
+    {
+      "word": "blueberry",
+      "image_path": "main/world_screen/.this/modules/world/city/grocery_store/fruit/blueberries.svg"
+    },
+    {
+      "word": "boat",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_water/boat.svg"
+    },
+    {
+      "word": "bologna",
+      "image_path": "main/collections_screen/.this/modules/food/meat_and_seafood/bologna.svg"
+    },
+    {
+      "word": "book",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_in_a_school/book.svg"
+    },
+    {
+      "word": "boot",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/boot.svg"
+    },
+    {
+      "word": "bored",
+      "image_path": "main/collections_screen/.this/modules/you/emotions/bored.svg"
+    },
+    {
+      "word": "bow",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/bow.svg",
+      "senseId": "489204",
+      "spanish_translation": "mo&#241;o"
+    },
+    {
+      "word": "bowl",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_kitchen/bowl.svg"
+    },
+    {
+      "word": "bowling",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/sports/bowling.svg"
+    },
+    {
+      "word": "box",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/box.svg"
+    },
+    {
+      "word": "bracelet",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/bracelet.svg"
+    },
+   {
+      "word": "branch",
+      "image_path": "main/collections_screen/.this/modules/plants/trees_and_tree_parts/branch.svg"
+    },
+    {
+      "word": "bread",
+      "image_path": "main/collections_screen/.this/modules/food/whats_on_that_sandwich/bread.svg"
+    },
+    {
+      "word": "breakfast",
+      "image_path": "main/collections_screen/.this/modules/food/meals/breakfast.svg"
+    },
+    {
+      "word": "brick",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/brick.svg"
+    },
+    {
+      "word": "bridge",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_to_drive_or_walk/bridge.svg"
+    },
+    {
+      "word": "broccoli",
+      "image_path": "main/collections_screen/.this/modules/food/vegetables/broccoli.svg"
+    },
+    {
+      "word": "brook",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/bodies_of_water/brook.svg"
+    },
+    {
+      "word": "brown",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/colors/brown.svg"
+    },
+    {
+      "word": "brush",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_bathroom/brush.svg",
+      "senseId": "532601"
+    },
+    {
+      "word": "brush",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/brush.svg",
+      "senseId": "532605"
+    },
+    {
+      "word": "bubble",
+      "image_path": "main/world_screen/.this/modules/world/city/home/bathroom/bubble_2.svg"
+    },
+    {
+      "word": "build",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/outdoor_activities/build.svg"
+    },
+    {
+      "word": "bulldozer",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/bulldozer.svg"
+    },
+    {
+      "word": "burrow",
+      "image_path": "main/collections_screen/.this/modules/animals/where_animals_live/burrow.svg"
+    },
+    {
+      "word": "bus stop",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/bus_stop.svg"
+    },
+    {
+      "word": "bus",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/bus.svg"
+    },
+    {
+      "word": "bush",
+      "image_path": "main/collections_screen/.this/modules/plants/types_of_plants/bush.svg"
+    },
+    {
+      "word": "butcher",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/butcher.svg"
+    },
+    {
+      "word": "butter",
+      "image_path": "main/collections_screen/.this/modules/food/baking/butter.svg"
+    },
+    {
+      "word": "butterfly",
+      "image_path": "main/collections_screen/.this/modules/animals/insects_and_other_invertebrates/butterfly.svg"
+    },
+    {
+      "word": "button",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_clothing/button.svg"
+    },
+    {
+      "word": "cabbage",
+      "image_path": "main/collections_screen/.this/modules/food/vegetables/cabbage.svg"
+    },
+    {
+      "word": "cabin",
+      "image_path": "main/collections_screen/.this/modules/home/types_of_home/cabin.svg"
+    },
+    {
+      "word": "cabinet",
+      "image_path": "main/collections_screen/.this/modules/home/furniture/cabinet.svg",
+      "spanish_translation": "gabinete"
+    },
+    {
+      "word": "cactus",
+      "image_path": "main/collections_screen/.this/modules/plants/types_of_plants/cactus.svg",
+      "spanish_translation": "cactus"
+    },
+    {
+      "word": "cafeteria",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_in_a_school/cafeteria.svg"
+    },
+    {
+      "word": "cage",
+      "image_path": "main/collections_screen/.this/modules/animals/where_animals_live/cage.svg"
+    },
+    {
+      "word": "cake",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/cake.svg"
+    },
+    {
+      "word": "call",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/call.svg"
+    },
+    {
+      "word": "calm",
+      "image_path": "main/collections_screen/.this/modules/you/emotions/calm.svg"
+    },
+    {
+      "word": "camel",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/camel.svg"
+    },
+    {
+      "word": "camp",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/outdoor_activities/camp.svg"
+    },
+    {
+      "word": "campground",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/campground.svg"
+    },
+    {
+      "word": "canal",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/bodies_of_water/canal.svg"
+    },
+    {
+      "word": "candy",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/candy.svg"
+    },
+    {
+      "word": "canyon",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/types_of_land/canyon.svg"
+    },
+    {
+      "word": "captain",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/captain.svg"
+    },
+    {
+      "word": "capybara",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/capybara.svg"
+    },
+    {
+      "word": "car",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/car.svg"
+    },
+    {
+      "word": "carnation",
+      "image_path": "main/collections_screen/.this/modules/plants/flowers_and_flower_parts/carnation.svg"
+    },   
+    {
+      "word": "carpenter",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/carpenter.svg"
+    },
+    {
+      "word": "carriage",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/carriage.svg",
+      "spanish_translation": "carruaje"
+    },
+    {
+      "word": "carrot",
+      "image_path": "main/collections_screen/.this/modules/food/vegetables/carrot.svg"
+    },
+    {
+      "word": "carry",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/carry.svg"
+    },
+    {
+      "word": "cart",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/cart.svg"
+    },
+    {
+      "word": "cartoon",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/kinds_of_art/cartoon.svg"
+    },
+    {
+      "word": "cashier",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/cashier.svg"
+    },
+    {
+      "word": "castle",
+      "image_path": "main/collections_screen/.this/modules/home/types_of_home/castle.svg"
+    },
+    {
+      "word": "cat",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/cat.svg"
+    },
+    {
+      "word": "caterpillar",
+      "image_path": "main/collections_screen/.this/modules/animals/insects_and_other_invertebrates/caterpillar.svg"
+    },
+    {
+      "word": "cattail",
+      "image_path": "main/collections_screen/.this/modules/plants/types_of_plants/cattail.svg"
+    },
+    {
+      "word": "cauliflower",
+      "image_path": "main/collections_screen/.this/modules/food/vegetables/cauliflower.svg"
+    },
+    {
+      "word": "cave",
+      "image_path": "main/collections_screen/.this/modules/animals/where_animals_live/cave.svg"
+    },
+    {
+      "word": "ceiling",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/ceiling.svg"
+    },
+    {
+      "word": "cello",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/cello.svg"
+    },
+    {
+      "word": "cereal",
+      "image_path": "main/collections_screen/.this/modules/food/whats_for_breakfast/cereal.svg",
+      "senseId": "675703"
+    },
+    {
+      "word": "chair",
+      "image_path": "main/collections_screen/.this/modules/home/furniture/chair_1.svg"
+    },
+    {
+      "word": "cheerful",
+      "image_path": "main/collections_screen/.this/modules/you/emotions/cheerful.svg"
+    },
+    {
+      "word": "cheese",
+      "image_path": "main/collections_screen/.this/modules/food/whats_on_that_sandwich/cheese.svg"
+    },
+    {
+      "word": "chef",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/chef.svg"
+    },
+    {
+      "word": "cherry",
+      "image_path": "main/world_screen/.this/modules/world/city/grocery_store/fruit/cherries.svg"
+    },
+    {
+      "word": "chest",
+      "image_path": "main/collections_screen/.this/modules/home/furniture/chest.svg",
+      "senseId": "707703"
+    },
+    {
+      "word": "chick",
+      "image_path": "main/collections_screen/.this/modules/animals/young_animals/chick.svg"
+    },
+    {
+      "word": "chicken",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/chicken.svg",
+      "senseId": "710901"
+    },
+    {
+      "word": "chili pepper",
+      "image_path": "main/collections_screen/.this/modules/food/condiments_and_spices/chili_pepper.svg"
+    },
+    {
+      "word": "chimney",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/chimney.svg"
+    },
+    {
+      "word": "chimpanzee",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/chimpanzee.svg"
+    },
+    {
+      "word": "chipmunk",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/chipmunk.svg"
+    },
+    {
+      "word": "chip",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/chip.svg"
+    },
+    {
+      "word": "chocolate",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/chocolate.svg"
+    },
+    {
+      "word": "Christmas",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/holidays/christmas.svg"
+    },
+    {
+      "word": "church",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/places_where_people_go/church.svg"
+    },
+    {
+      "word": "cinnamon",
+      "image_path": "main/collections_screen/.this/modules/food/condiments_and_spices/cinnamon.svg"
+    },
+    {
+      "word": "circle",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/shapes/circle.svg"
+    },
+    {
+      "word": "city",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/city.svg"
+    },
+    {
+      "word": "clam",
+      "image_path": "main/collections_screen/.this/modules/food/meat_and_seafood/clam.svg"
+    },
+    {
+      "word": "clarinet",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/clarinet.svg"
+    },
+    {
+      "word": "class",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_in_a_school/class.svg"
+    },
+    {
+      "word": "classroom",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_in_a_school/classroom.svg"
+    },
+    {
+      "word": "claw",
+      "image_path": "main/collections_screen/.this/modules/animals/animal_parts/claw.svg"
+    },
+    {
+      "word": "clay",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/art_materials/clay.svg",
+      "spanish_translation": "arcilla"
+    },
+    {
+      "word": "clean",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/clean.svg",
+      "senseId": "763411"
+    },
+    {
+      "word": "cliff",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/types_of_land/cliff.svg"
+    },
+    {
+      "word": "climb",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/climb.svg"
+    },
+    {
+      "word": "clock",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_in_a_school/clock.svg"
+    },
+    {
+      "word": "close",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/close.svg"
+    },
+    {
+      "word": "closet",
+      "image_path": "main/collections_screen/.this/modules/home/furniture/closet.svg"
+    },
+    {
+      "word": "cloud",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/weather/cloud.svg"
+    },
+    {
+      "word": "clover",
+      "image_path": "main/collections_screen/.this/modules/plants/types_of_plants/clover.svg"
+    },
+    {
+      "word": "clown",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/theater/clown.svg"
+    },
+    {
+      "word": "coast",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/types_of_land/coast.svg"
+    },
+    {
+      "word": "coat",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/coat.svg"
+    },
+    {
+      "word": "cocoa",
+      "image_path": "main/collections_screen/.this/modules/food/beverage/cocoa.svg",
+      "senseId": "793602"
+    },
+    {
+      "word": "cocoa",
+      "image_path": "main/collections_screen/.this/modules/food/baking/cocoa.svg",
+      "senseId": "793601"
+    },
+    {
+      "word": "coconut",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/coconut.svg"
+    },
+    {
+      "word": "coffee",
+      "image_path": "main/collections_screen/.this/modules/food/beverage/coffee.svg"
+    },
+    {
+      "word": "collar",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_clothing/collar.svg"
+    },
+    {
+      "word": "color",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/indoor_activities/color.svg",
+      "senseId": "814407"
+    },
+    {
+      "word": "comb",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_bathroom/comb.svg"
+    },
+    {
+      "word": "comic book",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_to_read/comic_book.svg"
+    },
+    {
+      "word": "computer",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_in_a_school/computer.svg"
+    },
+    {
+      "word": "concert",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/theater/concert.svg"
+    },
+    {
+      "word": "cone",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/shapes/cone.svg"
+    },
+    {
+      "word": "cone",
+      "senseId": "859703",
+      "image_path": "main/collections_screen/.this/modules/plants/trees_and_tree_parts/cone.svg"
+    },
+    {
+      "word": "cook",
+      "senseId": "901908",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/cook.svg"
+    },
+    {
+      "word": "cook",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/cook.svg",
+      "senseId": "901901"
+    },
+    {
+      "word": "cookie",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/cookie.svg"
+    },
+    {
+      "word": "costume",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/theater/costume.svg",
+      "spanish_translation": "disfraz"
+    },
+    {
+      "word": "corn",
+      "image_path": "main/collections_screen/.this/modules/plants/types_of_plants/corn.svg",
+      "senseId": "913301"
+    },
+    {
+      "word": "cottage",
+      "image_path": "main/collections_screen/.this/modules/home/types_of_home/cottage.svg"
+    },
+    {
+      "word": "cotton",
+      "image_path": "main/collections_screen/.this/modules/plants/types_of_plants/cotton.svg",
+      "senseId": "929201"
+    },
+    {
+      "word": "couch",
+      "image_path": "main/collections_screen/.this/modules/home/furniture/couch.svg"
+    },
+    {
+      "word": "counter",
+      "image_path": "main/collections_screen/.this/modules/home/furniture/counter.svg"
+    },
+    {
+      "word": "countryside",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/countryside.svg"
+    },
+    {
+      "word": "cow",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/cow.svg"
+    },
+    {
+      "word": "cowboy",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/cowboy.svg"
+    },
+    {
+      "word": "cowgirl",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/cowgirl.svg"
+    },
+    {
+      "word": "crab",
+      "image_path": "main/collections_screen/.this/modules/animals/fish_and_other_sea_animals/crab.svg"
+    },
+    {
+      "word": "cracker",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/cracker.svg"
+    },
+    {
+      "word": "crane",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/crane.svg"
+    },
+    {
+      "word": "crayon",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/art_materials/crayon.svg"
+    },
+    {
+      "word": "cream",
+      "senseId": "970001",
+      "spanish_translation": "crema"
+    },
+    {
+      "word": "crocodile",
+      "image_path": "main/collections_screen/.this/modules/animals/reptiles_and_amphibians/crocodile.svg"
+    },
+    {
+      "word": "crow",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/crow.svg"
+    },
+    {
+      "word": "cube",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/shapes/cube.svg"
+    },
+    {
+      "word": "cub",
+      "image_path": "main/collections_screen/.this/modules/animals/young_animals/cub.svg"
+    },
+    {
+      "word": "cucumber",
+      "image_path": "main/collections_screen/.this/modules/food/vegetables/cucumber.svg"
+    },
+    {
+      "word": "cup",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_kitchen/cup.svg",
+      "senseId": "1009901"
+    },
+    {
+      "word": "cup",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/cup.svg",
+      "senseId": "1009903"
+    },
+    {
+      "word": "cupboard",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_kitchen/cupboard.svg"
+    },
+    {
+      "word": "cupcake",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/cupcake.svg"
+    },
+    {
+      "word": "curtain",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/curtain.svg"
+    },
+    {
+      "word": "cut",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/cut.svg"
+    },
+    {
+      "word": "cylinder",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/shapes/cylinder.svg"
+    },
+    {
+      "word": "cap",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/cap.svg"
+    },
+    {
+      "word": "cape",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/cape.svg"
+    },
+    {
+      "word": "daffodil",
+      "image_path": "main/collections_screen/.this/modules/plants/flowers_and_flower_parts/daffodil.svg"
+    },
+    {
+      "word": "daisy",
+      "image_path": "main/collections_screen/.this/modules/plants/flowers_and_flower_parts/daisy.svg"
+    },
+    {
+      "word": "dancer",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/dancer.svg"
+    },
+    {
+      "word": "dandelion",
+      "image_path": "main/collections_screen/.this/modules/plants/types_of_plants/dandelion.svg"
+    },
+    {
+      "word": "date",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/date.svg",
+      "senseId": "1047001"
+    },
+    {
+      "word": "deer",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/deer.svg"
+    },
+    {
+      "word": "deliver",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/deliver.svg"
+    },
+    {
+      "word": "den",
+      "image_path": "main/collections_screen/.this/modules/animals/where_animals_live/den.svg",
+      "senseId": "1099401"
+    },
+    {
+      "word": "den",
+      "image_path": "main/collections_screen/.this/modules/home/places_at_home/den.svg",
+      "senseId": "1099404"
+    },
+    {
+      "word": "dentist",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/dentist.svg"
+    },
+    {
+      "word": "desert",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/types_of_land/desert.svg"
+    },
+    {
+      "word": "desk",
+      "image_path": "main/collections_screen/.this/modules/home/furniture/desk.svg",
+      "senseId": "1119101"
+    },
+    {
+      "word": "dessert",
+      "image_path": "main/collections_screen/.this/modules/food/meals/dessert.svg"
+    },
+    {
+      "word": "detective",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/detective.svg"
+    },
+    {
+      "word": "diamond",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/shapes/diamond.svg",
+      "senseId": "1140202"
+    },
+    {
+      "word": "dictionary",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_in_a_school/dictionary.svg"
+    },
+    {
+      "word": "dig",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/dig.svg"
+    },
+    {
+      "word": "dining room",
+      "image_path": "main/collections_screen/.this/modules/home/places_at_home/dining_room.svg"
+    },
+    {
+      "word": "dinner",
+      "image_path": "main/collections_screen/.this/modules/food/meals/dinner.svg"
+    },
+    {
+      "word": "dip",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/dip.svg",
+      "senseId": "1160811"
+    },
+    {
+      "word": "dish",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_kitchen/dish.svg"
+    },
+    {
+      "word": "dishwasher",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_kitchen/dishwasher.svg"
+    },
+    {
+      "word": "doctor",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/doctor.svg"
+    },
+    {
+      "word": "dog",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/dog.svg"
+    },
+    {
+      "word": "dolphin",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/dolphin.svg"
+    },
+    {
+      "word": "donkey",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/donkey.svg"
+    },
+    {
+      "word": "door",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/door.svg"
+    },
+    {
+      "word": "double bass",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/double_bass.svg"
+    },
+    {
+      "word": "doughnut",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/doughnut.svg"
+    },
+    {
+      "word": "draw",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/draw.svg"
+    },
+    {
+      "word": "drawer",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_a_bedroom/drawer.svg"
+    },
+    {
+      "word": "drawing",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/kinds_of_art/drawing.svg"
+    },
+    {
+      "word": "dress",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/dress.svg",
+      "senseId": "1252201"
+    },
+    {
+      "word": "dress",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/indoor_activities/dress.svg",
+      "senseId": "1252204"
+    },
+    {
+      "word": "drink",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/drink.svg"
+    },
+    {
+      "word": "drive",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/drive.svg"
+    },
+    {
+      "word": "driveway",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_to_drive_or_walk/driveway.svg"
+    },
+    {
+      "word": "drugstore",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/drugstore.svg"
+    },
+    {
+      "word": "drum",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/drum.svg"
+    },
+    {
+      "word": "duck",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/duck.svg"
+    },
+    {
+      "word": "eagle",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/eagle.svg"
+    },
+    {
+      "word": "earrings",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/earrings.svg"
+    },
+    {
+      "word": "eat",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/eat.svg"
+    },
+    {
+      "word": "egg",
+      "image_path": "main/collections_screen/.this/modules/food/baking/eggs.svg"
+    },
+    {
+      "word": "eight",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/1_2_3/eight.svg"
+    },
+    {
+      "word": "elephant",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/elephant.svg"
+    },
+    {
+      "word": "entr&#233;e",
+      "image_path": "main/collections_screen/.this/modules/food/meals/entree.svg"
+    },
+    {
+      "word": "excited",
+      "image_path": "main/collections_screen/.this/modules/you/emotions/excited.svg"
+    },
+    {
+      "word": "exercise",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/exercise.svg",
+      "senseId": "1433609"
+    },
+    {
+      "word": "Father's Day",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/holidays/fathers_day.svg"
+    },
+    {
+      "word": "factory",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/factory.svg"
+    },
+    {
+      "word": "fall",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/fall.svg"
+    },
+    {
+      "word": "farm",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/places_where_people_work/farm.svg"
+    },
+    {
+      "word": "farmer",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/farmer.svg"
+    },
+    {
+      "word": "faucet",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_bathroom/faucet.svg"
+    },
+    {
+      "word": "feather",
+      "image_path": "main/collections_screen/.this/modules/animals/animal_parts/feather.svg"
+    },
+    {
+      "word": "feed",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/feed.svg"
+    },
+    {
+      "word": "fern",
+      "image_path": "main/collections_screen/.this/modules/plants/types_of_plants/fern.svg"
+    },
+    {
+      "word": "ferry",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_water/ferry.svg"
+    },
+    {
+      "word": "field",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/types_of_land/field.svg"
+    },
+    {
+      "word": "fifty",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/1_2_3/fifty.svg"
+    },
+    {
+      "word": "fight",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/outdoor_activities/fight.svg"
+    },
+    {
+      "word": "film",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/theater/film.svg"
+    },
+    {
+      "word": "fin",
+      "image_path": "main/collections_screen/.this/modules/animals/animal_parts/fin.svg"
+    },
+    {
+      "word": "fire station",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/places_where_people_work/fire_station.svg"
+    },
+    {
+      "word": "firefly",
+      "image_path": "main/collections_screen/.this/modules/animals/insects_and_other_invertebrates/firefly.svg"
+    },
+    {
+      "word": "fish",
+      "image_path": "main/collections_screen/.this/modules/animals/fish_and_other_sea_animals/fish.svg",
+      "senseId": "1540001"
+    },
+    {
+      "word": "fish",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/outdoor_activities/fish.svg",
+      "senseId": "1540007"
+    },
+    {
+      "word": "five",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/1_2_3/five.svg"
+    },
+    {
+      "word": "fix",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/fix.svg"
+    },
+    {
+      "word": "flipper",
+      "image_path": "main/collections_screen/.this/modules/animals/animal_parts/flipper.svg"
+    },
+    {
+      "word": "floor",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/floor.svg",
+      "senseId": "1567001"
+    },
+    {
+      "word": "floor",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/floor_1.svg",
+      "senseId": "1567004"
+    },
+    {
+      "word": "flour",
+      "image_path": "main/collections_screen/.this/modules/food/baking/flour.svg"
+    },
+    {
+      "word": "flower",
+      "image_path": "main/collections_screen/.this/modules/plants/types_of_plants/flower.svg"
+    },
+    {
+      "word": "flute",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/flute.svg"
+    },
+    {
+      "word": "fly",
+      "image_path": "main/collections_screen/.this/modules/animals/insects_and_other_invertebrates/fly.svg",
+      "senseId": "1577501"
+    },
+    {
+      "word": "fly",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/outdoor_activities/fly.svg",
+      "senseId": "1577401"
+    },
+    {
+      "word": "foot",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/foot.svg",
+      "senseId": "1590002"
+    },
+    {
+      "word": "football",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/sports/football.svg"
+    },
+    {
+      "word": "forest",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/types_of_land/forest.svg"
+    },
+    {
+      "word": "fork",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_kitchen/fork.svg"
+    },
+    {
+      "word": "four",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/1_2_3/four.svg"
+    },
+    {
+      "word": "Fourth of July",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/holidays/fourth_of_july.svg"
+    },
+    {
+      "word": "fox",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/fox.svg"
+    },
+    {
+      "word": "frame",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/frame.svg",
+      "spanish_translation": "marco"
+    },
+    {
+      "word": "french horn",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/french_horn.svg",
+      "spanish_translation": "corno franc&#233;s"
+    },
+    {
+      "word": "frog",
+      "image_path": "main/collections_screen/.this/modules/animals/reptiles_and_amphibians/frog.svg"
+    },
+    {
+      "word": "fruit",
+      "image_path": "main/collections_screen/.this/modules/food/whats_for_breakfast/fruit.svg"
+    },
+    {
+      "word": "fur",
+      "image_path": "main/collections_screen/.this/modules/animals/animal_parts/fur.svg",
+      "spanish_translation": "pelo"
+    },
+    {
+      "word": "gallon",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/gallon.svg"
+    },
+    {
+      "word": "garage",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/garage.svg"
+    },
+    {
+      "word": "gas station",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/gas_station.svg"
+    },
+    {
+      "word": "general",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/general.svg",
+      "senseId": "1706604"
+    },
+    {
+      "word": "giraffe",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/giraffe.svg"
+    },
+    {
+      "word": "glad",
+      "image_path": "main/collections_screen/.this/modules/you/emotions/glad.svg"
+    },
+    {
+      "word": "glass",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/glass.svg",
+      "senseId": "1735701"
+    },
+    {
+      "word": "globe",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_in_a_school/globe.svg"
+    },
+    {
+      "word": "glove",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/glove.svg"
+    },
+    {
+      "word": "glue",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/art_materials/glue.svg"
+    },
+    {
+      "word": "goat",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/goat.svg"
+    },
+    {
+      "word": "gold",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/colors/gold.svg",
+      "senseId": "1754607"
+    },
+    {
+      "word": "goldfish",
+      "image_path": "main/collections_screen/.this/modules/animals/pets/goldfish.svg"
+    },
+    {
+      "word": "goose",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/goose.svg"
+    },
+    {
+      "word": "gorilla",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/gorilla.svg"
+    },
+    {
+      "word": "grape",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/grapes.svg"
+    },
+    {
+      "word": "grapefruit",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/grapefruit.svg"
+    },
+    {
+      "word": "grass",
+      "image_path": "main/collections_screen/.this/modules/plants/types_of_plants/grass.svg",
+      "spanish_translation": "c&#233;sped"
+    },
+    {
+      "word": "grasshopper",
+      "image_path": "main/collections_screen/.this/modules/animals/insects_and_other_invertebrates/grasshopper.svg"
+    },
+    {
+      "word": "gray",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/colors/gray.svg"
+    },
+    {
+      "word": "green",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/colors/green.svg"
+    },
+    {
+      "word": "grocery store",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/grocery_store.svg"
+    },
+    {
+      "word": "groundhog",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/groundhog.svg"
+    },
+    {
+      "word": "guitar",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/guitar.svg"
+    },
+    {
+      "word": "gulf",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/bodies_of_water/gulf.svg"
+    },
+    {
+      "word": "gum",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/gum.svg"
+    },
+    {
+      "word": "half",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/half.svg"
+    },
+    {
+      "word": "Halloween",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/holidays/halloween.svg"
+    },
+    {
+      "word": "ham",
+      "image_path": "main/collections_screen/.this/modules/food/meat_and_seafood/ham.svg"
+    },
+    {
+      "word": "hamburger",
+      "image_path": "main/collections_screen/.this/modules/food/meat_and_seafood/hamburger.svg",
+      "spanish_translation": "hamburguesa"
+    },
+    {
+      "word": "hamster",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/hamster.svg"
+    },
+    {
+      "word": "hang",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/hang.svg"
+    },
+    {
+      "word": "hanger",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/hanger.svg"
+    },
+    {
+      "word": "Hanukkah",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/holidays/hanukkah.svg"
+    },
+    {
+      "word": "happy",
+      "image_path": "main/collections_screen/.this/modules/you/emotions/happy.svg"
+    },
+    {
+      "word": "harp",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/harp.svg"
+    },
+    {
+      "word": "hat",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/hat.svg"
+    },
+    {
+      "word": "hawk",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/hawk.svg"
+    },
+    {
+      "word": "hay",
+      "image_path": "main/collections_screen/.this/modules/plants/types_of_plants/hay.svg"
+    },
+    {
+      "word": "heart",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/shapes/heart.svg",
+      "senseId": "1892804"
+    },
+    {
+      "word": "heel",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/heel.svg",
+      "senseId": "1902302"
+    },
+    {
+      "word": "height",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/height.svg"
+    },
+    {
+      "word": "hide",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/hide.svg",
+      "senseId": "1932103"
+    },
+    {
+      "word": "highway",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_to_drive_or_walk/highway.svg"
+    },
+    {
+      "word": "hike",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/outdoor_activities/hike.svg"
+    },
+    {
+      "word": "hill",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/types_of_land/hill.svg"
+    },
+    {
+      "word": "hippopotamus",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/hippopotamus.svg"
+    },
+    {
+      "word": "hit",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/hit.svg"
+    },
+    {
+      "word": "hockey",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/sports/hockey.svg"
+    },
+    {
+      "word": "honey",
+      "image_path": "main/collections_screen/.this/modules/food/condiments_and_spices/honey.svg"
+    },
+    {
+      "word": "hoof",
+      "image_path": "main/collections_screen/.this/modules/animals/animal_parts/hoof.svg",
+      "spanish_translation": "casco"
+    },
+    {
+      "word": "horn",
+      "image_path": "main/collections_screen/.this/modules/animals/animal_parts/horn.svg"
+    },
+    {
+      "word": "horse",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/horse.svg"
+    },
+    {
+      "word": "hospital",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/hospital.svg"
+    },
+    {
+      "word": "hot dog",
+      "image_path": "main/collections_screen/.this/modules/food/meat_and_seafood/hot_dog.svg"
+    },
+    {
+      "word": "hotel",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/hotel.svg"
+    },
+    {
+      "word": "house",
+      "image_path": "main/collections_screen/.this/modules/home/types_of_home/house.svg"
+    },
+    {
+      "word": "hump",
+      "image_path": "main/collections_screen/.this/modules/animals/animal_parts/hump.svg"
+    },
+    {
+      "word": "hundred",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/1_2_3/hundred.svg"
+    },
+    {
+      "word": "hunt",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/outdoor_activities/hunt.svg"
+    },
+    {
+      "word": "hurricane",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/weather/hurricane.svg"
+    },
+    {
+      "word": "hut",
+      "image_path": "main/collections_screen/.this/modules/home/types_of_home/hut.svg",
+      "spanish_translation": "caba&#241;a"
+    },
+    {
+      "word": "ice cream",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/ice_cream.svg"
+    },
+    {
+      "word": "ice-skate",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/ice_skate.svg"
+    },
+    {
+      "word": "ice",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/weather/ice.svg"
+    },
+    {
+      "word": "icicle",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/weather/icicle.svg"
+    },
+    {
+      "word": "icing",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/icing.svg"
+    },
+    {
+      "word": "inch",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/inch.svg"
+    },
+    {
+      "word": "ink",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/art_materials/ink.svg"
+    },
+    {
+      "word": "iris",
+      "image_path": "main/collections_screen/.this/modules/plants/flowers_and_flower_parts/iris.svg"
+    },
+    {
+      "word": "island",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/types_of_land/island.svg"
+    },
+    {
+      "word": "jacket",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/jacket.svg"
+    },
+    {
+      "word": "jaguar",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/jaguar.svg"
+    },
+    {
+      "word": "jam",
+      "image_path": "main/collections_screen/.this/modules/food/condiments_and_spices/jam.svg"
+    },
+    {
+      "word": "janitor",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/janitor.svg"
+    },
+    {
+      "word": "jay",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/jay.svg"
+    },
+    {
+      "word": "jealous",
+      "image_path": "main/collections_screen/.this/modules/you/emotions/jealous.svg"
+    },
+    {
+      "word": "jeans",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/jeans.svg"
+    },
+    {
+      "word": "jelly",
+      "image_path": "main/collections_screen/.this/modules/food/condiments_and_spices/jelly.svg",
+      "spanish_translation": "mermelada"
+    },
+    {
+      "word": "judge",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/judge.svg"
+    },
+    {
+      "word": "juice",
+      "image_path": "main/collections_screen/.this/modules/food/beverage/juice.svg"
+    },
+    {
+      "word": "jump",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/jump.svg"
+    },
+    {
+      "word": "jungle",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/types_of_land/jungle.svg"
+    },
+    {
+      "word": "kangaroo",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/kangaroo.svg"
+    },
+    {
+      "word": "ketchup",
+      "image_path": "main/collections_screen/.this/modules/food/condiments_and_spices/ketchup.svg"
+    },
+    {
+      "word": "kettle",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_kitchen/kettle.svg"
+    },
+    {
+      "word": "kick",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/kick.svg"
+    },
+    {
+      "word": "kitchen",
+      "image_path": "main/collections_screen/.this/modules/home/places_at_home/kitchen.svg"
+    },
+    {
+      "word": "kitten",
+      "image_path": "main/collections_screen/.this/modules/animals/young_animals/kitten.svg"
+    },
+    {
+      "word": "knife",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_kitchen/knife.svg"
+    },
+    {
+      "word": "knock",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/knock.svg"
+    },
+    {
+      "word": "koala",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/koala.svg"
+    },
+    {
+      "word": "Kwanzaa",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/holidays/kwanzaa_1.svg"
+    },
+    {
+      "word": "lake",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/bodies_of_water/lake.svg"
+    },
+    {
+      "word": "lamb",
+      "image_path": "main/collections_screen/.this/modules/animals/young_animals/lamb.svg"
+    },
+    {
+      "word": "lamb",
+      "image_path": "main/collections_screen/.this/modules/food/meat_and_seafood/lamb.svg",
+      "senseId": "2311705"
+    },
+    {
+      "word": "lamp",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_a_bedroom/lamp.svg"
+    },
+    {
+      "word": "lace",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_clothing/lace.svg",
+      "senseId": "2302002"
+    },
+    {
+      "word": "ladybug",
+      "image_path": "main/collections_screen/.this/modules/animals/insects_and_other_invertebrates/ladybug.svg"
+    },
+    {
+      "word": "lane",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_to_drive_or_walk/lane.svg"
+    },
+    {
+      "word": "laugh",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/laugh.svg"
+    },
+    {
+      "word": "lawyer",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/lawyer.svg"
+    },
+    {
+      "word": "leaf",
+      "image_path": "main/collections_screen/.this/modules/plants/flowers_and_flower_parts/leaf.svg"
+    },
+    {
+      "word": "lemon",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/lemon.svg"
+    },
+    {
+      "word": "lemonade",
+      "image_path": "main/collections_screen/.this/modules/food/beverage/lemonade.svg"
+    },
+    {
+      "word": "lemur",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/lemur.svg"
+    },
+    {
+      "word": "length",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/length.svg"
+    },
+    {
+      "word": "lettuce",
+      "image_path": "main/collections_screen/.this/modules/food/vegetables/lettuce.svg"
+    },
+    {
+      "word": "librarian",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/librarian.svg"
+    },
+    {
+      "word": "library",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/library.svg"
+    },
+    {
+      "word": "lightning",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/weather/lightning.svg"
+    },
+    {
+      "word": "lily",
+      "image_path": "main/collections_screen/.this/modules/plants/flowers_and_flower_parts/lily.svg"
+    },
+    {
+      "word": "lime",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/lime.svg"
+    },
+    {
+      "word": "lion",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/lion.svg"
+    },
+    {
+      "word": "listen",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/indoor_activities/listen.svg"
+    },
+    {
+      "word": "living room",
+      "image_path": "main/collections_screen/.this/modules/home/places_at_home/living_room.svg"
+    },
+    {
+      "word": "lizard",
+      "image_path": "main/collections_screen/.this/modules/animals/reptiles_and_amphibians/lizard.svg"
+    },
+    {
+      "word": "lobster",
+      "image_path": "main/collections_screen/.this/modules/animals/fish_and_other_sea_animals/lobster.svg"
+    },
+    {
+      "word": "lollipop",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/lollipop.svg"
+    },
+    {
+      "word": "lonely",
+      "image_path": "main/collections_screen/.this/modules/you/emotions/lonely.svg"
+    },
+    {
+      "word": "look",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/things_your_body_can_do/look.svg"
+    },
+    {
+      "word": "lunch",
+      "image_path": "main/collections_screen/.this/modules/food/meals/lunch.svg",
+      "spanish_translation": "almuerzo"
+    },
+    {
+      "word": "magazine",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_to_read/magazine.svg"
+    },
+    {
+      "word": "magician",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/theater/magician.svg"
+    },
+    {
+      "word": "mail carrier",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/mail_carrier.svg"
+    },
+    {
+      "word": "mansion",
+      "image_path": "main/collections_screen/.this/modules/home/types_of_home/mansion.svg"
+    },
+    {
+      "word": "map",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_in_a_school/map.svg"
+    },
+    {
+      "word": "maple",
+      "image_path": "main/collections_screen/.this/modules/plants/trees_and_tree_parts/maple.svg"
+    },
+    {
+      "word": "market",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/market.svg"
+    },
+    {
+      "word": "mayonnaise",
+      "image_path": "main/collections_screen/.this/modules/food/whats_on_that_sandwich/mayonnaise.svg"
+    },
+    {
+      "word": "meadow",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/types_of_land/meadow.svg"
+    },
+    {
+      "word": "mechanic",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/mechanic.svg"
+    },
+    {
+      "word": "melon",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/melon.svg"
+    },
+    {
+      "word": "microscope",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_in_a_school/microscope.svg"
+    },
+    {
+      "word": "microwave",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_kitchen/microwave.svg"
+    },
+    {
+      "word": "miner",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/miner.svg"
+    },
+    {
+      "word": "mirror",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_a_bedroom/mirror.svg"
+    },
+    {
+      "word": "mile",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/mile.svg"
+    },
+    {
+      "word": "milk",
+      "image_path": "main/collections_screen/.this/modules/food/beverage/milk.svg"
+    },
+    {
+      "word": "mitten",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/mitten.svg"
+    },
+    {
+      "word": "monkey",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/monkey.svg"
+    },
+    {
+      "word": "mosque",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/places_where_people_go/mosque.svg"
+    },
+    {
+      "word": "mosquito",
+      "image_path": "main/collections_screen/.this/modules/animals/insects_and_other_invertebrates/mosquito.svg"
+    },
+    {
+      "word": "moth",
+      "image_path": "main/collections_screen/.this/modules/animals/insects_and_other_invertebrates/moth.svg"
+    },
+    {
+      "word": "Mother's Day",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/holidays/mothers_day.svg"
+    },
+    {
+      "word": "motorcycle",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/motorcycle.svg"
+    },
+    {
+      "word": "mountain",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/types_of_land/mountain.svg"
+    },
+    {
+      "word": "mouse",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/mouse.svg",
+      "senseId": "2704201"
+    },
+    {
+      "word": "movie",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/theater/movie.svg"
+    },
+    {
+      "word": "muffin",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/muffin.svg"
+    },
+    {
+      "word": "mural",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/kinds_of_art/mural.svg"
+    },
+    {
+      "word": "museum",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/museum.svg"
+    },
+    {
+      "word": "mushroom",
+      "image_path": "main/collections_screen/.this/modules/food/vegetables/mushroom.svg"
+    },
+    {
+      "word": "music",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/theater/music.svg"
+    },
+    {
+      "word": "musician",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/musician.svg"
+    },
+    {
+      "word": "mustard",
+      "image_path": "main/collections_screen/.this/modules/food/whats_on_that_sandwich/mustard.svg"
+    },
+    {
+      "word": "necklace",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/necklace.svg"
+    },
+    {
+      "word": "nervous",
+      "image_path": "main/collections_screen/.this/modules/you/emotions/nervous.svg"
+    },
+    {
+      "word": "nest",
+      "image_path": "main/collections_screen/.this/modules/animals/where_animals_live/nest.svg"
+    },
+    {
+      "word": "newspaper",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_to_read/newspaper.svg"
+    },
+    {
+      "word": "night table",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_a_bedroom/night_table.svg"
+    },
+    {
+      "word": "nightgown",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/nightgown.svg"
+    },
+    {
+      "word": "nine",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/1_2_3/nine.svg"
+    },
+    {
+      "word": "nurse",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/nurse.svg"
+    },
+    {
+      "word": "nut",
+      "image_path": "main/collections_screen/.this/modules/food/baking/nuts.svg"
+    },
+    {
+      "word": "oak",
+      "image_path": "main/collections_screen/.this/modules/plants/trees_and_tree_parts/oak.svg"
+    },
+    {
+      "word": "ocean",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/bodies_of_water/ocean.svg"
+    },
+    {
+      "word": "octopus",
+      "image_path": "main/collections_screen/.this/modules/animals/fish_and_other_sea_animals/octopus.svg"
+    },
+    {
+      "word": "office building",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/office_building.svg"
+    },
+    {
+      "word": "office",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/places_where_people_work/office.svg"
+    },
+    {
+      "word": "oil",
+      "image_path": "main/collections_screen/.this/modules/food/condiments_and_spices/oil.svg"
+    },
+    {
+      "word": "one",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/1_2_3/one.svg"
+    },
+    {
+      "word": "onion",
+      "image_path": "main/collections_screen/.this/modules/food/vegetables/onion.svg"
+    },
+    {
+      "word": "open",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/open.svg",
+      "senseId": "2889010"
+    },
+    {
+      "word": "opossum",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/opossum.svg"
+    },
+    {
+      "word": "orange",
+      "senseId": "2900503",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/colors/orange.svg"
+    },
+    {
+      "word": "orange",
+      "senseId": "2900501",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/orange.svg"
+    },
+    {
+      "word": "ostrich",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/ostrich.svg"
+    },
+    {
+      "word": "ounce",
+      "senseId": "2920501",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/ounce_1.svg"
+    },
+    {
+      "word": "ounce",
+      "senseId": "2920502",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/ounce_2.svg"
+    },
+    {
+      "word": "oval",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/shapes/oval.svg",
+      "senseId": "2933502"
+    },
+    {
+      "word": "oven",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_kitchen/oven.svg"
+    },
+    {
+      "word": "owl",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/owl.svg"
+    },
+    {
+      "word": "paint",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/art_materials/paint.svg"
+    },
+    {
+      "word": "painting",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/kinds_of_art/painting.svg"
+    },
+    {
+      "word": "paintbrush",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_in_a_school/brush.svg",
+      "senseId": "2963401"
+    },
+    {
+      "word": "painter",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/painter.svg",
+      "senseId": "2963601"
+    },
+    {
+      "word": "painter",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/painter_1.svg",
+      "senseId": "2963602"
+    },
+    {
+      "word": "pajamas",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/pajamas.svg"
+    },
+    {
+      "word": "palace",
+      "image_path": "main/collections_screen/.this/modules/home/types_of_home/palace.svg"
+    },
+    {
+      "word": "pan",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_kitchen/pan.svg"
+    },
+    {
+      "word": "pancake",
+      "image_path": "main/collections_screen/.this/modules/food/whats_for_breakfast/pancake.svg"
+    },
+    {
+      "word": "pants",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/pants.svg"
+    },
+    {
+      "word": "paper",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/art_materials/paper.svg"
+    },
+    {
+      "word": "parakeet",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/parakeet.svg"
+    },
+    {
+      "word": "park",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/park.svg"
+    },
+    {
+      "word": "parrot",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/parrot.svg"
+    },
+    {
+      "word": "pasture",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/types_of_land/pasture.svg"
+    },
+    {
+      "word": "path",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_to_drive_or_walk/path.svg"
+    },
+    {
+      "word": "paw",
+      "image_path": "main/collections_screen/.this/modules/animals/animal_parts/paw.svg"
+    },
+    {
+      "word": "peach",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/peach.svg"
+    },
+    {
+      "word": "peacock",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/peacock.svg"
+    },
+    {
+      "word": "peanut butter",
+      "image_path": "main/collections_screen/.this/modules/food/condiments_and_spices/peanut_butter.svg",
+      "spanish_translation": "mantequilla de man&#237;"
+    },
+    {
+      "word": "pear",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/pear.svg"
+    },
+    {
+      "word": "pen",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/art_materials/pen.svg"
+    },
+    {
+      "word": "pencil",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/art_materials/pencil.svg"
+    },
+    {
+      "word": "penguin",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/penguin.svg"
+    },
+    {
+      "word": "peninsula",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/types_of_land/peninsula.svg"
+    },
+    {
+      "word": "peony",
+      "image_path": "main/collections_screen/.this/modules/plants/flowers_and_flower_parts/peony.svg"
+    },
+    {
+      "word": "pepper",
+      "image_path": "main/collections_screen/.this/modules/food/condiments_and_spices/pepper.svg",
+      "senseId": "3051101"
+    },
+    {
+      "word": "pepper",
+      "image_path": "main/collections_screen/.this/modules/food/vegetables/pepper.svg",
+      "senseId": "3051103"
+    },
+    {
+      "word": "petal",
+      "image_path": "main/collections_screen/.this/modules/plants/flowers_and_flower_parts/petal.svg"
+    },
+    {
+      "word": "petunia",
+      "image_path": "main/collections_screen/.this/modules/plants/flowers_and_flower_parts/petunia.svg"
+    },
+    {
+      "word": "photograph",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/kinds_of_art/photograph.svg"
+    },
+    {
+      "word": "photographer",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/photographer.svg"
+    },
+    {
+      "word": "piano",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/piano.svg"
+    },
+    {
+      "word": "pie",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/pie.svg"
+    },
+    {
+      "word": "pig",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/pig.svg"
+    },
+    {
+      "word": "pigeon",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/pigeon.svg"
+    },
+    {
+      "word": "pillow",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_a_bedroom/pillow.svg"
+    },
+    {
+      "word": "pilot",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/pilot.svg"
+    },
+    {
+      "word": "pine",
+      "image_path": "main/collections_screen/.this/modules/plants/trees_and_tree_parts/pine.svg"
+    },
+    {
+      "word": "pineapple",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/pineapple.svg"
+    },
+    {
+      "word": "pink",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/colors/pink.svg"
+    },
+    {
+      "word": "pond",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/bodies_of_water/pond.svg"
+    },
+    {
+      "word": "pony",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/pony.svg"
+    },
+    {
+      "word": "pint",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/pint.svg"
+    },
+    {
+      "word": "pitcher",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_kitchen/pitcher.svg"
+    },
+    {
+      "word": "pizza",
+      "image_path": "main/collections_screen/.this/modules/food/whats_for_dinner/pizza.svg"
+    },
+    {
+      "word": "planetarium",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/planetarium.svg"
+    },
+    {
+      "word": "plate",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_kitchen/plate.svg"
+    },
+    {
+      "word": "play",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/play.svg"
+    },
+    {
+      "word": "pocket",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_clothing/pocket.svg"
+    },
+    {
+      "word": "poem",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_to_read/poem.svg"
+    },
+    {
+      "word": "point",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/point.svg",
+      "senseId": "3184520",
+      "spanish_translation": "se&#241;alar"
+    },
+    {
+      "word": "police officer",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/police_officer.svg"
+    },
+    {
+      "word": "police station",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/places_where_people_work/police_station.svg"
+    },
+    {
+      "word": "pound",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/pound.svg",
+      "senseId": "3233101",
+      "spanish_translation": "libra"
+    },
+    {
+      "word": "pour",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/pour.svg"
+    },
+    {
+      "word": "president",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/president.svg"
+    },
+    {
+      "word": "pretzel",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/pretzel.svg"
+    },
+    {
+      "word": "professor",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/professor.svg"
+    },
+    {
+      "word": "pool",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/pool.svg",
+      "spanish_translation": "piscina"
+    },
+    {
+      "word": "poppy",
+      "image_path": "main/collections_screen/.this/modules/plants/flowers_and_flower_parts/poppy.svg"
+    },
+    {
+      "word": "porch",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/porch.svg"
+    },
+    {
+      "word": "pork",
+      "image_path": "main/collections_screen/.this/modules/food/meat_and_seafood/pork.svg"
+    },
+    {
+      "word": "post office",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/post_office.svg"
+    },
+    {
+      "word": "poster",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/kinds_of_art/poster.svg"
+    },
+    {
+      "word": "pot",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_kitchen/pot.svg"
+    },
+    {
+      "word": "potato",
+      "image_path": "main/collections_screen/.this/modules/food/vegetables/potato.svg"
+    },
+    {
+      "word": "proud",
+      "image_path": "main/collections_screen/.this/modules/you/emotions/proud.svg"
+    },
+    {
+      "word": "pudding",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/pudding.svg"
+    },
+    {
+      "word": "pumpkin",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/pumpkin.svg"
+    },
+    {
+      "word": "pup",
+      "image_path": "main/collections_screen/.this/modules/animals/young_animals/pup.svg"
+    },
+    {
+      "word": "puppet",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/theater/puppet.svg"
+    },
+    {
+      "word": "puppy",
+      "image_path": "main/collections_screen/.this/modules/animals/young_animals/puppy.svg"
+    },
+    {
+      "word": "purple",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/colors/purple.svg"
+    },
+    {
+      "word": "quart",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/quart.svg"
+    },
+    {
+      "word": "rabbit",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/rabbit.svg"
+    },
+    {
+      "word": "raccoon",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/raccoon.svg"
+    },
+    {
+      "word": "raft",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_water/raft.svg"
+    },
+    {
+      "word": "rain",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/weather/rain.svg"
+    },
+    {
+      "word": "rainbow",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/weather/rainbow.svg"
+    },
+    {
+      "word": "rainforest",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/types_of_land/rainforest.svg"
+    },
+    {
+      "word": "ram",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/ram.svg"
+    },
+    {
+      "word": "Ramadan",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/holidays/ramadan_1.svg"
+    },
+    {
+      "word": "ranch",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/places_where_people_work/ranch.svg"
+    },
+    {
+      "word": "ranger",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/ranger.svg"
+    },
+    {
+      "word": "rat",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/rat.svg"
+    },
+    {
+      "word": "read",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/read.svg"
+    },
+    {
+      "word": "recess",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_in_a_school/recess.svg"
+    },
+    {
+      "word": "rectangle",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/shapes/rectangle.svg"
+    },
+    {
+      "word": "red",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/colors/red.svg"
+    },
+    {
+      "word": "refrigerator",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_kitchen/refrigerator.svg"
+    },
+    {
+      "word": "reindeer",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/reindeer.svg"
+    },
+    {
+      "word": "repair",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/outdoor_activities/repair.svg"
+    },
+    {
+      "word": "restaurant",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/restaurant.svg"
+    },
+    {
+      "word": "rhinoceros",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/rhinoceros.svg"
+    },
+    {
+      "word": "rice",
+      "image_path": "main/collections_screen/.this/modules/food/whats_for_dinner/rice.svg"
+    },
+    {
+      "word": "ride",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/outdoor_activities/ride.svg",
+      "senseId": "3540402"
+    },
+    {
+      "word": "ride",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/outdoor_activities/ride_2.svg",
+      "senseId": "3540408"
+    },
+    {
+      "word": "ring",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/ring.svg"
+    },
+    {
+      "word": "river",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/bodies_of_water/river.svg"
+    },
+    {
+      "word": "road",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_to_drive_or_walk/road.svg"
+    },
+    {
+      "word": "rocket",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_air_and_space/rocket.svg"
+    },
+    {
+      "word": "roller skate",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/roller_skate.svg"
+    },
+    {
+      "word": "roof",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/roof.svg"
+    },
+    {
+      "word": "root",
+      "image_path": "main/collections_screen/.this/modules/plants/trees_and_tree_parts/root.svg"
+    },
+    {
+      "word": "rose",
+      "image_path": "main/collections_screen/.this/modules/plants/flowers_and_flower_parts/rose.svg"
+    },
+    {
+      "word": "ruler",
+      "senseId": "3598202",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/ruler.svg"
+    },
+    {
+      "word": "run",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/run.svg"
+    },
+    {
+      "word": "sad",
+      "image_path": "main/collections_screen/.this/modules/you/emotions/sad.svg"
+    },
+    {
+      "word": "sailboat",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_water/sailboat.svg"
+    },
+    {
+      "word": "Saint Patrick's Day",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/holidays/saint_patricks_day.svg"
+    },
+    {
+      "word": "salad",
+      "image_path": "main/collections_screen/.this/modules/food/meals/salad.svg"
+    },
+    {
+      "word": "salesclerk",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/salesclerk.svg"
+    },
+    {
+      "word": "salt",
+      "image_path": "main/collections_screen/.this/modules/food/condiments_and_spices/salt.svg"
+    },
+    {
+      "word": "sandal",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/sandal.svg"
+    },
+    {
+      "word": "sandwich",
+      "image_path": "main/collections_screen/.this/modules/food/meals/sandwich.svg"
+    },
+    {
+      "word": "sauce",
+      "image_path": "main/collections_screen/.this/modules/food/condiments_and_spices/sauce.svg"
+    },
+    {
+      "word": "sausage",
+      "image_path": "main/collections_screen/.this/modules/food/meat_and_seafood/sausage.svg"
+    },
+    {
+      "word": "saxophone",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/saxophone.svg"
+    },
+    {
+      "word": "scale",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/scale.svg",
+      "senseId": "3669401"
+    },
+    {
+      "word": "scale",
+      "senseId": "3669301",
+      "image_path": "main/collections_screen/.this/modules/animals/animal_parts/scale.svg"
+    },
+    {
+      "word": "scared",
+      "image_path": "main/collections_screen/.this/modules/you/emotions/scared.svg"
+    },
+    {
+      "word": "scarf",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/scarf.svg"
+    },
+    {
+      "word": "school",
+      "senseId": "3680701",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/school.svg"
+    },
+    {
+      "word": "scientist",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/scientist.svg"
+    },
+    {
+      "word": "scissors",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/art_materials/scissors.svg"
+    },
+    {
+      "word": "scorpion",
+      "image_path": "main/collections_screen/.this/modules/animals/insects_and_other_invertebrates/scorpion.svg"
+    },
+    {
+      "word": "screen",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/screen.svg",
+      "senseId": "3696601"
+    },
+    {
+      "word": "sculpture",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/kinds_of_art/sculpture.svg"
+    },
+    {
+      "word": "sea anemone",
+      "image_path": "main/collections_screen/.this/modules/animals/fish_and_other_sea_animals/sea_anemone.svg"
+    },
+    {
+      "word": "sea gull",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/sea_gull.svg"
+    },
+    {
+      "word": "sea lion",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/sea_lion.svg"
+    },
+    {
+      "word": "sea",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/bodies_of_water/sea.svg"
+    },
+    {
+      "word": "seal",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/seal.svg"
+    },
+    {
+      "word": "secretary",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/secretary.svg"
+    },
+    {
+      "word": "seed"
+    },
+    {
+      "word": "seesaw",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_in_a_school/seesaw.svg"
+    },
+    {
+      "word": "seven",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/1_2_3/seven.svg"
+    },
+    {
+      "word": "sew",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/indoor_activities/sew.svg"
+    },
+    {
+      "word": "shake",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/shake.svg"
+    },
+    {
+      "word": "shampoo",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_bathroom/shampoo.svg"
+    },
+    {
+      "word": "shark",
+      "image_path": "main/collections_screen/.this/modules/animals/fish_and_other_sea_animals/shark.svg"
+    },
+    {
+      "word": "sheep",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/sheep.svg"
+    },
+    {
+      "word": "shelf",
+      "image_path": "main/collections_screen/.this/modules/home/furniture/shelf.svg"
+    },
+    {
+      "word": "shell",
+      "image_path": "main/world_screen/.this/modules/world/nature/seashore/shell_1.svg"
+    },
+    {
+      "word": "sheriff",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/sheriff.svg"
+    },
+    {
+      "word": "ship",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_water/ship.svg"
+    },
+    {
+      "word": "shirt",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/shirt.svg"
+    },
+    {
+      "word": "shoe",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/shoe.svg"
+    },
+    {
+      "word": "shoot",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/shoot.svg"
+    },
+    {
+      "word": "shop",
+      "senseId": "3809501",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/shop.svg"
+    },
+    {
+      "word": "shop",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/outdoor_activities/shop.svg",
+      "senseId": "3809505"
+    },
+    {
+      "word": "shorts",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/shorts.svg"
+    },
+    {
+      "word": "show",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/show.svg"
+    },
+    {
+      "word": "shower",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_bathroom/shower.svg"
+    },
+    {
+      "word": "shrimp",
+      "image_path": "main/collections_screen/.this/modules/animals/fish_and_other_sea_animals/shrimp.svg",
+      "senseId": "3821901"
+    },
+    {
+      "word": "shy",
+      "image_path": "main/collections_screen/.this/modules/you/emotions/shy.svg"
+    },
+    {
+      "word": "silver",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/colors/silver.svg",
+      "senseId": "3842105"
+    },
+    {
+      "word": "sink",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_bathroom/sink.svg"
+    },
+    {
+      "word": "sit",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/sit.svg"
+    },
+    {
+      "word": "six",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/1_2_3/six.svg"
+    },
+    {
+      "word": "skate",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/outdoor_activities/skate.svg",
+      "senseId": "3860902"
+    },
+    {
+      "word": "skateboard",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/skateboard.svg"
+    },
+    {
+      "word": "skirt",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/skirt.svg"
+    },
+    {
+      "word": "skunk",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/skunk.svg"
+    },
+    {
+      "word": "sleep",
+      "image_path": "main/collections_screen/.this/modules/home/things_that_happen_at_home/sleep.svg"
+    },
+    {
+      "word": "sleeve",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_clothing/sleeve.svg"
+    },
+    {
+      "word": "slide",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/slide.svg",
+      "senseId": "3879001"
+    },
+    {
+      "word": "slide",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_in_a_school/slide.svg",
+      "senseId": "3879011"
+    },
+    {
+      "word": "sloth",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/sloth.svg"
+    },
+    {
+      "word": "snack",
+      "image_path": "main/collections_screen/.this/modules/food/meals/snack.svg"
+    },
+    {
+      "word": "snake",
+      "image_path": "main/collections_screen/.this/modules/animals/reptiles_and_amphibians/snake.svg"
+    },
+    {
+      "word": "sneaker",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/sneaker.svg"
+    },
+    {
+      "word": "snout",
+      "image_path": "main/collections_screen/.this/modules/animals/animal_parts/snout.svg"
+    },
+    {
+      "word": "snow",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/weather/snow.svg"
+    },
+    {
+      "word": "soap",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_bathroom/soap.svg"
+    },
+    {
+      "word": "soccer",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/sports/soccer.svg"
+    },
+    {
+      "word": "sock",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/sock.svg",
+      "spanish_translation": "media"
+    },
+    {
+      "word": "soda",
+      "image_path": "main/collections_screen/.this/modules/food/beverage/soda.svg"
+    },
+    {
+      "word": "soldier",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/soldier.svg"
+    },
+    {
+      "word": "sorry",
+      "image_path": "main/collections_screen/.this/modules/you/emotions/sorry.svg"
+    },
+    {
+      "word": "soup",
+      "image_path": "main/collections_screen/.this/modules/food/meals/soup.svg"
+    },
+    {
+      "word": "spaceship",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_air_and_space/spaceship.svg"
+    },
+    {
+      "word": "spaghetti",
+      "image_path": "main/collections_screen/.this/modules/food/whats_for_dinner/spaghetti.svg"
+    },
+    {
+      "word": "spider",
+      "image_path": "main/collections_screen/.this/modules/animals/insects_and_other_invertebrates/spider.svg"
+    },
+    {
+      "word": "spinach",
+      "image_path": "main/collections_screen/.this/modules/food/vegetables/spinach.svg"
+    },
+    {
+      "word": "spoon",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_kitchen/spoon.svg"
+    },
+    {
+      "word": "square",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/shapes/square.svg"
+    },
+    {
+      "word": "squirrel",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/squirrel.svg"
+    },
+    {
+      "word": "stage",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/theater/stage.svg"
+    },
+    {
+      "word": "stairs",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/stairs.svg"
+    },
+    {
+      "word": "stand",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/stand.svg"
+    },
+    {
+      "word": "star",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/shapes/star.svg",
+      "senseId": "4025302"
+    },
+    {
+      "word": "starfish",
+      "image_path": "main/collections_screen/.this/modules/animals/fish_and_other_sea_animals/starfish.svg"
+    },
+    {
+      "word": "station",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/station.svg",
+      "senseId": "4031003"
+    },
+    {
+      "word": "statue",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/kinds_of_art/statue.svg"
+    },
+    {
+      "word": "steak",
+      "image_path": "main/collections_screen/.this/modules/food/meat_and_seafood/steak.svg"
+    },
+    {
+      "word": "stem",
+      "image_path": "main/collections_screen/.this/modules/plants/flowers_and_flower_parts/stem.svg"
+    },
+    {
+      "word": "step",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/step.svg"
+    },
+    {
+      "word": "store",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/store.svg"
+    },
+    {
+      "word": "storm",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/weather/storm.svg"
+    },
+    {
+      "word": "story",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_to_read/story.svg"
+    },
+    {
+      "word": "strap",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_clothing/strap.svg"
+    },
+    {
+      "word": "strawberry",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/strawberry.svg"
+    },
+    {
+      "word": "stream",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/bodies_of_water/stream.svg"
+    },
+    {
+      "word": "street",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_to_drive_or_walk/street.svg"
+    },
+    {
+      "word": "student",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/learning_and_reading/things_in_a_school/student.svg"
+    },
+    {
+      "word": "submarine",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_water/submarine.svg"
+    },
+    {
+      "word": "subway",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/subway.svg",
+      "spanish_translation": "metro"
+    },
+    {
+      "word": "sugar",
+      "image_path": "main/collections_screen/.this/modules/food/condiments_and_spices/sugar.svg"
+    },
+    {
+      "word": "suit",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/suit.svg"
+    },
+    {
+      "word": "sun",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/weather/sun.svg"
+    },
+    {
+      "word": "sundae",
+      "image_path": "main/collections_screen/.this/modules/food/sweets_and_snacks/sundae.svg"
+    },
+    {
+      "word": "sunflower",
+      "image_path": "main/collections_screen/.this/modules/plants/flowers_and_flower_parts/sunflower.svg"
+    },
+    {
+      "word": "supper",
+      "image_path": "main/collections_screen/.this/modules/food/meals/supper.svg"
+    },
+    {
+      "word": "surgeon",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/surgeon.svg"
+    },
+    {
+      "word": "swamp",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/types_of_land/swamp.svg"
+    },
+    {
+      "word": "swan",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/swan.svg"
+    },
+    {
+      "word": "sweater",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/sweater.svg"
+    },
+    {
+      "word": "swim",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/swim.svg"
+    },
+    {
+      "word": "synagogue",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/places_where_people_go/synagogue.svg"
+    },
+    {
+      "word": "swing",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/swing.svg",
+      "senseId": "4170208"
+    },
+    {
+      "word": "table",
+      "image_path": "main/collections_screen/.this/modules/home/furniture/table.svg"
+    },
+    {
+      "word": "tablespoon",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/tablespoon.svg"
+    },
+    {
+      "word": "tadpole",
+      "image_path": "main/collections_screen/.this/modules/animals/young_animals/tadpole.svg"
+    },
+    {
+      "word": "tail",
+      "image_path": "main/collections_screen/.this/modules/animals/animal_parts/tail.svg"
+    },
+    {
+      "word": "tailor",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/tailor.svg"
+    },
+    {
+      "word": "talk",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/indoor_activities/talk.svg"
+    },
+    {
+      "word": "taxi",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/taxi.svg"
+    },
+    {
+      "word": "tea",
+      "image_path": "main/collections_screen/.this/modules/food/beverage/tea.svg"
+    },
+    {
+      "word": "teach",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/indoor_activities/teach.svg"
+    },
+    {
+      "word": "teacher",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/teacher.svg"
+    },
+    {
+      "word": "teaspoon",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/teaspoon.svg"
+    },
+    {
+      "word": "temple",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/places_where_people_go/temple_1.svg"
+    }, 
+    {
+      "word": "ten",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/1_2_3/ten.svg"
+    },
+    {
+      "word": "tennis",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/sports/tennis.svg"
+    },
+    {
+      "word": "tepee",
+      "image_path": "main/collections_screen/.this/modules/home/types_of_home/tepee.svg"
+    },
+    {
+      "word": "Thanksgiving Day",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/holidays/thanksgiving_day.svg"
+    },
+    {
+      "word": "theater",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/theater.svg"
+    },
+    {
+      "word": "three",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/1_2_3/three.svg"
+    },
+    {
+      "word": "throw",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/throw.svg",
+      "spanish_translation": "lanzar"
+    },
+    {
+      "word": "tide pool",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/bodies_of_water/tide_pool.svg"
+    },
+    {
+      "word": "tie",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/tie.svg"
+    },
+    {
+      "word": "tiger",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/tiger.svg"
+    },
+    {
+      "word": "toad",
+      "image_path": "main/collections_screen/.this/modules/animals/reptiles_and_amphibians/toad.svg"
+    },
+    {
+      "word": "toast",
+      "image_path": "main/collections_screen/.this/modules/food/whats_for_breakfast/toast.svg"
+    },
+    {
+      "word": "toilet paper",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_bathroom/toilet_paper.svg"
+    },
+    {
+      "word": "toilet",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_bathroom/toilet.svg"
+    },
+    {
+      "word": "tomato",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/tomato.svg"
+    },
+    {
+      "word": "toothbrush",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_bathroom/toothbrush.svg"
+    },
+    {
+      "word": "toothpaste",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_bathroom/toothpaste.svg"
+    },
+    {
+      "word": "tornado",
+      "image_path": "main/collections_screen/.this/modules/earth_and_space/weather/tornado.svg"
+    },
+    {
+      "word": "tortoise",
+      "image_path": "main/collections_screen/.this/modules/animals/reptiles_and_amphibians/tortoise.svg"
+    },
+    {
+      "word": "toucan",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/toucan.svg"
+    },
+    {
+      "word": "tow truck",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/tow_truck.svg"
+    },
+    {
+      "word": "towel",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_bathroom/towel.svg"
+    },
+    {
+      "word": "town hall",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/places_where_people_work/town_hall.svg"
+    },
+    {
+      "word": "town",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/town.svg"
+    },
+    {
+      "word": "tractor",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/tractor.svg"
+    },
+    {
+      "word": "train",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/train.svg"
+    },
+    {
+      "word": "triangle",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/shapes/triangle.svg"
+    },
+    {
+      "word": "tricycle",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/tricycle.svg"
+    },
+    {
+      "word": "truck",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/truck.svg"
+    },
+    {
+      "word": "tree",
+      "image_path": "main/collections_screen/.this/modules/plants/types_of_plants/tree.svg"
+    },
+    {
+      "word": "trumpet",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/trumpet.svg"
+    },
+    {
+      "word": "trunk",
+      "image_path": "main/collections_screen/.this/modules/home/furniture/trunk.svg",
+      "senseId": "4411803"
+    },
+    {
+      "word": "trunk",
+      "senseId": "4411801",
+      "image_path": "main/collections_screen/.this/modules/plants/trees_and_tree_parts/trunk.svg"
+    },
+    {
+      "word": "turtle",
+      "image_path": "main/collections_screen/.this/modules/animals/fish_and_other_sea_animals/turtle.svg"
+    },
+    {
+      "word": "twenty",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/1_2_3/twenty.svg"
+    },
+    {
+      "word": "two",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/1_2_3/two.svg"
+    },
+    {
+      "word": "t-shirt",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/t-shirt.svg"
+    },
+    {
+      "word": "tuba",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/tuba.svg"
+    },
+    {
+      "word": "tugboat",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_water/tugboat.svg"
+    },
+    {
+      "word": "tulip",
+      "image_path": "main/collections_screen/.this/modules/plants/flowers_and_flower_parts/tulip.svg"
+    },
+    {
+      "word": "tuna",
+      "image_path": "main/collections_screen/.this/modules/food/meat_and_seafood/tuna.svg",
+      "senseId": "4423502"
+    },
+    {
+      "word": "turkey",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/turkey.svg",
+      "senseId": "4428901"
+    },
+    {
+      "word": "ukulele",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/ukulele.svg"
+    },
+    {
+      "word": "underwear",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/underwear.svg"
+    },
+    {
+      "word": "upset",
+      "image_path": "main/collections_screen/.this/modules/you/emotions/upset.svg"
+    },
+    {
+      "word": "Valentine's Day",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/holidays/valentines_day.svg"
+    },
+    {
+      "word": "vanilla",
+      "image_path": "main/collections_screen/.this/modules/food/baking/vanilla.svg"
+    },
+    {
+      "word": "veterinarian",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/veterinarian.svg"
+    },
+    {
+      "word": "village",
+      "image_path": "main/collections_screen/.this/modules/transportation/places_where_people_go/village.svg"
+    },
+    {
+      "word": "vinegar",
+      "image_path": "main/collections_screen/.this/modules/food/condiments_and_spices/vinegar.svg"
+    },
+    {
+      "word": "viola",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/viola.svg"
+    },
+    {
+      "word": "violet",
+      "image_path": "main/collections_screen/.this/modules/plants/flowers_and_flower_parts/violet.svg"
+    },
+    {
+      "word": "violin",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/violin.svg"
+    },
+    {
+      "word": "volleyball",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/sports/volleyball.svg"
+    },
+    {
+      "word": "vulture",
+      "image_path": "main/collections_screen/.this/modules/animals/birds/vulture.svg"
+    },
+    {
+      "word": "wagon",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/wagon.svg",
+      "senseId": "4620101"
+    },
+    {
+      "word": "wagon",
+      "image_path": "main/collections_screen/.this/modules/transportation/vehicles_for_land/wagon_2.svg",
+      "senseId": "4620102"
+    },
+    {
+      "word": "waiter",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/waiter.svg"
+    },
+    {
+      "word": "walk",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/walk.svg"
+    },
+    {
+      "word": "wall",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/wall.svg"
+    },
+    {
+      "word": "watch",
+      "image_path": "main/collections_screen/.this/modules/home/things_in_the_closet/watch.svg",
+      "senseId": "4640514"
+    },
+    {
+      "word": "watch",
+      "image_path": "main/collections_screen/.this/modules/language/verbs/indoor_activities/watch.svg",
+      "senseId": "4640507"
+    },
+    {
+      "word": "water",
+      "image_path": "main/collections_screen/.this/modules/food/baking/water.svg"
+    },
+    {
+      "word": "watermelon",
+      "image_path": "main/collections_screen/.this/modules/food/fruit/watermelon.svg"
+    },
+    {
+      "word": "wave",
+      "image_path": "main/collections_screen/.this/modules/you/things_your_body_can_do/wave.svg",
+      "senseId": "4651909"
+    },
+    {
+      "word": "weight",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/weight.svg"
+    },
+    {
+      "word": "whale",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/whale.svg"
+    },
+    {
+      "word": "wheat",
+      "image_path": "main/collections_screen/.this/modules/plants/types_of_plants/wheat.svg"
+    },
+    {
+      "word": "whisker",
+      "image_path": "main/collections_screen/.this/modules/animals/animal_parts/whisker.svg"
+    },
+    {
+      "word": "white",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/colors/white.svg"
+    },
+    {
+      "word": "window",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_a_building/window.svg"
+    },
+    {
+      "word": "wine",
+      "image_path": "main/collections_screen/.this/modules/food/beverage/wine.svg"
+    },
+    {
+      "word": "wing",
+      "image_path": "main/collections_screen/.this/modules/animals/animal_parts/wing.svg"
+    },
+    {
+      "word": "wolf",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/wolf.svg"
+    },
+    {
+      "word": "wood",
+      "image_path": "main/world_screen/.this/modules/world/nature/forest/log.svg"
+    },
+    {
+      "word": "worm",
+      "image_path": "main/collections_screen/.this/modules/animals/insects_and_other_invertebrates/worm.svg"
+    },
+    {
+      "word": "writer",
+      "image_path": "main/collections_screen/.this/modules/things_people_do/work_and_play/people_in_their_jobs/writer.svg"
+    },
+    {
+      "word": "xylophone",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/musical_instruments/xylophone.svg"
+    },
+    {
+      "word": "yard",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/measurement/yard.svg",
+      "senseId": "4763101"
+    },
+    {
+      "word": "yard",
+      "image_path": "main/collections_screen/.this/modules/home/places_at_home/yard.svg",
+      "senseId": "4763201"
+    },
+    {
+      "word": "yeast",
+      "image_path": "main/collections_screen/.this/modules/food/baking/yeast.svg"
+    },
+    {
+      "word": "yellow",
+      "image_path": "main/collections_screen/.this/modules/art_and_music/colors/yellow.svg"
+    },
+    {
+      "word": "yogurt",
+      "image_path": "main/collections_screen/.this/modules/food/whats_for_breakfast/yogurt.svg"
+    },
+    {
+      "word": "zebra",
+      "image_path": "main/collections_screen/.this/modules/animals/mammals/zebra.svg"
+    },
+    {
+      "word": "zero",
+      "image_path": "main/collections_screen/.this/modules/numbers_and_shapes/1_2_3/zero.svg"
+    },
+    {
+      "word": "zipper",
+      "image_path": "main/collections_screen/.this/modules/home/parts_of_clothing/zipper.svg"
+    }
+  ]
+}
