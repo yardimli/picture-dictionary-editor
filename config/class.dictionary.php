@@ -44,7 +44,7 @@ class DICTIONARY {
 				$stmt->execute();
 				if ( $p_word = $stmt->fetch() ) {
 
-					$bopomofo = $p_word["pinyin_numbers"];
+					$bopomofo = strtolower( $p_word["pinyin_numbers"]);
 					$bopomofo2 = explode(" ",$bopomofo);
 					$bopomofo3 = "";
 					for ($i=0; $i<count($bopomofo2); $i++) {
@@ -90,7 +90,7 @@ class DICTIONARY {
 			$stmt->bindparam( ":word_CH", $Word_CH );
 			$stmt->execute();
 			if ( $p_word = $stmt->fetch() ) {
-				$bopomofo = $p_word["pinyin_numbers"];
+				$bopomofo = strtolower( $p_word["pinyin_numbers"]);
 				$bopomofo2 = explode(" ",$bopomofo);
 				$bopomofo3 = "";
 				for ($i=0; $i<count($bopomofo2); $i++) {

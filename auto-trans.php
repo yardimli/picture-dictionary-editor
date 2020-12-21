@@ -70,18 +70,19 @@ if ( ! $auth_user->is_loggedin() ) {
 		$stmt->bindparam( ":word_CH", $word_ch );
 		$stmt->execute();
 		if ( $p_word = $stmt->fetch() ) {
-			$bopomofo = $p_word["pinyin_numbers"];
+			$bopomofo = strtolower( $p_word["pinyin_numbers"]);
+//			echo $bopomofo;
 			$bopomofo2 = explode(" ",$bopomofo);
 			$bopomofo3 = "";
 			for ($i=0; $i<count($bopomofo2); $i++) {
 				$bopomofo3 .= $zh->encodeZhuyin($bopomofo2[$i])." ";
+//				echo $bopomofo2[$i]." - ".$zh->encodeZhuyin($bopomofo2[$i]);
 			}
 
 			$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set bopomofo="' . $bopomofo3 . '" WHERE id=' . $_POST["word_id"] );
 			$stmt2->execute();
 		} else {
-			echo "!!!!!!!!!!!!!";
-			echo "_______________";
+			echo $word_ch." not found in dictionary";
 		}
 	}
 
@@ -109,7 +110,7 @@ if ( ! $auth_user->is_loggedin() ) {
 		$stmt->bindparam( ":word_CH", $word_ch );
 		$stmt->execute();
 		if ( $p_word = $stmt->fetch() ) {
-			$bopomofo = $p_word["pinyin_numbers"];
+			$bopomofo = strtolower( $p_word["pinyin_numbers"]);
 			$bopomofo2 = explode(" ",$bopomofo);
 			$bopomofo3 = "";
 			for ($i=0; $i<count($bopomofo2); $i++) {
