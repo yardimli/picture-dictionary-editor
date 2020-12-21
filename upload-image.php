@@ -35,7 +35,7 @@ if ( ! $auth_user->is_loggedin() ) {
 	$audio_en = $_POST["audio_EN"];
 	if ( isset( $_FILES["file_audio_en"] ) && $_FILES ["file_audio_en"] ["error"] == UPLOAD_ERR_OK ) {
 		$max_size              = 500 * 1024; // 500 KB
-		$destination_directory = "../audio/en/";
+		$destination_directory = "./audio/en/";
 		$validextensions       = array( "mp3" );
 		$temporary             = explode( ".", $_FILES["file_audio_en"]["name"] );
 		$file_extension        = end( $temporary );
@@ -72,7 +72,7 @@ if ( ! $auth_user->is_loggedin() ) {
 	$audio_tr = $_POST["audio_TR"];
 	if ( isset( $_FILES["file_audio_tr"] ) && $_FILES ["file_audio_tr"] ["error"] == UPLOAD_ERR_OK ) {
 		$max_size              = 500 * 1024; // 500 KB
-		$destination_directory = "../audio/tr/";
+		$destination_directory = "./audio/tr/";
 		$validextensions       = array( "mp3" );
 		$temporary             = explode( ".", $_FILES["file_audio_tr"]["name"] );
 		$file_extension        = end( $temporary );
@@ -109,7 +109,7 @@ if ( ! $auth_user->is_loggedin() ) {
 	$audio_ch = $_POST["audio_CH"];
 	if ( isset( $_FILES["file_audio_ch"] ) && $_FILES ["file_audio_ch"] ["error"] == UPLOAD_ERR_OK ) {
 		$max_size              = 500 * 1024; // 500 KB
-		$destination_directory = "../audio/en/";
+		$destination_directory = "./audio/en/";
 		$validextensions       = array( "mp3" );
 		$temporary             = explode( ".", $_FILES["file_audio_ch"]["name"] );
 		$file_extension        = end( $temporary );
@@ -147,7 +147,7 @@ if ( ! $auth_user->is_loggedin() ) {
 	$picture = $_POST["picture"];
 	if ( isset( $_FILES["file"] ) && $_FILES ["file"] ["error"] == UPLOAD_ERR_OK ) {
 		$max_size              = 500 * 1024; // 500 KB
-		$destination_directory = "../pictures/";
+		$destination_directory = "./pictures/";
 		$validextensions       = array( "jpeg", "jpg", "png" );
 
 		$temporary      = explode( ".", $_FILES["file"]["name"] );
@@ -186,20 +186,20 @@ if ( ! $auth_user->is_loggedin() ) {
 	}
 
 
-	$translate = new TranslateClient(array(
-		'keyFilePath' => __DIR__ . "/../ege-lessons-70a9981b5355.json",
-		'projectId' => 'onyx-cumulus-289504'
-	));
+	$translate = new TranslateClient( array(
+		'keyFilePath' => __DIR__ . "/google-key.json",
+		'projectId'   => 'onyx-cumulus-289504'
+	) );
 
 
 // Translate text from english to french.
 
 
-	$textToSpeechClient = new TextToSpeechClient( [ 'credentials' => __DIR__ . "/../ege-lessons-70a9981b5355.json" ] );
+	$textToSpeechClient = new TextToSpeechClient( [ 'credentials' => __DIR__ . "/google-key.json" ] );
 
 	$word_en = $_POST["word_EN"];
 
-	if ( ( ! file_exists( "../audio/en/" . $audio_en ) || $audio_en === "" ) && ( $word_en !== "" ) ) {
+	if ( ( ! file_exists( "./audio/en/" . $audio_en ) || $audio_en === "" ) && ( $word_en !== "" ) ) {
 		$input = new SynthesisInput();
 		$input->setText( $word_en );
 		$voice = new VoiceSelectionParams();
@@ -211,21 +211,21 @@ if ( ! $auth_user->is_loggedin() ) {
 		$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
 
 		$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
-		file_put_contents( "../audio/en/" . $_POST["word_id"] . ".mp3", $resp->getAudioContent() );
+		file_put_contents( "./audio/en/" . $_POST["word_id"] . ".mp3", $resp->getAudioContent() );
 		$audio_en = $_POST["word_id"] . ".mp3";
 	}
 
 	$word_tr = $_POST["word_TR"];
-	if ($word_tr==="") {
-		$result = $translate->translate($word_en, [
+	if ( $word_tr === "" ) {
+		$result  = $translate->translate( $word_en, [
 			'target' => 'tr'
-		]);
+		] );
 		$word_tr = $result['text'];
 //		var_dump($result);
 	}
 
 
-	if ( ( ! file_exists( "../audio/tr/" . $audio_tr ) || $audio_tr === "" ) && ( $word_tr !== "" ) ) {
+	if ( ( ! file_exists( "./audio/tr/" . $audio_tr ) || $audio_tr === "" ) && ( $word_tr !== "" ) ) {
 		$input = new SynthesisInput();
 		$input->setText( $word_tr );
 		$voice = new VoiceSelectionParams();
@@ -237,21 +237,21 @@ if ( ! $auth_user->is_loggedin() ) {
 		$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
 
 		$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
-		file_put_contents( "../audio/tr/" . $_POST["word_id"] . ".mp3", $resp->getAudioContent() );
+		file_put_contents( "./audio/tr/" . $_POST["word_id"] . ".mp3", $resp->getAudioContent() );
 		$audio_tr = $_POST["word_id"] . ".mp3";
 	}
 
 	$word_ch = $_POST["word_CH"];
-	if ($word_ch==="") {
-		$result = $translate->translate($word_en, [
+	if ( $word_ch === "" ) {
+		$result  = $translate->translate( $word_en, [
 			'target' => 'zh-TW'
-		]);
+		] );
 		$word_ch = $result['text'];
 //		var_dump($result);
 	}
 
 
-	if ( ( ! file_exists( "../audio/ch/" . $audio_ch ) || $audio_ch === "" ) && ( $word_ch !== "" ) ) {
+	if ( ( ! file_exists( "./audio/ch/" . $audio_ch ) || $audio_ch === "" ) && ( $word_ch !== "" ) ) {
 		$input = new SynthesisInput();
 		$input->setText( $word_ch );
 		$voice = new VoiceSelectionParams();
@@ -263,16 +263,16 @@ if ( ! $auth_user->is_loggedin() ) {
 		$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
 
 		$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
-		file_put_contents( "../audio/ch/" . $_POST["word_id"] . ".mp3", $resp->getAudioContent() );
+		file_put_contents( "./audio/ch/" . $_POST["word_id"] . ".mp3", $resp->getAudioContent() );
 		$audio_ch = $_POST["word_id"] . ".mp3";
 	}
 
 	if ( $_POST["word_id"] === "0" ) {
-		if ( $dictionary_list->add_word( $word_en, $word_tr, $word_ch, $picture, "", $_POST["category_id"], $_POST["level"], $audio_en, $audio_tr, $audio_ch ) ) {
+		if ( $dictionary_list->add_word( $word_en, $word_tr, $word_ch, $picture, $_POST["category_id"], $_POST["level"], $audio_en, $audio_tr, $audio_ch ) ) {
 			echo "<p>Word Added</strong></p>";
 		}
 	} else {
-		if ( $dictionary_list->update_dictionary( $word_en, $word_tr, $word_ch, $picture, "", $_POST["category_id"], $_POST["word_id"], $_POST["level"], $audio_en, $audio_tr, $audio_ch ) ) {
+		if ( $dictionary_list->update_dictionary( $word_en, $word_tr, $word_ch, $picture, $_POST["category_id"], $_POST["word_id"], $_POST["level"], $audio_en, $audio_tr, $audio_ch ) ) {
 			echo "<p>Word Updated</strong></p>";
 		}
 	}

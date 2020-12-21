@@ -43,6 +43,16 @@ $date     = new DateTime( $lu_date );
 	<link rel="stylesheet" href="<?php echo WEB_ROOT; ?>dist/css/skins/_all-skins.min.css">
 	<!-- Pace style -->
 	<link rel="stylesheet" href="<?php echo WEB_ROOT; ?>plugins/pace/pace.css">
+	<style>
+		.edit-word-btn, .audio_play_link {
+			cursor: pointer;
+			color: blue;
+		}
+
+		.edit-word-btn:hover, .audio_play_link:hover {
+			text-decoration: underline;
+		}
+	</style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -100,40 +110,39 @@ $date     = new DateTime( $lu_date );
 							<table id="example1" class="table table-bordered table-striped">
 								<thead>
 								<tr>
-                  <th>id</th>
+									<th>id</th>
 									<th>Word</th>
 									<th>Category</th>
 									<th>Level</th>
 									<th>Date</th>
-									<th>Action</th>
 								</tr>
 								</thead>
 								<tbody>
 								<?php
-								$x    = 0;
-								$stmt = $dictionary_list->runQuery( 'SELECT * FROM dictionary WHERE deleted=:val' );
-								$stmt->execute( array( ':val' => 0 ) );
+								$x = 0;
+								if ( array_key_exists( "catid", $_GET ) && is_numeric( $_GET["catid"] ) ) {
+									$stmt = $dictionary_list->runQuery( 'SELECT * FROM dictionary WHERE deleted=:val AND categoryID=:catid' );
+									$stmt->execute( array( ':val' => 0, ':catid' => $_GET["catid"] ) );
+								} else {
+									$stmt = $dictionary_list->runQuery( 'SELECT * FROM dictionary WHERE deleted=:val' );
+									$stmt->execute( array( ':val' => 0 ) );
+								}
 								while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
 									$x ++;
 									$dateAdded = new DateTime( $row['dateadded'] );
 									$dateadded = $dateAdded->format( 'M. d, Y' );
+
 									?>
 									<tr>
-                    <td><?php echo $row['id']; ?></td>
-										<td><?php echo $row['word_EN']; ?></td>
-										<td><?php echo $row['category']; ?></td>
+										<td><?php echo $row['id']; ?></td>
+										<td><span class="edit-word-btn" title="edit record"
+										          data-word_en="<?php echo $row['word_EN']; ?>" data-word_tr="<?php echo $row['word_TR']; ?>" data-word_ch="<?php echo $row['word_CH']; ?>"
+										          data-category_id="<?php echo $row['categoryID']; ?>" data-word_id="<?php echo $row['id']; ?>" data-picture="<?php echo $row['picture']; ?>"
+										          data-level="<?php echo $row['level']; ?>" data-bopomofo="<?php echo $row['bopomofo']; ?>" data-audio_en="<?php echo $row['audio_EN']; ?>"
+										          data-audio_ch="<?php echo $row['audio_CH']; ?>" data-audio_tr="<?php echo $row['audio_TR']; ?>"><?php echo $row['word_EN']; ?></span></td>
+										<td><?php echo $category_list->category_full_path_string( $row['categoryID'] ); ?></td>
 										<td><?php echo $row['level']; ?></td>
 										<td><?php echo $dateadded; ?></td>
-										<td>
-											<button type="button" class="btn btn-primary btn-flat edit-word-btn" title="edit record" class="edit_row"
-											        data-word_en="<?php echo $row['word_EN']; ?>" data-word_tr="<?php echo $row['word_TR']; ?>" data-word_ch="<?php echo $row['word_CH']; ?>"
-											        data-category="<?php echo $row['category']; ?>" data-category_id="<?php echo $row['categoryID']; ?>" data-word_id="<?php echo $row['id']; ?>" data-picture="<?php echo $row['picture']; ?>" data-level="<?php echo $row['level']; ?>" data-bopomofo="<?php echo $row['bopomofo']; ?>" data-audio_en="<?php echo $row['audio_EN']; ?>" data-audio_ch="<?php echo $row['audio_CH']; ?>" data-audio_tr="<?php echo $row['audio_TR']; ?>"/>
-											<i class="fa fa-edit"></i> Edit</button>
-											&nbsp;
-											<button type="button" class="btn btn-danger btn-flat" onClick="window.location.href='javascript:deleteuser(<?php echo $row['id']; ?>);'"><i
-													class="fa fa-trash"></i> Delete
-											</button>
-										</td>
 									</tr>
 								<?php } ?>
 								</tbody>
@@ -143,7 +152,6 @@ $date     = new DateTime( $lu_date );
 									<th>Category</th>
 									<th>Level</th>
 									<th>Date</th>
-									<th>Action</th>
 								</tr>
 								</tfoot>
 							</table>
@@ -156,12 +164,12 @@ $date     = new DateTime( $lu_date );
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="gridSystemModalLabel"><i class="ion ion-compose"></i> <span id="word_modal_title">Edit Word</span></h4>
+										<h4 class="modal-title" id="gridSystemModalLabel"><i class="ion ion-compose"></i> <span id="word_modal_title">Edit Word</span></h4>
 									</div>
 									<div class="modal-body">
 										<form role="form" method="POST" id="upload-image-form" enctype="multipart/form-data">
 											<input type="hidden" id="word_id" name="word_id" value="">
-                      <input type="hidden" id="picture" name="picture" value="">
+											<input type="hidden" id="picture" name="picture" value="">
 											<input type="hidden" id="audio_EN" name="audio_EN" value="">
 											<input type="hidden" id="audio_TR" name="audio_TR" value="">
 											<input type="hidden" id="audio_CH" name="audio_CH" value="">
@@ -175,20 +183,20 @@ $date     = new DateTime( $lu_date );
 												<div style="margin-top:8px;margin-right:10px; display: inline-block !important;" class="form-group">
 													<label>Turkish</label>
 													<div class="clearfix"></div>
-													<input style="width: 150px;"  data-minlength="6" type="text" class="form-control" name="word_TR" id="word_TR" placeholder="Turkish"
+													<input style="width: 150px;" data-minlength="6" type="text" class="form-control" name="word_TR" id="word_TR" placeholder="Turkish"
 													       value="">
 												</div>
 												<div style="margin-top:8px;margin-right:10px; display: inline-block !important;" class="form-group">
 													<label>Chinese</label>
 													<div class="clearfix"></div>
-													<input style="width: 150px;"  data-minlength="6" type="text" class="form-control" name="word_CH" id="word_CH" placeholder="Chinese"
+													<input style="width: 150px;" data-minlength="6" type="text" class="form-control" name="word_CH" id="word_CH" placeholder="Chinese"
 													       value="">
 												</div>
 
 												<div style="margin-top:8px;margin-right:10px; display: inline-block !important;" class="form-group">
 													<label>Chinese BoPoMoFo</label>
 													<div class="clearfix"></div>
-													<input style="width: 150px;"  data-minlength="6" type="text" class="form-control" name="bopomofo" id="bopomofo" placeholder="bopomofo"
+													<input style="width: 150px;" data-minlength="6" type="text" class="form-control" name="bopomofo" id="bopomofo" placeholder="bopomofo"
 													       value="">
 												</div>
 
@@ -196,23 +204,22 @@ $date     = new DateTime( $lu_date );
 													<label for="sel1">Category:</label>
 													<select class="form-control" required id="category_id" name="category_id" style="width:400px;">
 														<?php
-															$cat_array = $category_list->all_categories(0);
-															function loopArray($arr,$parent) {
-																for ($i=0; $i<count($arr); $i++) {
-																	if (count( $arr[$i]["children"] ) > 0 ) {
-																		if ($parent === "") {
-																			loopArray($arr[$i]["children"],$arr[$i]["name"]);
-																		} else
-																		{
-																			loopArray($arr[$i]["children"],$parent." / ".$arr[$i]["name"]);
-																		}
-																	} else
-																	{
-																		echo "<option value='".$arr[$i]["id"]."'>".$parent. " / ".$arr[$i]["name"]."</option>";
+														$cat_array = $category_list->all_categories( 0 );
+														function loopArray( $arr, $parent ) {
+															for ( $i = 0; $i < count( $arr ); $i ++ ) {
+																if ( count( $arr[ $i ]["children"] ) > 0 ) {
+																	if ( $parent === "" ) {
+																		loopArray( $arr[ $i ]["children"], $arr[ $i ]["name"] );
+																	} else {
+																		loopArray( $arr[ $i ]["children"], $parent . " / " . $arr[ $i ]["name"] );
 																	}
+																} else {
+																	echo "<option value='" . $arr[ $i ]["id"] . "'>" . $parent . " / " . $arr[ $i ]["name"] . "</option>";
 																}
 															}
-															loopArray($cat_array,"");
+														}
+
+														loopArray( $cat_array, "" );
 														?>
 													</select>
 												</div>
@@ -229,34 +236,51 @@ $date     = new DateTime( $lu_date );
 
 
 												<div id="image-preview-div" style="display: none">
-													<label for="exampleInputFile">Selected image:</label>
+													<label for="exampleInputFile">Selected image (<span id="image_file_name"></span>):</label>
 													<br>
 													<img id="preview-img" src="noimage">
 												</div>
 												<div class="form-group">
-													<input type="file" name="file" id="file" >
+													<input type="file" name="file" id="file">
 												</div>
 
 
 												<div style="margin-top:8px;margin-right:10px; display: inline-block !important;" class="form-group">
-													<label for="exampleInputFile">English Audio:</label>
-													<input type="file" name="file_audio_en" id="file_audio_en" class="form-control" >
+													<label for="exampleInputFile">English Audio (<span id="en_audio_file"></span>):</label> <span id="play_en_audio"
+													                                                                                              class="audio_play_link">Play</span>
+													<input type="file" name="file_audio_en" id="file_audio_en" class="form-control">
 												</div>
 
 												<div style="margin-top:8px;margin-right:10px; display: inline-block !important;" class="form-group">
-													<label for="exampleInputFile">Turkish Audio:</label>
-													<input type="file" name="file_audio_tr" id="file_audio_tr" class="form-control" >
+													<label for="exampleInputFile">Turkish Audio (<span id="tr_audio_file"></span>):</label> <span id="play_tr_audio"
+													                                                                                              class="audio_play_link">Play</span>
+													<input type="file" name="file_audio_tr" id="file_audio_tr" class="form-control">
 												</div>
 
 												<div style="margin-top:8px;margin-right:10px; display: inline-block !important;" class="form-group">
-													<label for="exampleInputFile">Chinese Audio:</label>
-													<input type="file" name="file_audio_ch" id="file_audio_ch" class="form-control" >
+													<label for="exampleInputFile">Chinese Audi (<span id="ch_audio_file"></span>)o:</label> <span id="play_ch_audio"
+													                                                                                              class="audio_play_link">Play</span>
+													<input type="file" name="file_audio_ch" id="file_audio_ch" class="form-control">
 												</div>
+
+												<audio
+													id="en_audio_player"
+													src=""></audio>
+
+												<audio
+													id="tr_audio_player"
+													src=""></audio>
+
+												<audio
+													id="ch_audio_player"
+													src=""></audio>
+
 
 												<div class="alert alert-info" id="loading" style="display: none;" role="alert">
-													Uploading image...
+													<span id="loading_msg">Uploading image...</span>
 													<div class="progress">
-														<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+														<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"
+														     style="width: 100%">
 														</div>
 													</div>
 												</div>
@@ -265,7 +289,9 @@ $date     = new DateTime( $lu_date );
 											</div>
 
 											<div class="box-body">
-												<button type="submit" name="btn-update"  id="upload-button" class="btn btn-primary btn-flat btn-sm">Save Changes</button>
+												<button type="submit" name="btn-update" id="upload-button" class="btn btn-primary btn-flat btn-sm">Save Changes</button>
+
+												<div id="btn-regen-audio" class="btn btn-primary btn-flat btn-sm">Regenerate Audio</div>
 											</div>
 											<!-- /.box-body -->
 										</form>
@@ -315,12 +341,30 @@ $date     = new DateTime( $lu_date );
   }
 </script>
 <script>
+
+  function togglePlay(audiodiv) {
+    var myAudio = document.getElementById(audiodiv);
+    return myAudio.paused ? myAudio.play() : myAudio.pause();
+  }
+
   $(document).ready(function () {
 
     $('#example1').DataTable({
-      "drawCallback": function( settings ) {
+      "drawCallback": function (settings) {
+
+        $("#play_en_audio").off('click').on('click', function () {
+          togglePlay("en_audio_player");
+        });
+
+        $("#play_tr_audio").off('click').on('click', function () {
+          togglePlay("tr_audio_player");
+        });
+
+        $("#play_ch_audio").off('click').on('click', function () {
+          togglePlay("ch_audio_player");
+        });
+
         $(".edit-word-btn").off('click').on('click', function () {
-          console.log("!!!!");
           $("#word_EN").val($(this).data("word_en"));
           $("#word_TR").val($(this).data("word_tr"));
           $("#word_CH").val($(this).data("word_ch"));
@@ -328,6 +372,16 @@ $date     = new DateTime( $lu_date );
           $("#picture").val($(this).data("picture"));
           $("#word_id").val($(this).data("word_id"));
           $("#level").val($(this).data("level"));
+
+          $("#image_file_name").html($(this).data("picture"));
+
+          $("#en_audio_file").html($(this).data("audio_en"))
+          $("#tr_audio_file").html($(this).data("audio_tr"))
+          $("#ch_audio_file").html($(this).data("audio_ch"))
+
+          $("#en_audio_player").attr({"src": "../audio/en/" + $(this).data("audio_en")});
+          $("#tr_audio_player").attr({"src": "../audio/tr/" + $(this).data("audio_tr")});
+          $("#ch_audio_player").attr({"src": "../audio/ch/" + $(this).data("audio_ch")});
 
           $("#bopomofo").val($(this).data("bopomofo"));
           $("#audio_EN").val($(this).data("audio_en"));
@@ -367,6 +421,9 @@ $date     = new DateTime( $lu_date );
       $("#audio_CH").val("");
       $("#audio_TR").val("");
 
+      $("#image_file_name").html("daha-1.jpg");
+
+
       $('#file').css("color", "green");
       $('#image-preview-div').css("display", "block");
       $('#preview-img').attr('src', "../pictures/daha-1.jpg");
@@ -402,12 +459,35 @@ $date     = new DateTime( $lu_date );
 
     $('#max-size').html((maxsize / 1024).toFixed(2));
 
+    $("#btn-regen-audio").off('click').on('click', function () {
+
+      $('#message').empty();
+      $('#loading').show();
+      $("#loading_msg").html("generating audio...");
+
+      $.ajax({
+        url: "../regen-audio.php",
+        type: "POST",
+        data: {
+          word_EN: $("#word_EN").val(),
+          word_TR: $("#word_TR").val(),
+          word_CH: $("#word_CH").val(),
+          word_id: $("#word_id").val()
+        },
+        success: function (data) {
+          $('#loading').hide();
+          $('#message').html(data);
+        }
+      });
+    });
+
     $('#upload-image-form').on('submit', function (e) {
 
       e.preventDefault();
 
       $('#message').empty();
       $('#loading').show();
+      $("#loading_msg").html("uploading image...");
 
       $.ajax({
         url: "../upload-image.php",

@@ -16,6 +16,41 @@ class CATEGORY {
 		return $stmt;
 	}
 
+	public function category_full_path_string( $id ) {
+
+		$parents = [];
+		$this->get_parent_path( $id, $parents );
+		$result = "";
+		for ( $i = 0; $i < count( $parents ); $i ++ ) {
+			if ( $i === 0 ) {
+				$result = "<a href='?catid=".$parents[ $i ]["id"]."'>" . $parents[ $i ]["name"] . "</a>";
+			} else {
+				$result = "" . $parents[ $i ]["name"] . " - " . $result;
+			}
+		}
+//		print_r( $parents );
+
+		return $result;
+	}
+
+	public function get_parent_path( $parent_id, &$parents ) {
+		try {
+			$stmt = $this->conn->prepare( "SELECT * FROM category WHERE ID=:ID" );
+			$stmt->bindparam( ":ID", $parent_id );
+			$stmt->execute();
+			$p_category = $stmt->fetch();
+			if ( $p_category ) {
+				array_push( $parents, [ "id" => $p_category["id"], "name" => $p_category["category_EN"] ] );
+				if ( $p_category["parentID"] !== "0" ) {
+					$this->get_parent_path( $p_category["parentID"], $parents );
+				}
+			}
+		} catch ( PDOException $e ) {
+			echo $e->getMessage();
+		}
+	}
+
+
 	public function all_categories( $parent_id ) {
 		try {
 			$stmt = $this->conn->prepare( "SELECT * FROM category WHERE parentID=:parentID" );
@@ -25,7 +60,8 @@ class CATEGORY {
 			while ( $p_category = $stmt->fetch() ) {
 				array_push( $children, [ "id" => $p_category["id"], "name" => $p_category["category_EN"], "children" => $this->all_categories( $p_category["id"] ) ] );
 			}
-		} catch ( PDOException $e ) {
+		} catch
+		( PDOException $e ) {
 			echo $e->getMessage();
 		}
 
@@ -52,7 +88,7 @@ class CATEGORY {
 			echo "Category already exists.";
 		} else {
 
-			if ($parent_id===-1) {
+			if ( $parent_id === - 1 ) {
 				try {
 					$stmt = $this->conn->prepare( "SELECT * FROM category WHERE category_EN=:parent_EN" );
 					$stmt->bindparam( ":parent_EN", $parent_EN );
