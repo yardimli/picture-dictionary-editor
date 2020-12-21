@@ -58,6 +58,10 @@ class ComposerStaticInit3bbdfc18f0b493e382786b1ed0059f48
         array (
             'Firebase\\JWT\\' => 13,
         ),
+        'D' => 
+        array (
+            'DictPedia\\' => 10,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -164,6 +168,10 @@ class ComposerStaticInit3bbdfc18f0b493e382786b1ed0059f48
         'Firebase\\JWT\\' => 
         array (
             0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
+        ),
+        'DictPedia\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/dictpedia/zhuyin-pinyin/src',
         ),
     );
 

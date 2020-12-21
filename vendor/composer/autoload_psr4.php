@@ -32,4 +32,5 @@ return array(
     'GPBMetadata\\Google\\' => array($vendorDir . '/google/common-protos/metadata'),
     'GPBMetadata\\ApiCore\\' => array($vendorDir . '/google/gax/metadata/ApiCore'),
     'Firebase\\JWT\\' => array($vendorDir . '/firebase/php-jwt/src'),
+    'DictPedia\\' => array($vendorDir . '/dictpedia/zhuyin-pinyin/src'),
 );

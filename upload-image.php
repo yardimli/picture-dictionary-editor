@@ -268,11 +268,11 @@ if ( ! $auth_user->is_loggedin() ) {
 	}
 
 	if ( $_POST["word_id"] === "0" ) {
-		if ( $dictionary_list->add_word( $word_en, $word_tr, $word_ch, $picture, $_POST["category_id"], $_POST["level"], $audio_en, $audio_tr, $audio_ch ) ) {
+		if ( $dictionary_list->add_word( $word_en, $word_tr, $word_ch, $_POST["bopomofo"], $picture, $_POST["category_id"], $_POST["level"], $audio_en, $audio_tr, $audio_ch ) ) {
 			echo "<p>Word Added</strong></p>";
 		}
 	} else {
-		if ( $dictionary_list->update_dictionary( $word_en, $word_tr, $word_ch, $picture, $_POST["category_id"], $_POST["word_id"], $_POST["level"], $audio_en, $audio_tr, $audio_ch ) ) {
+		if ( $dictionary_list->update_dictionary( $word_en, $word_tr, $word_ch, $_POST["bopomofo"], $picture, $_POST["category_id"], $_POST["word_id"], $_POST["level"], $audio_en, $audio_tr, $audio_ch ) ) {
 			echo "<p>Word Updated</strong></p>";
 		}
 	}

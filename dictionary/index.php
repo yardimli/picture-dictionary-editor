@@ -231,6 +231,12 @@ $date     = new DateTime( $lu_date );
 														<option value="2">2</option>
 														<option value="3">3</option>
 														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+														<option value="10">10</option>
 													</select>
 												</div>
 
@@ -292,6 +298,10 @@ $date     = new DateTime( $lu_date );
 												<button type="submit" name="btn-update" id="upload-button" class="btn btn-primary btn-flat btn-sm">Save Changes</button>
 
 												<div id="btn-regen-audio" class="btn btn-primary btn-flat btn-sm">Regenerate Audio</div>
+
+												<div id="btn-trans-en" class="btn btn-primary btn-flat btn-sm">Trans From En</div>
+												<div id="btn-trans-tr" class="btn btn-primary btn-flat btn-sm">Trans From Tr</div>
+												<div id="btn-trans-ch" class="btn btn-primary btn-flat btn-sm">Trans From Ch</div>
 											</div>
 											<!-- /.box-body -->
 										</form>
@@ -458,6 +468,71 @@ $date     = new DateTime( $lu_date );
     var maxsize = 500 * 1024; // 500 KB
 
     $('#max-size').html((maxsize / 1024).toFixed(2));
+
+    $("#btn-trans-en").off('click').on('click', function () {
+      $('#message').empty();
+      $('#loading').show();
+      $("#loading_msg").html("auto translate...");
+
+      $.ajax({
+        url: "../auto-trans.php",
+        type: "POST",
+        data: {
+          trans_source: "en",
+          word_EN: $("#word_EN").val(),
+          word_id: $("#word_id").val()
+        },
+        success: function (data) {
+          $('#loading').hide();
+          $('#message').html(data);
+        }
+      });
+
+    });
+
+
+    $("#btn-trans-tr").off('click').on('click', function () {
+      $('#message').empty();
+      $('#loading').show();
+      $("#loading_msg").html("auto translate...");
+
+      $.ajax({
+        url: "../auto-trans.php",
+        type: "POST",
+        data: {
+          trans_source: "tr",
+          word_EN: $("#word_TR").val(),
+          word_id: $("#word_id").val()
+        },
+        success: function (data) {
+          $('#loading').hide();
+          $('#message').html(data);
+        }
+      });
+
+    });
+
+    $("#btn-trans-ch").off('click').on('click', function () {
+      $('#message').empty();
+      $('#loading').show();
+      $("#loading_msg").html("auto translate...");
+
+      $.ajax({
+        url: "../auto-trans.php",
+        type: "POST",
+        data: {
+          trans_source: "ch",
+          word_EN: $("#word_CH").val(),
+          word_id: $("#word_id").val()
+        },
+        success: function (data) {
+          $('#loading').hide();
+          $('#message').html(data);
+        }
+      });
+
+    });
+
 
     $("#btn-regen-audio").off('click').on('click', function () {
 

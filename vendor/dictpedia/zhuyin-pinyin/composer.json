@@ -1,0 +1,33 @@
+{
+    "name": "dictpedia/zhuyin-pinyin",
+    "description": "A PHP library that deals with Zhuyin to Pinyin and Pinyin to Zhuyin.",
+    "keywords": ["zhuyin", "pinyin", "chinese", "php"],
+    "homepage": "https://github.com/DictPedia/ZhuyinPinyin",
+    "license": "MIT",
+    "version": "1.0",
+    "authors": [
+        {
+            "name": "Terry Lin",
+            "email": "terrylin.developer@gmail.com",
+            "homepage": "https://en.dictpedia.org/",
+            "role": "Developer"
+        }
+    ],
+	"minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.9"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8"
+    },
+	"autoload": {
+        "psr-4": {
+            "DictPedia\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DictPedia\\Tests\\": "tests/"
+        }
+    }
+}

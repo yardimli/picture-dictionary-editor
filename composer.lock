@@ -4,8 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "deab646f6337a0e11407e92b2a56f5bd",
+    "content-hash": "0d4ca8f53171dc91963ae385f9a848dd",
     "packages": [
+        {
+            "name": "dictpedia/zhuyin-pinyin",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DictPedia/ZhuyinPinyin.git",
+                "reference": "892c8fc612af020e92010cabc46e12e8bd6f1f84"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DictPedia/ZhuyinPinyin/zipball/892c8fc612af020e92010cabc46e12e8bd6f1f84",
+                "reference": "892c8fc612af020e92010cabc46e12e8bd6f1f84",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DictPedia\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Terry Lin",
+                    "email": "terrylin.developer@gmail.com",
+                    "homepage": "https://en.dictpedia.org/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A PHP library that deals with Zhuyin to Pinyin and Pinyin to Zhuyin.",
+            "homepage": "https://github.com/DictPedia/ZhuyinPinyin",
+            "keywords": [
+                "Chinese",
+                "Pinyin",
+                "php",
+                "zhuyin"
+            ],
+            "time": "2017-03-11T20:13:31+00:00"
+        },
         {
             "name": "firebase/php-jwt",
             "version": "v5.2.0",
