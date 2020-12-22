@@ -47,6 +47,7 @@ if ( ! $auth_user->is_loggedin() ) {
 				} else {
 					if ( file_exists( $destination_directory . $_FILES["file_audio_en"]["name"] ) ) {
 						echo "<div class=\"alert alert-danger\" role=\"alert\">Error: File <strong>" . $_FILES["file_audio_en"]["name"] . "</strong> already exists.</div>";
+						$audio_en = $_FILES["file_audio_en"]["name"];
 					} else {
 						$sourcePath = $_FILES["file_audio_en"]["tmp_name"];
 						$targetPath = $destination_directory . $_FILES["file_audio_en"]["name"];
@@ -84,6 +85,7 @@ if ( ! $auth_user->is_loggedin() ) {
 				} else {
 					if ( file_exists( $destination_directory . $_FILES["file_audio_tr"]["name"] ) ) {
 						echo "<div class=\"alert alert-danger\" role=\"alert\">Error: File <strong>" . $_FILES["file_audio_tr"]["name"] . "</strong> already exists.</div>";
+						$audio_tr = $_FILES["file_audio_tr"]["name"];
 					} else {
 						$sourcePath = $_FILES["file_audio_tr"]["tmp_name"];
 						$targetPath = $destination_directory . $_FILES["file_audio_tr"]["name"];
@@ -121,6 +123,7 @@ if ( ! $auth_user->is_loggedin() ) {
 				} else {
 					if ( file_exists( $destination_directory . $_FILES["file_audio_ch"]["name"] ) ) {
 						echo "<div class=\"alert alert-danger\" role=\"alert\">Error: File <strong>" . $_FILES["file_audio_ch"]["name"] . "</strong> already exists.</div>";
+						$audio_ch = $_FILES["file_audio_ch"]["name"];
 					} else {
 						$sourcePath = $_FILES["file_audio_ch"]["tmp_name"];
 						$targetPath = $destination_directory . $_FILES["file_audio_ch"]["name"];
@@ -163,6 +166,7 @@ if ( ! $auth_user->is_loggedin() ) {
 				} else {
 					if ( file_exists( $destination_directory . $_FILES["file"]["name"] ) ) {
 						echo "<div class=\"alert alert-danger\" role=\"alert\">Error: File <strong>" . $_FILES["file"]["name"] . "</strong> already exists.</div>";
+						$picture = $_FILES["file"]["name"];
 					} else {
 						$sourcePath = $_FILES["file"]["tmp_name"];
 						$targetPath = $destination_directory . $_FILES["file"]["name"];
