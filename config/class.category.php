@@ -25,7 +25,13 @@ class CATEGORY {
 			if ( $i === 0 ) {
 				$result = "<a href='?catid=".$parents[ $i ]["id"]."'>" . $parents[ $i ]["name"] . "</a>";
 			} else {
-				$result = "" . $parents[ $i ]["name"] . " - " . $result;
+
+				if ($parents[ $i ]["parentID"]!=="0") {
+					$result = "<a href='?catid=".$parents[ $i ]["id"]."'>" . $parents[ $i ]["name"] . "</a>" . " - ".$result;
+				} else
+				{
+					$result = "<a href='?catid=0'>" . $parents[ $i ]["name"] . "</a>" . " - ".$result;
+				}
 			}
 		}
 //		print_r( $parents );
@@ -40,7 +46,7 @@ class CATEGORY {
 			$stmt->execute();
 			$p_category = $stmt->fetch();
 			if ( $p_category ) {
-				array_push( $parents, [ "id" => $p_category["id"], "name" => $p_category["category_EN"] ] );
+				array_push( $parents, [ "id" => $p_category["id"], "parentID" => $p_category["parentID"], "name" => $p_category["category_EN"] ] );
 				if ( $p_category["parentID"] !== "0" ) {
 					$this->get_parent_path( $p_category["parentID"], $parents );
 				}

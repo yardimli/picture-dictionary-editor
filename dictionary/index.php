@@ -2,6 +2,8 @@
 require_once( "../config/session.php" );
 require_once( "../config/class.user.php" );
 
+require '../vendor/autoload.php';
+
 require_once( "../config/class.dictionary.php" );
 $dictionary_list = new DICTIONARY();
 
@@ -120,9 +122,18 @@ $date     = new DateTime( $lu_date );
 								<tbody>
 								<?php
 								$x = 0;
-								if ( array_key_exists( "catid", $_GET ) && is_numeric( $_GET["catid"] ) ) {
-									$stmt = $dictionary_list->runQuery( 'SELECT * FROM dictionary WHERE deleted=:val AND categoryID=:catid' );
-									$stmt->execute( array( ':val' => 0, ':catid' => $_GET["catid"] ) );
+								if ( array_key_exists( "catid", $_GET ) && is_numeric( $_GET["catid"] ) && $_GET["catid"]!=="0" ) {
+									$stmt = $dictionary_list->runQuery( "SELECT * FROM category WHERE parentID=:val " );
+									$stmt->execute( array( ':val' => $_GET["catid"] ) );
+									$stmt->execute();
+									$category_id_array = [$_GET["catid"]];
+									while ( $p_category = $stmt->fetch() ) {
+										array_push($category_id_array,$p_category["id"]);
+									}
+									$cates = "(" . implode( ",", $category_id_array ) . ")";
+
+									$stmt = $dictionary_list->runQuery( 'SELECT * FROM dictionary WHERE deleted=:val AND categoryID IN '.$cates );
+									$stmt->execute( array( ':val' => 0 ) );
 								} else {
 									$stmt = $dictionary_list->runQuery( 'SELECT * FROM dictionary WHERE deleted=:val' );
 									$stmt->execute( array( ':val' => 0 ) );
@@ -130,7 +141,7 @@ $date     = new DateTime( $lu_date );
 								while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
 									$x ++;
 									$dateAdded = new DateTime( $row['dateadded'] );
-									$dateadded = $dateAdded->format( 'M. d, Y' );
+									$dateadded = $dateAdded->format( 'M. d, Y h:m.s' );
 
 									?>
 									<tr>
@@ -360,6 +371,15 @@ $date     = new DateTime( $lu_date );
   $(document).ready(function () {
 
     $('#example1').DataTable({
+      // "ajax": "words.php",
+      // "columns": [
+      //   { "data": "name" },
+      //   { "data": "position" },
+      //   { "data": "office" },
+      //   { "data": "extn" },
+      //   { "data": "start_date" },
+      //   { "data": "salary" }
+      // ],
       "drawCallback": function (settings) {
 
         $("#play_en_audio").off('click').on('click', function () {
@@ -482,9 +502,19 @@ $date     = new DateTime( $lu_date );
           word_EN: $("#word_EN").val(),
           word_id: $("#word_id").val()
         },
+        dataType: "JSON",
         success: function (data) {
           $('#loading').hide();
-          $('#message').html(data);
+          if (data["result"]) {
+            $("#word_TR").val(data["word_TR"]);
+            $("#word_CH").val(data["word_CH"]);
+            $("#bopomofo").val(data["bopomofo"]);
+
+            $('#message').html("Translations successful.");
+          }
+          else {
+            $('#message').html("Translations failed.");
+          }
         }
       });
 
@@ -501,12 +531,22 @@ $date     = new DateTime( $lu_date );
         type: "POST",
         data: {
           trans_source: "tr",
-          word_EN: $("#word_TR").val(),
+          word_TR: $("#word_TR").val(),
           word_id: $("#word_id").val()
         },
+        dataType: "JSON",
         success: function (data) {
           $('#loading').hide();
-          $('#message').html(data);
+          if (data["result"]) {
+            $("#word_EN").val(data["word_EN"]);
+            $("#word_CH").val(data["word_CH"]);
+            $("#bopomofo").val(data["bopomofo"]);
+
+            $('#message').html("Translations successful.");
+          }
+          else {
+            $('#message').html("Translations failed.");
+          }
         }
       });
 
@@ -522,12 +562,21 @@ $date     = new DateTime( $lu_date );
         type: "POST",
         data: {
           trans_source: "ch",
-          word_EN: $("#word_CH").val(),
+          word_CH: $("#word_CH").val(),
           word_id: $("#word_id").val()
         },
+        dataType: "JSON",
         success: function (data) {
           $('#loading').hide();
-          $('#message').html(data);
+          if (data["result"]) {
+            $("#word_TR").val(data["word_TR"]);
+            $("#word_EN").val(data["word_EN"]);
+
+            $('#message').html("Translations successful.");
+          }
+          else {
+            $('#message').html("Translations failed.");
+          }
         }
       });
 

@@ -26,10 +26,13 @@ $lu_email = $userRow['useremail'];
 $lu_date  = $userRow['dateadded'];
 $date     = new DateTime( $lu_date );
 
+$zh = new \DictPedia\ZhuyinPinyin();
+
 
 if ( ! $auth_user->is_loggedin() ) {
-	# redirect to login page, gtfo
-	$auth_user->doLogout();
+	# return false
+	echo json_encode( array( "result" => false ) );
+//	$auth_user->doLogout();
 } else {
 
 
@@ -46,103 +49,78 @@ if ( ! $auth_user->is_loggedin() ) {
 	$gen_en = false;
 	$gen_ch = false;
 
-	if ($_POST["trans_source"]==="en") {
+	if ( $_POST["trans_source"] === "en" ) {
 		$word_en = $_POST["word_EN"];
 		$result  = $translate->translate( $word_en, [
 			'target' => 'tr'
 		] );
 		$word_tr = $result['text'];
-		$gen_tr = true;
-		$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set word_TR="' . $word_tr . '" WHERE id=' . $_POST["word_id"] );
-		$stmt2->execute();
 
 		$result  = $translate->translate( $word_en, [
 			'target' => 'zh-TW'
 		] );
 		$word_ch = $result['text'];
-		$gen_ch = true;
-		$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set word_CH="' . $word_ch . '" WHERE id=' . $_POST["word_id"] );
-		$stmt2->execute();
 
-		$zh = new \DictPedia\ZhuyinPinyin();
 
-		$stmt = $dictionary_list->runQuery( "SELECT * FROM cedict WHERE traditional=:word_CH" );
+		$bopomofo3 = "";
+		$stmt      = $dictionary_list->runQuery( "SELECT * FROM cedict WHERE traditional=:word_CH" );
 		$stmt->bindparam( ":word_CH", $word_ch );
 		$stmt->execute();
 		if ( $p_word = $stmt->fetch() ) {
-			$bopomofo = strtolower( $p_word["pinyin_numbers"]);
-//			echo $bopomofo;
-			$bopomofo2 = explode(" ",$bopomofo);
+			$bopomofo  = strtolower( $p_word["pinyin_numbers"] );
+			$bopomofo2 = explode( " ", $bopomofo );
 			$bopomofo3 = "";
-			for ($i=0; $i<count($bopomofo2); $i++) {
-				$bopomofo3 .= $zh->encodeZhuyin($bopomofo2[$i])." ";
-//				echo $bopomofo2[$i]." - ".$zh->encodeZhuyin($bopomofo2[$i]);
+			for ( $i = 0; $i < count( $bopomofo2 ); $i ++ ) {
+				$bopomofo3 .= $zh->encodeZhuyin( $bopomofo2[ $i ] ) . " ";
 			}
-
-			$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set bopomofo="' . $bopomofo3 . '" WHERE id=' . $_POST["word_id"] );
-			$stmt2->execute();
-		} else {
-			echo $word_ch." not found in dictionary";
 		}
+		echo json_encode( array( "result" => true, "word_CH" => $word_ch, "bopomofo" => $bopomofo3, "word_TR" => $word_tr ) );
+		exit();
 	}
 
-	if ($_POST["trans_source"]==="tr") {
+	if ( $_POST["trans_source"] === "tr" ) {
 		$word_tr = $_POST["word_TR"];
 		$result  = $translate->translate( $word_tr, [
 			'target' => 'en'
 		] );
 		$word_en = $result['text'];
-		$gen_en = true;
-		$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set word_EN="' . $word_en . '" WHERE id=' . $_POST["word_id"] );
-		$stmt2->execute();
 
 		$result  = $translate->translate( $word_en, [
 			'target' => 'zh-TW'
 		] );
 		$word_ch = $result['text'];
-		$gen_ch = true;
-		$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set word_CH="' . $word_ch . '" WHERE id=' . $_POST["word_id"] );
-		$stmt2->execute();
 
-		$zh = new \DictPedia\ZhuyinPinyin();
-
-		$stmt = $dictionary_list->runQuery( "SELECT * FROM cedict WHERE traditional=:word_CH" );
+		$bopomofo3 = "";
+		$stmt      = $dictionary_list->runQuery( "SELECT * FROM cedict WHERE traditional=:word_CH" );
 		$stmt->bindparam( ":word_CH", $word_ch );
 		$stmt->execute();
 		if ( $p_word = $stmt->fetch() ) {
-			$bopomofo = strtolower( $p_word["pinyin_numbers"]);
-			$bopomofo2 = explode(" ",$bopomofo);
+			$bopomofo  = strtolower( $p_word["pinyin_numbers"] );
+			$bopomofo2 = explode( " ", $bopomofo );
 			$bopomofo3 = "";
-			for ($i=0; $i<count($bopomofo2); $i++) {
-				$bopomofo3 .= $zh->encodeZhuyin($bopomofo2[$i])." ";
+			for ( $i = 0; $i < count( $bopomofo2 ); $i ++ ) {
+				$bopomofo3 .= $zh->encodeZhuyin( $bopomofo2[ $i ] ) . " ";
 			}
-
-			$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set bopomofo="' . $bopomofo3 . '" WHERE id=' . $_POST["word_id"] );
 		}
+		echo json_encode( array( "result" => true, "word_CH" => $word_ch, "bopomofo" => $bopomofo3, "word_EN" => $word_en ) );
+		exit();
 	}
 
-	if ($_POST["trans_source"]==="ch") {
+	if ( $_POST["trans_source"] === "ch" ) {
 		$word_ch = $_POST["word_CH"];
 		$result  = $translate->translate( $word_ch, [
 			'target' => 'en'
 		] );
 		$word_en = $result['text'];
-		$gen_en = true;
-		$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set word_EN="' . $word_en . '" WHERE id=' . $_POST["word_id"] );
-		$stmt2->execute();
 
 		$result  = $translate->translate( $word_en, [
 			'target' => 'tr'
 		] );
 		$word_tr = $result['text'];
-		$gen_tr = true;
-		$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set word_TR="' . $word_tr . '" WHERE id=' . $_POST["word_id"] );
-		$stmt2->execute();
+
+		echo json_encode( array( "result" => true, "word_EN" => $word_en, "word_TR" => $word_tr ) );
+		exit();
 	}
-
-	echo "<div class=\"alert alert-success\" role=\"alert\">";
-	echo "<p>Auto Translations created successfully.</p>";
-	echo "</div>";
-
+	echo json_encode( array( "result" => false ) );
 }
 ?>

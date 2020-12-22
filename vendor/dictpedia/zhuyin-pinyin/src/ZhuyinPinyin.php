@@ -17,7 +17,7 @@ class ZhuyinPinyin {
     var $map_z2p;
     var $map_p2z;
     var $pinyin_tones;
-    var $zhyuin_tones;
+    var $zhuyin_tones;
 
     /**
      * ZhuPin constructor.
@@ -507,7 +507,7 @@ class ZhuyinPinyin {
             unset($ok);
         }
 
-        return $consonant . $rhymes . $this->zhyuin_tones[$tone];
+        return $consonant . $rhymes . $this->zhuyin_tones[$tone];
     }
 
 
