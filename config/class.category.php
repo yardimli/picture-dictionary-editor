@@ -80,9 +80,10 @@ class CATEGORY {
 		$CategoryFound = false;
 
 		try {
-			$stmt = $this->conn->prepare( "SELECT * FROM category WHERE category_EN=:category_EN" );
-			$stmt->bindparam( ":category_EN", $category_EN );
-			$stmt->execute();
+      $stmt = $this->conn->prepare( "SELECT * FROM category WHERE category_EN=:category_EN AND parentID=:parent_id" );
+      $stmt->bindparam( ":category_EN", $category_EN );
+      $stmt->bindparam( ":parent_id", $parent_id );
+      $stmt->execute();
 			if ( $p_category = $stmt->fetch() ) {
 				$CategoryFound = true;
 			}
@@ -131,8 +132,9 @@ class CATEGORY {
 		$CategoryFound = false;
 
 		try {
-			$stmt = $this->conn->prepare( "SELECT * FROM category WHERE category_EN=:category_EN" );
+			$stmt = $this->conn->prepare( "SELECT * FROM category WHERE category_EN=:category_EN AND parentID=:parent_id" );
 			$stmt->bindparam( ":category_EN", $category_EN );
+      $stmt->bindparam( ":parent_id", $parent_id );
 			$stmt->execute();
 			if ( $p_category = $stmt->fetch() ) {
 				$CategoryFound = true;

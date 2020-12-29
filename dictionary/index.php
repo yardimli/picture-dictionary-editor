@@ -69,8 +69,35 @@ $date     = new DateTime( $lu_date );
 				<small>Dictionary &nbsp;&nbsp;
 					<button type="button" class="btn btn-primary btn-flat btn-sm" id="add_word_btn"><i class="fa fa-plus-circle"></i> Add Word
 					</button>
-				</small>
-			</h1>
+        </small>
+
+        <small>Filter Category:</small>
+        <div style=" display: inline-block !important;" class="form-group">
+          <select class="form-control" required id="category_filter_id" name="category_filter_id" style="width:400px; display: inline-block !important;">
+            <?php
+            $cat_array = $category_list->all_categories( 0 );
+            function loopArray2( $arr, $parent ) {
+              for ( $i = 0; $i < count( $arr ); $i ++ ) {
+                if ( count( $arr[ $i ]["children"] ) > 0 ) {
+                  if ( $parent === "" ) {
+                    echo "<option value='" . $arr[ $i ]["id"] . "'>" . $arr[ $i ]["name"] . "</option>";
+                    loopArray2( $arr[ $i ]["children"], $arr[ $i ]["name"] );
+                  } else {
+                    echo "<option value='" . $arr[ $i ]["id"] . "'>" . $parent . " / " . $arr[ $i ]["name"] . "</option>";
+                    loopArray2( $arr[ $i ]["children"], $parent . " / " . $arr[ $i ]["name"] );
+                  }
+                } else {
+                  echo "<option value='" . $arr[ $i ]["id"] . "'>" . $parent . " / " . $arr[ $i ]["name"] . "</option>";
+                }
+              }
+            }
+
+            loopArray2( $cat_array, "" );
+            ?>
+          </select>
+        </div>
+
+      </h1>
 			<ol class="breadcrumb">
 				<li><a href="<?php echo WEB_ROOT; ?>"><i class="fa fa-dashboard"></i> Home</a></li>
 				<li class="active">List of Dictionary</li>
@@ -369,6 +396,10 @@ $date     = new DateTime( $lu_date );
   }
 
   $(document).ready(function () {
+
+    $("#category_filter_id").on('change',function () {
+      window.location.href = "/picture-dictionary-editor/dictionary/?catid=" + $(this).val();
+    });
 
     $('#example1').DataTable({
       // "ajax": "words.php",

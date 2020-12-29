@@ -177,12 +177,39 @@ $date     = new DateTime( $lu_date );
 													       placeholder="English Name"
 													       value="">
 												</div>
-												<div style="margin-top:8px;margin-right:10px;" class="form-group">
-													<label>Parent ID</label>
-													<div class="clearfix"></div>
-													<input style="width: 150px;" required type="text" class="form-control" name="parent_id" id="parent_id" placeholder="parent_id"
-													       value="">
-												</div>
+
+                        <div style="margin-top:8px;margin-right:10px; display: inline-block !important;" class="form-group">
+                          <label for="sel1">Category:</label>
+                          <select class="form-control" required id="parent_id" name="parent_id" style="width:400px;">
+                            <?php
+                            $cat_array = $category_list->all_categories( 0 );
+                            function loopArray( $arr, $parent ) {
+                              for ( $i = 0; $i < count( $arr ); $i ++ ) {
+                                if ( count( $arr[ $i ]["children"] ) > 0 ) {
+                                  if ( $parent === "" ) {
+                                    echo "<option value='" . $arr[ $i ]["id"] . "'>" . $arr[ $i ]["name"] . "</option>";
+                                    loopArray( $arr[ $i ]["children"], $arr[ $i ]["name"] );
+                                  } else {
+                                    echo "<option value='" . $arr[ $i ]["id"] . "'>" . $parent . " / " . $arr[ $i ]["name"] . "</option>";
+                                    loopArray( $arr[ $i ]["children"], $parent . " / " . $arr[ $i ]["name"] );
+                                  }
+                                } else {
+                                  echo "<option value='" . $arr[ $i ]["id"] . "'>" . $parent . " / " . $arr[ $i ]["name"] . "</option>";
+                                }
+                              }
+                            }
+
+                            loopArray( $cat_array, "" );
+                            ?>
+                          </select>
+                        </div>
+
+<!--												<div style="margin-top:8px;margin-right:10px;" class="form-group">-->
+<!--													<label>Parent ID</label>-->
+<!--													<div class="clearfix"></div>-->
+<!--													<input style="width: 150px;" required type="text" class="form-control" name="parent_id" id="parent_id" placeholder="parent_id"-->
+<!--													       value="">-->
+<!--												</div>-->
 											</div>
 
 											<div id="message"></div>
