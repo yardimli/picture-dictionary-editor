@@ -31,9 +31,9 @@ class DICTIONARY {
 		}
 
 
-		if ( $WordFound ) {
-			echo "Word Already Exists.";
-		} else {
+//		if ( $WordFound ) {
+//			echo "Word Already Exists.";
+//		} else {
 
 			if ($bopomofo==="") {
 
@@ -77,7 +77,7 @@ class DICTIONARY {
 			} catch ( PDOException $e ) {
 				echo $e->getMessage() . " (1)";
 			}
-		}
+//		}
 	}
 
 	public function update_dictionary( $Word_EN, $Word_TR, $Word_CH, $bopomofo, $picture, $categoryID, $id, $level, $audio_en, $audio_tr, $audio_ch ) {

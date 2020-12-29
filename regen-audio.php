@@ -26,6 +26,9 @@ $lu_email = $userRow['useremail'];
 $lu_date  = $userRow['dateadded'];
 $date     = new DateTime( $lu_date );
 
+$error_msg = "";
+
+clearstatcache();
 
 function beautify_filename( $filename ) {
 	// reduce consecutive characters
@@ -108,6 +111,9 @@ if ( ! $auth_user->is_loggedin() ) {
 		$audio_en = filter_filename( $word_en ) . ".mp3";
 
 		$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
+    if (file_exists( "./audio/en/" . $audio_en )) {
+      unlink("./audio/en/" . $audio_en);
+    }
 		file_put_contents( "./audio/en/" . $audio_en, $resp->getAudioContent() );
 
 		$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set audio_EN="' . $audio_en . '" WHERE id=' . $_POST["word_id"] );
@@ -129,6 +135,10 @@ if ( ! $auth_user->is_loggedin() ) {
 		$audio_tr = url_make( filter_filename( $word_tr ) ) . ".mp3";
 
 		$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
+
+    if (file_exists( "./audio/tr/" . $audio_tr )) {
+      unlink("./audio/tr/" . $audio_tr);
+    }
 		file_put_contents( "./audio/tr/" . $audio_tr, $resp->getAudioContent() );
 
 		$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set audio_TR="' . $audio_tr . '" WHERE id=' . $_POST["word_id"] );
@@ -154,6 +164,14 @@ if ( ! $auth_user->is_loggedin() ) {
 		}
 
 		$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
+		if (file_exists( "./audio/ch/" . $audio_ch )) {
+		  if (unlink("./audio/ch/" . $audio_ch)) {
+        $error_msg = "Deleted old chinese audio.";
+      } else
+      {
+        $error_msg = "Can't delete old chinese audio.";
+      }
+    }
 		file_put_contents( "./audio/ch/" . $audio_ch, $resp->getAudioContent() );
 
 		$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set audio_CH="' . $audio_ch . '" WHERE id=' . $_POST["word_id"] );
@@ -161,6 +179,7 @@ if ( ! $auth_user->is_loggedin() ) {
 	}
 	echo "<div class=\"alert alert-success\" role=\"alert\">";
 	echo "<p>Audio files created successfully.</p>";
+	echo $error_msg;
 	echo "</div>";
 }
 
