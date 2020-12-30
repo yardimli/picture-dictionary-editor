@@ -1,9 +1,4 @@
 <?php
-require_once( "../config/session.php" );
-require_once( "../config/class.user.php" );
-
-require '../vendor/autoload.php';
-
 require_once( "../config/class.dictionary.php" );
 $dictionary_list = new DICTIONARY();
 
