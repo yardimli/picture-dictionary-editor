@@ -50,6 +50,8 @@ class DICTIONARY {
 					for ($i=0; $i<count($bopomofo2); $i++) {
 						$bopomofo3 .= $zh->encodeZhuyin($bopomofo2[$i])." ";
 					}
+					$bopomofo3 = trim($bopomofo3);
+					$bopomofo3 = str_replace(" ",":",$bopomofo3);
 					$bopomofo = $bopomofo3;
 				}
 
@@ -96,6 +98,8 @@ class DICTIONARY {
 				for ($i=0; $i<count($bopomofo2); $i++) {
 					$bopomofo3 .= $zh->encodeZhuyin($bopomofo2[$i])." ";
 				}
+				$bopomofo3 = trim($bopomofo3);
+				$bopomofo3 = str_replace(" ",":",$bopomofo3);
 				$bopomofo = $bopomofo3;
 			}
 		}
@@ -142,6 +146,8 @@ class DICTIONARY {
 				for ($i=0; $i<count($bopomofo2); $i++) {
 					$bopomofo3 .= $zh->encodeZhuyin($bopomofo2[$i])." ";
 				}
+				$bopomofo3 = trim($bopomofo3);
+				$bopomofo3 = str_replace(" ",":",$bopomofo3);
 				$bopomofo = $bopomofo3;
 			}
 		}

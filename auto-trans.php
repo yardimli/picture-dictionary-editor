@@ -74,6 +74,8 @@ if ( ! $auth_user->is_loggedin() ) {
 				$bopomofo3 .= $zh->encodeZhuyin( $bopomofo2[ $i ] ) . " ";
 			}
 		}
+		$bopomofo3 = trim($bopomofo3);
+		$bopomofo3 = str_replace(" ",":",$bopomofo3);
 		echo json_encode( array( "result" => true, "word_CH" => $word_ch, "bopomofo" => $bopomofo3, "word_TR" => $word_tr ) );
 		exit();
 	}
@@ -102,6 +104,8 @@ if ( ! $auth_user->is_loggedin() ) {
 				$bopomofo3 .= $zh->encodeZhuyin( $bopomofo2[ $i ] ) . " ";
 			}
 		}
+		$bopomofo3 = trim($bopomofo3);
+		$bopomofo3 = str_replace(" ",":",$bopomofo3);
 		echo json_encode( array( "result" => true, "word_CH" => $word_ch, "bopomofo" => $bopomofo3, "word_EN" => $word_en ) );
 		exit();
 	}

@@ -108,9 +108,11 @@ $date     = new DateTime( $lu_date );
 
 				<small>Filter Category:</small>
 				<div style=" display: inline-block !important;" class="form-group">
+					<?php
+					$cat_array = $category_list->all_categories( 0 );
+					?>
 					<select class="form-control" required id="category_filter_id" name="category_filter_id" style="width:400px; display: inline-block !important;">
 						<?php
-						$cat_array = $category_list->all_categories( 0 );
 						function loopArray2( $arr, $parent ) {
 							for ( $i = 0; $i < count( $arr ); $i ++ ) {
 								if ( count( $arr[ $i ]["children"] ) > 0 ) {
@@ -313,15 +315,22 @@ $date     = new DateTime( $lu_date );
 													</select>
 												</div>
 
-												<button id="update-text-fields-button" class="btn btn-primary btn-flat btn-sm">Save Changes</button>
+												<br>
+												<button id="update-text-fields-button" class="btn btn-primary btn-flat btn-sm" style="margin-right:20px;">Save Changes</button>
+
+												<div id="btn-trans-en" class="btn btn-danger btn-flat btn-sm">Trans From En</div>
+												<div id="btn-trans-tr" class="btn btn-danger btn-flat btn-sm">Trans From Tr</div>
+												<div id="btn-trans-ch" class="btn btn-danger btn-flat btn-sm">Trans From Ch</div>
+
+												<hr>
 
 
-												<div id="image-preview-div" style="display: none">
+												<div id="image-preview-div" style="display: none;">
 													<label for="exampleInputFile">Selected image (<span id="image_file_name"></span>):</label>
 													<br>
 													<img id="preview-img" src="noimage">
 												</div>
-												<div class="form-group">
+												<div class="form-group" style="display: inline-block; vertical-align: top;">
 													<input type="file" name="image-file" id="image-file">
 													<button id="upload-image-button" class="btn btn-primary btn-flat btn-sm" style="margin-top:4px;">Upload Image</button>
 												</div>
@@ -351,6 +360,16 @@ $date     = new DateTime( $lu_date );
 													<button id="regen-audio-ch-button" class="btn btn-danger btn-flat btn-sm" style="margin-top:4px;">Generate Audio (ch)</button>
 												</div>
 
+												<div style="margin-top:8px;margin-right:10px; display: inline-block !important; vertical-align: top;" class="form-group">
+													<label>Generated Audio Speed: </label>
+													<select class="form-control" required id="audio_speed" name="audio_speed" style="width:90px; display: inline-block !important;">
+														<option value="1">80%</option>
+														<option value="2" selected>100%</option>
+														<option value="3">120%</option>
+													</select>
+												</div>
+
+
 												<audio
 													id="en_audio_player"
 													src=""></audio>
@@ -374,20 +393,6 @@ $date     = new DateTime( $lu_date );
 												</div>
 												<div id="message"></div>
 
-											</div>
-
-											<div class="box-body">
-
-												<div id="btn-trans-en" class="btn btn-primary btn-flat btn-sm">Trans From En</div>
-												<div id="btn-trans-tr" class="btn btn-primary btn-flat btn-sm">Trans From Tr</div>
-												<div id="btn-trans-ch" class="btn btn-primary btn-flat btn-sm">Trans From Ch</div>
-
-												<label>Generated Audio Speed: </label>
-												<select class="form-control" required id="audio_speed" name="audio_speed" style="width:90px; display: inline-block !important;">
-													<option value="1">80%</option>
-													<option value="2" selected>100%</option>
-													<option value="3">120%</option>
-												</select>
 											</div>
 											<!-- /.box-body -->
 										</form>
@@ -438,19 +443,19 @@ $date     = new DateTime( $lu_date );
 </script>
 <script>
 
-	var Upload = function (file,word_id,upload_type) {
+	var Upload = function (file, word_id, upload_type) {
 		this.file = file;
 		this.word_id = word_id;
 		this.upload_type = upload_type;
 	};
 
-	Upload.prototype.getType = function() {
+	Upload.prototype.getType = function () {
 		return this.file.type;
 	};
-	Upload.prototype.getSize = function() {
+	Upload.prototype.getSize = function () {
 		return this.file.size;
 	};
-	Upload.prototype.getName = function() {
+	Upload.prototype.getName = function () {
 		return this.file.name;
 	};
 	Upload.prototype.doUpload = function () {
@@ -513,6 +518,11 @@ $date     = new DateTime( $lu_date );
 			window.location.href = "/picture-dictionary-editor/dictionary/?catid=" + $(this).val();
 		});
 
+		$("#category_filter_id").html($("#category_filter_id option").sort(function (a, b) {
+			return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
+		}));
+
+
 		$('#example1').DataTable({
 			// "ajax": "words.php",
 			// "columns": [
@@ -562,7 +572,7 @@ $date     = new DateTime( $lu_date );
 					$("#audio_TR").val($(this).data("audio_tr"));
 
 					$('#image-file').css("color", "green");
-					$('#image-preview-div').css("display", "block");
+					$('#image-preview-div').css("display", "inline-block");
 					$('#preview-img').attr('src', "../pictures/" + $(this).data("picture"));
 					$('#preview-img').css('max-width', '150px');
 
@@ -598,7 +608,7 @@ $date     = new DateTime( $lu_date );
 
 
 			$('#image-file').css("color", "green");
-			$('#image-preview-div').css("display", "block");
+			$('#image-preview-div').css("display", "inline-block");
 			$('#preview-img').attr('src', "../pictures/daha-1.jpg");
 			$('#preview-img').css('max-width', '150px');
 
@@ -622,7 +632,7 @@ $date     = new DateTime( $lu_date );
 
 		function selectImage(e) {
 			$('#image-file').css("color", "green");
-			$('#image-preview-div').css("display", "block");
+			$('#image-preview-div').css("display", "inline-block");
 			$('#preview-img').attr('src', e.target.result);
 			$('#preview-img').css('max-width', '150px');
 		}
@@ -671,7 +681,7 @@ $date     = new DateTime( $lu_date );
 			$("#loading_msg").html("uploading...");
 
 			var file = $("#image-file")[0].files[0];
-			var upload = new Upload(file, $("#word_id").val(),"picture");
+			var upload = new Upload(file, $("#word_id").val(), "picture");
 			// maby check size or type here with upload.getSize() and upload.getType()
 			upload.doUpload();
 		});
@@ -683,7 +693,7 @@ $date     = new DateTime( $lu_date );
 			$("#loading_msg").html("uploading...");
 
 			var file = $("#file_audio_en")[0].files[0];
-			var upload = new Upload(file, $("#word_id").val(),"audio_EN");
+			var upload = new Upload(file, $("#word_id").val(), "audio_EN");
 			// maby check size or type here with upload.getSize() and upload.getType()
 			upload.doUpload();
 		});
@@ -695,7 +705,7 @@ $date     = new DateTime( $lu_date );
 			$("#loading_msg").html("uploading...");
 
 			var file = $("#file_audio_tr")[0].files[0];
-			var upload = new Upload(file, $("#word_id").val(),"audio_TR");
+			var upload = new Upload(file, $("#word_id").val(), "audio_TR");
 			// maby check size or type here with upload.getSize() and upload.getType()
 			upload.doUpload();
 		});
@@ -707,7 +717,7 @@ $date     = new DateTime( $lu_date );
 			$("#loading_msg").html("uploading...");
 
 			var file = $("#file_audio_ch")[0].files[0];
-			var upload = new Upload(file, $("#word_id").val(),"audio_CH");
+			var upload = new Upload(file, $("#word_id").val(), "audio_CH");
 			// maby check size or type here with upload.getSize() and upload.getType()
 			upload.doUpload();
 		});
