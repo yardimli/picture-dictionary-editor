@@ -93,6 +93,17 @@ if ( ! $auth_user->is_loggedin() ) {
 } else {
 
 
+	$audio_speed = $_POST["audio_speed"]."";
+	if ($audio_speed==="" || $audio_speed==="2") {
+		$audio_speed = 1.00;
+	}
+	if ($audio_speed==="1") {
+		$audio_speed = 0.80;
+	}
+	if ($audio_speed==="3") {
+		$audio_speed = 1.20;
+	}
+
 	$textToSpeechClient = new TextToSpeechClient( [ 'credentials' => __DIR__ . "/google-key.json" ] );
 
 	$word_en = $_POST["word_EN"];
@@ -105,7 +116,7 @@ if ( ! $auth_user->is_loggedin() ) {
 		$voice->setName( 'en-US-Wavenet-A' );
 		$voice->setSsmlGender( SsmlVoiceGender::FEMALE );
 		$audioConfig = new AudioConfig();
-		$audioConfig->setSpeakingRate( 0.75 );
+		$audioConfig->setSpeakingRate( $audio_speed );
 		$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
 
 		$audio_en = filter_filename( $word_en ) . ".mp3";
@@ -129,7 +140,7 @@ if ( ! $auth_user->is_loggedin() ) {
 		$voice->setName( 'tr-TR-Wavenet-D' );
 		$voice->setSsmlGender( SsmlVoiceGender::FEMALE );
 		$audioConfig = new AudioConfig();
-		$audioConfig->setSpeakingRate( 0.75 );
+		$audioConfig->setSpeakingRate( $audio_speed );
 		$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
 
 		$audio_tr = url_make( filter_filename( $word_tr ) ) . ".mp3";
@@ -154,7 +165,7 @@ if ( ! $auth_user->is_loggedin() ) {
 		$voice->setName( 'cmn-TW-Wavenet-A' );
 		$voice->setSsmlGender( SsmlVoiceGender::FEMALE );
 		$audioConfig = new AudioConfig();
-		$audioConfig->setSpeakingRate( 0.75 );
+		$audioConfig->setSpeakingRate( $audio_speed );
 		$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
 
 		if ( filter_filename( $word_en ) !== "" ) {

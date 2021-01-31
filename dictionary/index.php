@@ -307,6 +307,17 @@ $date     = new DateTime( $lu_date );
 													<input type="file" name="file_audio_ch" id="file_audio_ch" class="form-control">
 												</div>
 
+												<div style="margin-top:8px;margin-right:10px; display: inline-block !important;" class="form-group">
+													<label>Audio Speed</label>
+													<div class="clearfix"></div>
+													<select class="form-control" required id="audio_speed" name="audio_speed" style="width:90px;">
+														<option value="1">80%</option>
+														<option value="2" selected>100%</option>
+														<option value="3">120%</option>
+													</select>
+												</div>
+
+
 												<audio
 													id="en_audio_player"
 													src=""></audio>
@@ -440,9 +451,9 @@ $date     = new DateTime( $lu_date );
           $("#tr_audio_file").html($(this).data("audio_tr"))
           $("#ch_audio_file").html($(this).data("audio_ch"))
 
-          $("#en_audio_player").attr({"src": "../audio/en/" + $(this).data("audio_en")});
-          $("#tr_audio_player").attr({"src": "../audio/tr/" + $(this).data("audio_tr")});
-          $("#ch_audio_player").attr({"src": "../audio/ch/" + $(this).data("audio_ch")});
+          $("#en_audio_player").attr({"src": "../audio/en/" + $(this).data("audio_en")+"?cb=" + new Date().getTime()});
+          $("#tr_audio_player").attr({"src": "../audio/tr/" + $(this).data("audio_tr")+"?cb=" + new Date().getTime()});
+          $("#ch_audio_player").attr({"src": "../audio/ch/" + $(this).data("audio_ch")+"?cb=" + new Date().getTime()});
 
           $("#bopomofo").val($(this).data("bopomofo"));
           $("#audio_EN").val($(this).data("audio_en"));
@@ -624,6 +635,7 @@ $date     = new DateTime( $lu_date );
         url: "../regen-audio.php",
         type: "POST",
         data: {
+	        audio_speed: $("#audio_speed").val(),
           word_EN: $("#word_EN").val(),
           word_TR: $("#word_TR").val(),
           word_CH: $("#word_CH").val(),
