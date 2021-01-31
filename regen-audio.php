@@ -83,6 +83,7 @@ function url_make( $str ) {
 	$after  = array( 'i', 'g', 'u', 's', 'o', 'c', 'i', 'g', 'u', 'o', 'c' ); // , '', ''
 
 	$clean = str_replace( $before, $after, $str );
+
 	return $clean;
 }
 
@@ -92,106 +93,132 @@ if ( ! $auth_user->is_loggedin() ) {
 	$auth_user->doLogout();
 } else {
 
+	if ( $_POST["word_id"] === "0" ) {
+		echo "<div class=\"alert alert-success\" role=\"alert\">";
+		echo "<p>Please save and open word in edit mode to update audio.</p>";
+		echo $error_msg;
+		echo "</div>";
 
-	$audio_speed = $_POST["audio_speed"]."";
-	if ($audio_speed==="" || $audio_speed==="2") {
-		$audio_speed = 1.00;
-	}
-	if ($audio_speed==="1") {
-		$audio_speed = 0.80;
-	}
-	if ($audio_speed==="3") {
-		$audio_speed = 1.20;
-	}
+	} else {
 
-	$textToSpeechClient = new TextToSpeechClient( [ 'credentials' => __DIR__ . "/google-key.json" ] );
-
-	$word_en = $_POST["word_EN"];
-
-	if ( $word_en !== "" ) {
-		$input = new SynthesisInput();
-		$input->setText( $word_en );
-		$voice = new VoiceSelectionParams();
-		$voice->setLanguageCode( 'en-US' );
-		$voice->setName( 'en-US-Wavenet-A' );
-		$voice->setSsmlGender( SsmlVoiceGender::FEMALE );
-		$audioConfig = new AudioConfig();
-		$audioConfig->setSpeakingRate( $audio_speed );
-		$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
-
-		$audio_en = filter_filename( $word_en ) . ".mp3";
-
-		$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
-    if (file_exists( "./audio/en/" . $audio_en )) {
-      unlink("./audio/en/" . $audio_en);
-    }
-		file_put_contents( "./audio/en/" . $audio_en, $resp->getAudioContent() );
-
-		$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set audio_EN="' . $audio_en . '" WHERE id=' . $_POST["word_id"] );
-		$stmt2->execute();
-	}
-
-	$word_tr = $_POST["word_TR"];
-	if ( $word_tr !== "" ) {
-		$input = new SynthesisInput();
-		$input->setText( $word_tr );
-		$voice = new VoiceSelectionParams();
-		$voice->setLanguageCode( 'tr-TR' );
-		$voice->setName( 'tr-TR-Wavenet-D' );
-		$voice->setSsmlGender( SsmlVoiceGender::FEMALE );
-		$audioConfig = new AudioConfig();
-		$audioConfig->setSpeakingRate( $audio_speed );
-		$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
-
-		$audio_tr = url_make( filter_filename( $word_tr ) ) . ".mp3";
-
-		$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
-
-    if (file_exists( "./audio/tr/" . $audio_tr )) {
-      unlink("./audio/tr/" . $audio_tr);
-    }
-		file_put_contents( "./audio/tr/" . $audio_tr, $resp->getAudioContent() );
-
-		$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set audio_TR="' . $audio_tr . '" WHERE id=' . $_POST["word_id"] );
-		$stmt2->execute();
-	}
-
-	$word_ch = $_POST["word_CH"];
-	if ( $word_ch !== "" ) {
-		$input = new SynthesisInput();
-		$input->setText( $word_ch );
-		$voice = new VoiceSelectionParams();
-		$voice->setLanguageCode( 'cmn-TW' );
-		$voice->setName( 'cmn-TW-Wavenet-A' );
-		$voice->setSsmlGender( SsmlVoiceGender::FEMALE );
-		$audioConfig = new AudioConfig();
-		$audioConfig->setSpeakingRate( $audio_speed );
-		$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
-
-		if ( filter_filename( $word_en ) !== "" ) {
-			$audio_ch = filter_filename( $word_en ) . ".mp3";
-		} else {
-			$audio_ch = $_POST["word_id"] . ".mp3";
+		$audio_speed = $_POST["audio_speed"] . "";
+		if ( $audio_speed === "" || $audio_speed === "2" ) {
+			$audio_speed = 1.00;
+		}
+		if ( $audio_speed === "1" ) {
+			$audio_speed = 0.80;
+		}
+		if ( $audio_speed === "3" ) {
+			$audio_speed = 1.20;
 		}
 
-		$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
-		if (file_exists( "./audio/ch/" . $audio_ch )) {
-		  if (unlink("./audio/ch/" . $audio_ch)) {
-        $error_msg = "Deleted old chinese audio.";
-      } else
-      {
-        $error_msg = "Can't delete old chinese audio.";
-      }
-    }
-		file_put_contents( "./audio/ch/" . $audio_ch, $resp->getAudioContent() );
+		$textToSpeechClient = new TextToSpeechClient( [ 'credentials' => __DIR__ . "/google-key.json" ] );
 
-		$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set audio_CH="' . $audio_ch . '" WHERE id=' . $_POST["word_id"] );
-		$stmt2->execute();
+		$word_en = $_POST["word_EN"];
+
+		if ( $word_en !== "" && $_POST["target_lang"] === "en" ) {
+			$input = new SynthesisInput();
+			$input->setText( $word_en );
+			$voice = new VoiceSelectionParams();
+			$voice->setLanguageCode( 'en-US' );
+			$voice->setName( 'en-US-Wavenet-A' );
+			$voice->setSsmlGender( SsmlVoiceGender::FEMALE );
+			$audioConfig = new AudioConfig();
+			$audioConfig->setSpeakingRate( $audio_speed );
+			$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
+
+			$audio_en = filter_filename( $word_en  ."_".time()) . ".mp3";
+
+			$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
+			if ( file_exists( "./audio/en/" . $audio_en ) ) {
+				unlink( "./audio/en/" . $audio_en );
+			}
+			file_put_contents( "./audio/en/" . $audio_en, $resp->getAudioContent() );
+
+			$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set audio_EN="' . $audio_en . '" WHERE id=' . $_POST["word_id"] );
+			$stmt2->execute();
+			?>
+			<script>
+				$("#en_audio_player").attr({"src": "../audio/en/<?php echo $audio_en; ?>"});
+				$("#en_audio_file").html("<?php echo $audio_en; ?>");
+			</script>
+			<?php
+		}
+
+		$word_tr = $_POST["word_TR"];
+		if ( $word_tr !== "" && $_POST["target_lang"] === "tr" ) {
+			$input = new SynthesisInput();
+			$input->setText( $word_tr );
+			$voice = new VoiceSelectionParams();
+			$voice->setLanguageCode( 'tr-TR' );
+			$voice->setName( 'tr-TR-Wavenet-D' );
+			$voice->setSsmlGender( SsmlVoiceGender::FEMALE );
+			$audioConfig = new AudioConfig();
+			$audioConfig->setSpeakingRate( $audio_speed );
+			$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
+
+			$audio_tr = url_make( filter_filename( $word_tr ."_".time() ) ) . ".mp3";
+
+			$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
+
+			if ( file_exists( "./audio/tr/" . $audio_tr ) ) {
+				unlink( "./audio/tr/" . $audio_tr );
+			}
+			file_put_contents( "./audio/tr/" . $audio_tr, $resp->getAudioContent() );
+
+			$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set audio_TR="' . $audio_tr . '" WHERE id=' . $_POST["word_id"] );
+			$stmt2->execute();
+			?>
+			<script>
+				$("#tr_audio_player").attr({"src": "../audio/tr/<?php echo $audio_tr; ?>"});
+				$("#tr_audio_file").html("<?php echo $audio_tr; ?>");
+			</script>
+			<?php
+		}
+
+		$word_ch = $_POST["word_CH"];
+		if ( $word_ch !== "" && $_POST["target_lang"] === "ch" ) {
+			$input = new SynthesisInput();
+			$input->setText( $word_ch );
+			$voice = new VoiceSelectionParams();
+			$voice->setLanguageCode( 'cmn-TW' );
+			$voice->setName( 'cmn-TW-Wavenet-A' );
+			$voice->setSsmlGender( SsmlVoiceGender::FEMALE );
+			$audioConfig = new AudioConfig();
+			$audioConfig->setSpeakingRate( $audio_speed );
+			$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
+
+			$xtime = time();
+			if ( filter_filename( $word_en ."_".$xtime ) !== "" ) {
+				$audio_ch = filter_filename( $word_en."_".$xtime ) . ".mp3";
+			} else {
+				$audio_ch = $_POST["word_id"] ."_".$xtime . ".mp3";
+			}
+
+			$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
+			if ( file_exists( "./audio/ch/" . $audio_ch ) ) {
+				if ( unlink( "./audio/ch/" . $audio_ch ) ) {
+					$error_msg = "Deleted old chinese audio.";
+				} else {
+					$error_msg = "Can't delete old chinese audio.";
+				}
+			}
+			file_put_contents( "./audio/ch/" . $audio_ch, $resp->getAudioContent() );
+
+			$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set audio_CH="' . $audio_ch . '" WHERE id=' . $_POST["word_id"] );
+			$stmt2->execute();
+			?>
+			<script>
+			$("#ch_audio_player").attr({"src": "../audio/ch/<?php echo $audio_ch; ?>"});
+			$("#ch_audio_file").html("<?php echo $audio_ch; ?>");
+			</script>
+<?php
+		}
+		echo "<div class=\"alert alert-success\" role=\"alert\">";
+		echo "<p>Audio files created successfully.</p>";
+		echo $error_msg;
+		echo "</div>";
 	}
-	echo "<div class=\"alert alert-success\" role=\"alert\">";
-	echo "<p>Audio files created successfully.</p>";
-	echo $error_msg;
-	echo "</div>";
 }
 
 ?>
