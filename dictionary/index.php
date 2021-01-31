@@ -180,7 +180,7 @@ $date     = new DateTime( $lu_date );
 									<th>Word</th>
 									<th>Category</th>
 									<th>Level</th>
-									<th>Date</th>
+									<th>Last Update</th>
 								</tr>
 								</thead>
 								<tbody>
@@ -204,7 +204,7 @@ $date     = new DateTime( $lu_date );
 								}
 								while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
 									$x ++;
-									$dateAdded = new DateTime( $row['dateadded'] );
+									$dateAdded = new DateTime( $row['update_time'] );
 									$dateadded = $dateAdded->format( 'M. d, Y h:m.s' );
 
 									?>
