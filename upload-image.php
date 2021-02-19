@@ -281,7 +281,7 @@ if ( ! $auth_user->is_loggedin() ) {
     $voice->setName( 'en-US-Wavenet-A' );
     $voice->setSsmlGender( SsmlVoiceGender::FEMALE );
     $audioConfig = new AudioConfig();
-    $audioConfig->setSpeakingRate( 0.75 );
+    $audioConfig->setSpeakingRate( 1 );
     $audioConfig->setAudioEncoding( AudioEncoding::MP3 );
 
     $audio_en = filter_filename( $word_en ) . ".mp3";
@@ -311,7 +311,7 @@ if ( ! $auth_user->is_loggedin() ) {
     $voice->setName( 'tr-TR-Wavenet-D' );
     $voice->setSsmlGender( SsmlVoiceGender::FEMALE );
     $audioConfig = new AudioConfig();
-    $audioConfig->setSpeakingRate( 0.75 );
+    $audioConfig->setSpeakingRate( 1 );
     $audioConfig->setAudioEncoding( AudioEncoding::MP3 );
 
     $audio_tr = url_make( filter_filename( $word_tr ) ) . ".mp3";
@@ -342,7 +342,7 @@ if ( ! $auth_user->is_loggedin() ) {
     $voice->setName( 'cmn-TW-Wavenet-A' );
     $voice->setSsmlGender( SsmlVoiceGender::FEMALE );
     $audioConfig = new AudioConfig();
-    $audioConfig->setSpeakingRate( 0.75 );
+    $audioConfig->setSpeakingRate( 1 );
     $audioConfig->setAudioEncoding( AudioEncoding::MP3 );
 
     if ( filter_filename( $word_en ) !== "" ) {
