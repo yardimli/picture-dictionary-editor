@@ -64,7 +64,7 @@ class CATEGORY {
 			$stmt->execute();
 			$children = [];
 			while ( $p_category = $stmt->fetch() ) {
-				array_push( $children, [ "id" => $p_category["id"], "name" => $p_category["category_EN"], "children" => $this->all_categories( $p_category["id"] ) ] );
+				array_push( $children, [ "id" => $p_category["id"], "name" => $p_category["category_EN"], "parentID" => $p_category["parentID"], "children" => $this->all_categories( $p_category["id"] ) ] );
 			}
 		} catch
 		( PDOException $e ) {

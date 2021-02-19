@@ -46,14 +46,49 @@ $date     = new DateTime( $lu_date );
 	<!-- Pace style -->
 	<link rel="stylesheet" href="<?php echo WEB_ROOT; ?>plugins/pace/pace.css">
 	<style>
-		.edit-word-btn, .audio_play_link {
-			cursor: pointer;
-			color: blue;
-		}
+    .edit-word-btn, .audio_play_link {
+      cursor: pointer;
+      color: blue;
+    }
 
-		.edit-word-btn:hover, .audio_play_link:hover {
-			text-decoration: underline;
-		}
+    .edit-word-btn:hover, .audio_play_link:hover {
+      text-decoration: underline;
+    }
+
+    @media (min-width: 768px) {
+      .modal-dialog {
+        width: 750px !important;
+        margin: 30px auto;
+      }
+    }
+
+    #progress-wrp {
+      border: 1px solid #0099CC;
+      padding: 1px;
+      position: relative;
+      height: 30px;
+      border-radius: 3px;
+      /*margin: 10px;*/
+      text-align: left;
+      background: #fff;
+      box-shadow: inset 1px 3px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    #progress-wrp .progress-bar {
+      height: 100%;
+      border-radius: 3px;
+      background-color: #f39ac7;
+      width: 0;
+      box-shadow: inset 1px 1px 10px rgba(0, 0, 0, 0.11);
+    }
+
+    #progress-wrp .status {
+      top: 3px;
+      left: 50%;
+      position: absolute;
+      display: inline-block;
+      color: #000000;
+    }
 	</style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -69,35 +104,37 @@ $date     = new DateTime( $lu_date );
 				<small>Dictionary &nbsp;&nbsp;
 					<button type="button" class="btn btn-primary btn-flat btn-sm" id="add_word_btn"><i class="fa fa-plus-circle"></i> Add Word
 					</button>
-        </small>
+				</small>
 
-        <small>Filter Category:</small>
-        <div style=" display: inline-block !important;" class="form-group">
-          <select class="form-control" required id="category_filter_id" name="category_filter_id" style="width:400px; display: inline-block !important;">
-            <?php
-            $cat_array = $category_list->all_categories( 0 );
-            function loopArray2( $arr, $parent ) {
-              for ( $i = 0; $i < count( $arr ); $i ++ ) {
-                if ( count( $arr[ $i ]["children"] ) > 0 ) {
-                  if ( $parent === "" ) {
-                    echo "<option value='" . $arr[ $i ]["id"] . "'>" . $arr[ $i ]["name"] . "</option>";
-                    loopArray2( $arr[ $i ]["children"], $arr[ $i ]["name"] );
-                  } else {
-                    echo "<option value='" . $arr[ $i ]["id"] . "'>" . $parent . " / " . $arr[ $i ]["name"] . "</option>";
-                    loopArray2( $arr[ $i ]["children"], $parent . " / " . $arr[ $i ]["name"] );
-                  }
-                } else {
-                  echo "<option value='" . $arr[ $i ]["id"] . "'>" . $parent . " / " . $arr[ $i ]["name"] . "</option>";
-                }
-              }
-            }
+				<small>Filter Category:</small>
+				<div style=" display: inline-block !important;" class="form-group">
+					<?php
+					$cat_array = $category_list->all_categories( 0 );
+					?>
+					<select class="form-control" required id="category_filter_id" name="category_filter_id" style="width:400px; display: inline-block !important;">
+						<?php
+						function loopArray2( $arr, $parent ) {
+							for ( $i = 0; $i < count( $arr ); $i ++ ) {
+								if ( count( $arr[ $i ]["children"] ) > 0 ) {
+									if ( $parent === "" ) {
+										echo "<option value='" . $arr[ $i ]["id"] . "'>" . $arr[ $i ]["name"] . "</option>";
+										loopArray2( $arr[ $i ]["children"], $arr[ $i ]["name"] );
+									} else {
+										echo "<option value='" . $arr[ $i ]["id"] . "'>" . $parent . " / " . $arr[ $i ]["name"] . "</option>";
+										loopArray2( $arr[ $i ]["children"], $parent . " / " . $arr[ $i ]["name"] );
+									}
+								} else {
+									echo "<option value='" . $arr[ $i ]["id"] . "'>" . $parent . " / " . $arr[ $i ]["name"] . "</option>";
+								}
+							}
+						}
 
-            loopArray2( $cat_array, "" );
-            ?>
-          </select>
-        </div>
+						loopArray2( $cat_array, "" );
+						?>
+					</select>
+				</div>
 
-      </h1>
+			</h1>
 			<ol class="breadcrumb">
 				<li><a href="<?php echo WEB_ROOT; ?>"><i class="fa fa-dashboard"></i> Home</a></li>
 				<li class="active">List of Dictionary</li>
@@ -143,23 +180,23 @@ $date     = new DateTime( $lu_date );
 									<th>Word</th>
 									<th>Category</th>
 									<th>Level</th>
-									<th>Date</th>
+									<th>Last Update</th>
 								</tr>
 								</thead>
 								<tbody>
 								<?php
 								$x = 0;
-								if ( array_key_exists( "catid", $_GET ) && is_numeric( $_GET["catid"] ) && $_GET["catid"]!=="0" ) {
+								if ( array_key_exists( "catid", $_GET ) && is_numeric( $_GET["catid"] ) && $_GET["catid"] !== "0" ) {
 									$stmt = $dictionary_list->runQuery( "SELECT * FROM category WHERE parentID=:val " );
 									$stmt->execute( array( ':val' => $_GET["catid"] ) );
 									$stmt->execute();
-									$category_id_array = [$_GET["catid"]];
+									$category_id_array = [ $_GET["catid"] ];
 									while ( $p_category = $stmt->fetch() ) {
-										array_push($category_id_array,$p_category["id"]);
+										array_push( $category_id_array, $p_category["id"] );
 									}
 									$cates = "(" . implode( ",", $category_id_array ) . ")";
 
-									$stmt = $dictionary_list->runQuery( 'SELECT * FROM dictionary WHERE deleted=:val AND categoryID IN '.$cates );
+									$stmt = $dictionary_list->runQuery( 'SELECT * FROM dictionary WHERE deleted=:val AND categoryID IN ' . $cates );
 									$stmt->execute( array( ':val' => 0 ) );
 								} else {
 									$stmt = $dictionary_list->runQuery( 'SELECT * FROM dictionary WHERE deleted=:val' );
@@ -167,7 +204,7 @@ $date     = new DateTime( $lu_date );
 								}
 								while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
 									$x ++;
-									$dateAdded = new DateTime( $row['dateadded'] );
+									$dateAdded = new DateTime( $row['update_time'] );
 									$dateadded = $dateAdded->format( 'M. d, Y h:m.s' );
 
 									?>
@@ -278,14 +315,24 @@ $date     = new DateTime( $lu_date );
 													</select>
 												</div>
 
+												<br>
+												<button id="update-text-fields-button" class="btn btn-primary btn-flat btn-sm" style="margin-right:20px;">Save Changes</button>
 
-												<div id="image-preview-div" style="display: none">
+												<div id="btn-trans-en" class="btn btn-danger btn-flat btn-sm">Trans From En</div>
+												<div id="btn-trans-tr" class="btn btn-danger btn-flat btn-sm">Trans From Tr</div>
+												<div id="btn-trans-ch" class="btn btn-danger btn-flat btn-sm">Trans From Ch</div>
+
+												<hr>
+
+
+												<div id="image-preview-div" style="display: none;">
 													<label for="exampleInputFile">Selected image (<span id="image_file_name"></span>):</label>
 													<br>
 													<img id="preview-img" src="noimage">
 												</div>
-												<div class="form-group">
-													<input type="file" name="file" id="file">
+												<div class="form-group" style="display: inline-block; vertical-align: top;">
+													<input type="file" name="image-file" id="image-file">
+													<button id="upload-image-button" class="btn btn-primary btn-flat btn-sm" style="margin-top:4px;">Upload Image</button>
 												</div>
 
 
@@ -293,19 +340,35 @@ $date     = new DateTime( $lu_date );
 													<label for="exampleInputFile">English Audio (<span id="en_audio_file"></span>):</label> <span id="play_en_audio"
 													                                                                                              class="audio_play_link">Play</span>
 													<input type="file" name="file_audio_en" id="file_audio_en" class="form-control">
+													<button id="upload-audio-en-button" class="btn btn-primary btn-flat btn-sm" style="margin-top:4px;">Upload Audio (en)</button>
+													<button id="regen-audio-en-button" class="btn btn-danger btn-flat btn-sm" style="margin-top:4px;">Generate Audio (en)</button>
 												</div>
 
 												<div style="margin-top:8px;margin-right:10px; display: inline-block !important;" class="form-group">
 													<label for="exampleInputFile">Turkish Audio (<span id="tr_audio_file"></span>):</label> <span id="play_tr_audio"
 													                                                                                              class="audio_play_link">Play</span>
 													<input type="file" name="file_audio_tr" id="file_audio_tr" class="form-control">
+													<button id="upload-audio-tr-button" class="btn btn-primary btn-flat btn-sm" style="margin-top:4px;">Upload Audio (tr)</button>
+													<button id="regen-audio-tr-button" class="btn btn-danger btn-flat btn-sm" style="margin-top:4px;">Generate Audio (tr)</button>
 												</div>
 
 												<div style="margin-top:8px;margin-right:10px; display: inline-block !important;" class="form-group">
 													<label for="exampleInputFile">Chinese Audi (<span id="ch_audio_file"></span>)o:</label> <span id="play_ch_audio"
 													                                                                                              class="audio_play_link">Play</span>
 													<input type="file" name="file_audio_ch" id="file_audio_ch" class="form-control">
+													<button id="upload-audio-ch-button" class="btn btn-primary btn-flat btn-sm" style="margin-top:4px;">Upload Audio (ch)</button>
+													<button id="regen-audio-ch-button" class="btn btn-danger btn-flat btn-sm" style="margin-top:4px;">Generate Audio (ch)</button>
 												</div>
+
+												<div style="margin-top:8px;margin-right:10px; display: inline-block !important; vertical-align: top;" class="form-group">
+													<label>Generated Audio Speed: </label>
+													<select class="form-control" required id="audio_speed" name="audio_speed" style="width:90px; display: inline-block !important;">
+														<option value="1">80%</option>
+														<option value="2" selected>100%</option>
+														<option value="3">120%</option>
+													</select>
+												</div>
+
 
 												<audio
 													id="en_audio_player"
@@ -320,26 +383,16 @@ $date     = new DateTime( $lu_date );
 													src=""></audio>
 
 
+												<div id="progress-wrp">
+													<div class="progress-bar"></div>
+													<div class="status">0%</div>
+												</div>
+
 												<div class="alert alert-info" id="loading" style="display: none;" role="alert">
 													<span id="loading_msg">Uploading image...</span>
-													<div class="progress">
-														<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"
-														     style="width: 100%">
-														</div>
-													</div>
 												</div>
 												<div id="message"></div>
 
-											</div>
-
-											<div class="box-body">
-												<button type="submit" name="btn-update" id="upload-button" class="btn btn-primary btn-flat btn-sm">Save Changes</button>
-
-												<div id="btn-regen-audio" class="btn btn-primary btn-flat btn-sm">Regenerate Audio</div>
-
-												<div id="btn-trans-en" class="btn btn-primary btn-flat btn-sm">Trans From En</div>
-												<div id="btn-trans-tr" class="btn btn-primary btn-flat btn-sm">Trans From Tr</div>
-												<div id="btn-trans-ch" class="btn btn-primary btn-flat btn-sm">Trans From Ch</div>
 											</div>
 											<!-- /.box-body -->
 										</form>
@@ -382,311 +435,489 @@ $date     = new DateTime( $lu_date );
 <script src="<?php echo WEB_ROOT; ?>dist/js/demo.js"></script>
 <!-- page script -->
 <script>
-  function deleteuser(userID) {
-    if (confirm('Delete this user?')) {
-      window.location.href = 'index.php?userID=' + userID;
-    }
-  }
+	function deleteuser(userID) {
+		if (confirm('Delete this user?')) {
+			window.location.href = 'index.php?userID=' + userID;
+		}
+	}
 </script>
 <script>
 
-  function togglePlay(audiodiv) {
-    var myAudio = document.getElementById(audiodiv);
-    return myAudio.paused ? myAudio.play() : myAudio.pause();
-  }
-
-  $(document).ready(function () {
-
-    $("#category_filter_id").on('change',function () {
-      window.location.href = "/picture-dictionary-editor/dictionary/?catid=" + $(this).val();
-    });
-
-    $('#example1').DataTable({
-      // "ajax": "words.php",
-      // "columns": [
-      //   { "data": "name" },
-      //   { "data": "position" },
-      //   { "data": "office" },
-      //   { "data": "extn" },
-      //   { "data": "start_date" },
-      //   { "data": "salary" }
-      // ],
-      "drawCallback": function (settings) {
-
-        $("#play_en_audio").off('click').on('click', function () {
-          togglePlay("en_audio_player");
-        });
-
-        $("#play_tr_audio").off('click').on('click', function () {
-          togglePlay("tr_audio_player");
-        });
-
-        $("#play_ch_audio").off('click').on('click', function () {
-          togglePlay("ch_audio_player");
-        });
-
-        $(".edit-word-btn").off('click').on('click', function () {
-          $("#word_EN").val($(this).data("word_en"));
-          $("#word_TR").val($(this).data("word_tr"));
-          $("#word_CH").val($(this).data("word_ch"));
-          $("#category_id").val($(this).data("category_id"));
-          $("#picture").val($(this).data("picture"));
-          $("#word_id").val($(this).data("word_id"));
-          $("#level").val($(this).data("level"));
-
-          $("#image_file_name").html($(this).data("picture"));
-
-          $("#en_audio_file").html($(this).data("audio_en"))
-          $("#tr_audio_file").html($(this).data("audio_tr"))
-          $("#ch_audio_file").html($(this).data("audio_ch"))
-
-          $("#en_audio_player").attr({"src": "../audio/en/" + $(this).data("audio_en")});
-          $("#tr_audio_player").attr({"src": "../audio/tr/" + $(this).data("audio_tr")});
-          $("#ch_audio_player").attr({"src": "../audio/ch/" + $(this).data("audio_ch")});
-
-          $("#bopomofo").val($(this).data("bopomofo"));
-          $("#audio_EN").val($(this).data("audio_en"));
-          $("#audio_CH").val($(this).data("audio_ch"));
-          $("#audio_TR").val($(this).data("audio_tr"));
-
-          $('#file').css("color", "green");
-          $('#image-preview-div').css("display", "block");
-          $('#preview-img').attr('src', "../pictures/" + $(this).data("picture"));
-          $('#preview-img').css('max-width', '150px');
-
-
-          $("#word_modal_title").html("Edit Word");
-          $("#edit_word_modal").modal("show");
-        });
-      },
-      "paging": true,
-      "lengthChange": false,
-      "pageLength": 50,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": true
-    });
-
-    $("#add_word_btn").on('click', function () {
-      $("#word_EN").val("");
-      $("#word_TR").val("");
-      $("#word_CH").val("");
-      $("#category_id").val(0);
-      $("#picture").val("");
-      $("#word_id").val("0");
-      $("#level").val("1");
-
-      $("#bopomofo").val("");
-      $("#audio_EN").val("");
-      $("#audio_CH").val("");
-      $("#audio_TR").val("");
-
-      $("#image_file_name").html("daha-1.jpg");
-
-
-      $('#file').css("color", "green");
-      $('#image-preview-div').css("display", "block");
-      $('#preview-img').attr('src', "../pictures/daha-1.jpg");
-      $('#preview-img').css('max-width', '150px');
-
-
-      $("#word_modal_title").html("Add Word");
-      $("#edit_word_modal").modal("show");
-    });
-
-
-    // setTimeout(function () {
-    //   $(".alert").fadeOut("slow", function () {
-    //     $(".alert").remove();
-    //   });
-    // }, 5000);
-
-
-    /*jslint browser: true, white: true, eqeq: true, plusplus: true, sloppy: true, vars: true*/
-
-    /*global $, console, alert, FormData, FileReader*/
-
-
-    function selectImage(e) {
-      $('#file').css("color", "green");
-      $('#image-preview-div').css("display", "block");
-      $('#preview-img').attr('src', e.target.result);
-      $('#preview-img').css('max-width', '150px');
-    }
-
-
-    var maxsize = 500 * 1024; // 500 KB
-
-    $('#max-size').html((maxsize / 1024).toFixed(2));
-
-    $("#btn-trans-en").off('click').on('click', function () {
-      $('#message').empty();
-      $('#loading').show();
-      $("#loading_msg").html("auto translate...");
-
-      $.ajax({
-        url: "../auto-trans.php",
-        type: "POST",
-        data: {
-          trans_source: "en",
-          word_EN: $("#word_EN").val(),
-          word_id: $("#word_id").val()
-        },
-        dataType: "JSON",
-        success: function (data) {
-          $('#loading').hide();
-          if (data["result"]) {
-            $("#word_TR").val(data["word_TR"]);
-            $("#word_CH").val(data["word_CH"]);
-            $("#bopomofo").val(data["bopomofo"]);
-
-            $('#message').html("Translations successful.");
-          }
-          else {
-            $('#message').html("Translations failed.");
-          }
-        }
-      });
-
-    });
-
-
-    $("#btn-trans-tr").off('click').on('click', function () {
-      $('#message').empty();
-      $('#loading').show();
-      $("#loading_msg").html("auto translate...");
-
-      $.ajax({
-        url: "../auto-trans.php",
-        type: "POST",
-        data: {
-          trans_source: "tr",
-          word_TR: $("#word_TR").val(),
-          word_id: $("#word_id").val()
-        },
-        dataType: "JSON",
-        success: function (data) {
-          $('#loading').hide();
-          if (data["result"]) {
-            $("#word_EN").val(data["word_EN"]);
-            $("#word_CH").val(data["word_CH"]);
-            $("#bopomofo").val(data["bopomofo"]);
-
-            $('#message').html("Translations successful.");
-          }
-          else {
-            $('#message').html("Translations failed.");
-          }
-        }
-      });
-
-    });
-
-    $("#btn-trans-ch").off('click').on('click', function () {
-      $('#message').empty();
-      $('#loading').show();
-      $("#loading_msg").html("auto translate...");
-
-      $.ajax({
-        url: "../auto-trans.php",
-        type: "POST",
-        data: {
-          trans_source: "ch",
-          word_CH: $("#word_CH").val(),
-          word_id: $("#word_id").val()
-        },
-        dataType: "JSON",
-        success: function (data) {
-          $('#loading').hide();
-          if (data["result"]) {
-            $("#word_TR").val(data["word_TR"]);
-            $("#word_EN").val(data["word_EN"]);
-
-            $('#message').html("Translations successful.");
-          }
-          else {
-            $('#message').html("Translations failed.");
-          }
-        }
-      });
-
-    });
-
-
-    $("#btn-regen-audio").off('click').on('click', function () {
-
-      $('#message').empty();
-      $('#loading').show();
-      $("#loading_msg").html("generating audio...");
-
-      $.ajax({
-        url: "../regen-audio.php",
-        type: "POST",
-        data: {
-          word_EN: $("#word_EN").val(),
-          word_TR: $("#word_TR").val(),
-          word_CH: $("#word_CH").val(),
-          word_id: $("#word_id").val()
-        },
-        success: function (data) {
-          $('#loading').hide();
-          $('#message').html(data);
-        }
-      });
-    });
-
-    $('#upload-image-form').on('submit', function (e) {
-
-      e.preventDefault();
-
-      $('#message').empty();
-      $('#loading').show();
-      $("#loading_msg").html("uploading image...");
-
-      $.ajax({
-        url: "../upload-image.php",
-        type: "POST",
-        data: new FormData(this),
-        contentType: false,
-        cache: false,
-        processData: false,
-        success: function (data) {
-          $('#loading').hide();
-          $('#message').html(data);
-        }
-      });
-
-    });
-
-    $('#file').change(function () {
-
-      $('#message').empty();
-
-      var file = this.files[0];
-      var match = ["image/jpeg", "image/png", "image/jpg"];
-
-      if (!((file.type == match[0]) || (file.type == match[1]) || (file.type == match[2]))) {
-        $('#message').html('<div class="alert alert-warning" role="alert">Invalid image format. Allowed formats: JPG, JPEG, PNG.</div>');
-
-        return false;
-      }
-
-      if (file.size > maxsize) {
-        $('#message').html('<div class=\"alert alert-danger\" role=\"alert\">The size of image you are attempting to upload is ' + (file.size / 1024).toFixed(2) + ' KB, maximum size allowed is ' + (maxsize / 1024).toFixed(2) + ' KB</div>');
-
-        return false;
-      }
-
-      // $('#upload-button').removeAttr("disabled");
-
-      var reader = new FileReader();
-      reader.onload = selectImage;
-      reader.readAsDataURL(this.files[0]);
-
-
-    });
-  });
+	var Upload = function (file, word_id, upload_type) {
+		this.file = file;
+		this.word_id = word_id;
+		this.upload_type = upload_type;
+	};
+
+	Upload.prototype.getType = function () {
+		return this.file.type;
+	};
+	Upload.prototype.getSize = function () {
+		return this.file.size;
+	};
+	Upload.prototype.getName = function () {
+		return this.file.name;
+	};
+	Upload.prototype.doUpload = function () {
+		var that = this;
+		var formData = new FormData();
+
+		// add assoc key values, this will be posts values
+		formData.append("file", this.file, this.getName());
+		formData.append("upload_file", true);
+		formData.append("word_id", this.word_id);
+		formData.append("upload_type", this.upload_type);
+
+		$.ajax({
+			type: "POST",
+			url: "../upload-file.php",
+			xhr: function () {
+				var myXhr = $.ajaxSettings.xhr();
+				if (myXhr.upload) {
+					myXhr.upload.addEventListener('progress', that.progressHandling, false);
+				}
+				return myXhr;
+			},
+			success: function (data) {
+				// your callback here
+				$('#message').html(data);
+			},
+			error: function (error) {
+				// handle error
+			},
+			async: true,
+			data: formData,
+			cache: false,
+			contentType: false,
+			processData: false,
+			timeout: 60000
+		});
+	};
+
+	Upload.prototype.progressHandling = function (event) {
+		var percent = 0;
+		var position = event.loaded || event.position;
+		var total = event.total;
+		var progress_bar_id = "#progress-wrp";
+		if (event.lengthComputable) {
+			percent = Math.ceil(position / total * 100);
+		}
+		// update progressbars classes so it fits your code
+		$(progress_bar_id + " .progress-bar").css("width", +percent + "%");
+		$(progress_bar_id + " .status").text(percent + "%");
+	};
+
+	function togglePlay(audiodiv) {
+		var myAudio = document.getElementById(audiodiv);
+		return myAudio.paused ? myAudio.play() : myAudio.pause();
+	}
+
+	$(document).ready(function () {
+
+		$("#category_filter_id").on('change', function () {
+			window.location.href = "/picture-dictionary-editor/dictionary/?catid=" + $(this).val();
+		});
+
+		$("#category_filter_id").html($("#category_filter_id option").sort(function (a, b) {
+			return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
+		}));
+
+
+		$('#example1').DataTable({
+			// "ajax": "words.php",
+			// "columns": [
+			//   { "data": "name" },
+			//   { "data": "position" },
+			//   { "data": "office" },
+			//   { "data": "extn" },
+			//   { "data": "start_date" },
+			//   { "data": "salary" }
+			// ],
+			"drawCallback": function (settings) {
+
+				$("#play_en_audio").off('click').on('click', function () {
+					togglePlay("en_audio_player");
+				});
+
+				$("#play_tr_audio").off('click').on('click', function () {
+					togglePlay("tr_audio_player");
+				});
+
+				$("#play_ch_audio").off('click').on('click', function () {
+					togglePlay("ch_audio_player");
+				});
+
+				$(".edit-word-btn").off('click').on('click', function () {
+					$("#word_EN").val($(this).data("word_en"));
+					$("#word_TR").val($(this).data("word_tr"));
+					$("#word_CH").val($(this).data("word_ch"));
+					$("#category_id").val($(this).data("category_id"));
+					$("#picture").val($(this).data("picture"));
+					$("#word_id").val($(this).data("word_id"));
+					$("#level").val($(this).data("level"));
+
+					$("#image_file_name").html($(this).data("picture"));
+
+					$("#en_audio_file").html($(this).data("audio_en"))
+					$("#tr_audio_file").html($(this).data("audio_tr"))
+					$("#ch_audio_file").html($(this).data("audio_ch"))
+
+					$("#en_audio_player").attr({"src": "../audio/en/" + $(this).data("audio_en") + "?cb=" + new Date().getTime()});
+					$("#tr_audio_player").attr({"src": "../audio/tr/" + $(this).data("audio_tr") + "?cb=" + new Date().getTime()});
+					$("#ch_audio_player").attr({"src": "../audio/ch/" + $(this).data("audio_ch") + "?cb=" + new Date().getTime()});
+
+					$("#bopomofo").val($(this).data("bopomofo"));
+					$("#audio_EN").val($(this).data("audio_en"));
+					$("#audio_CH").val($(this).data("audio_ch"));
+					$("#audio_TR").val($(this).data("audio_tr"));
+
+					$('#image-file').css("color", "green");
+					$('#image-preview-div').css("display", "inline-block");
+					$('#preview-img').attr('src', "../pictures/" + $(this).data("picture"));
+					$('#preview-img').css('max-width', '150px');
+
+
+					$("#word_modal_title").html("Edit Word");
+					$("#edit_word_modal").modal("show");
+				});
+			},
+			"paging": true,
+			"lengthChange": false,
+			"pageLength": 50,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": true
+		});
+
+		$("#add_word_btn").on('click', function () {
+			$("#word_EN").val("");
+			$("#word_TR").val("");
+			$("#word_CH").val("");
+			$("#category_id").val(0);
+			$("#picture").val("");
+			$("#word_id").val("0");
+			$("#level").val("1");
+
+			$("#bopomofo").val("");
+			$("#audio_EN").val("");
+			$("#audio_CH").val("");
+			$("#audio_TR").val("");
+
+			$("#image_file_name").html("daha-1.jpg");
+
+
+			$('#image-file').css("color", "green");
+			$('#image-preview-div').css("display", "inline-block");
+			$('#preview-img').attr('src', "../pictures/daha-1.jpg");
+			$('#preview-img').css('max-width', '150px');
+
+
+			$("#word_modal_title").html("Add Word");
+			$("#edit_word_modal").modal("show");
+		});
+
+
+		// setTimeout(function () {
+		//   $(".alert").fadeOut("slow", function () {
+		//     $(".alert").remove();
+		//   });
+		// }, 5000);
+
+
+		/*jslint browser: true, white: true, eqeq: true, plusplus: true, sloppy: true, vars: true*/
+
+		/*global $, console, alert, FormData, FileReader*/
+
+
+		function selectImage(e) {
+			$('#image-file').css("color", "green");
+			$('#image-preview-div').css("display", "inline-block");
+			$('#preview-img').attr('src', e.target.result);
+			$('#preview-img').css('max-width', '150px');
+		}
+
+
+		var maxsize = 500 * 1024; // 500 KB
+
+		$('#max-size').html((maxsize / 1024).toFixed(2));
+
+		$("#btn-trans-en").off('click').on('click', function (e) {
+			e.preventDefault();
+			$('#message').empty();
+			$('#loading').show();
+			$("#loading_msg").html("auto translate...");
+
+			$.ajax({
+				url: "../auto-trans.php",
+				type: "POST",
+				data: {
+					trans_source: "en",
+					word_EN: $("#word_EN").val(),
+					word_id: $("#word_id").val()
+				},
+				dataType: "JSON",
+				success: function (data) {
+					$('#loading').hide();
+					if (data["result"]) {
+						$("#word_TR").val(data["word_TR"]);
+						$("#word_CH").val(data["word_CH"]);
+						$("#bopomofo").val(data["bopomofo"]);
+
+						$('#message').html("Translations successful.");
+					}
+					else {
+						$('#message').html("Translations failed.");
+					}
+				}
+			});
+
+		});
+
+		$("#upload-image-button").off('click').on('click', function (e) {
+			e.preventDefault();
+			$('#message').empty();
+			$('#loading').show();
+			$("#loading_msg").html("uploading...");
+
+			var file = $("#image-file")[0].files[0];
+			var upload = new Upload(file, $("#word_id").val(), "picture");
+			// maby check size or type here with upload.getSize() and upload.getType()
+			upload.doUpload();
+		});
+
+		$("#upload-audio-en-button").off('click').on('click', function (e) {
+			e.preventDefault();
+			$('#message').empty();
+			$('#loading').show();
+			$("#loading_msg").html("uploading...");
+
+			var file = $("#file_audio_en")[0].files[0];
+			var upload = new Upload(file, $("#word_id").val(), "audio_EN");
+			// maby check size or type here with upload.getSize() and upload.getType()
+			upload.doUpload();
+		});
+
+		$("#upload-audio-tr-button").off('click').on('click', function (e) {
+			e.preventDefault();
+			$('#message').empty();
+			$('#loading').show();
+			$("#loading_msg").html("uploading...");
+
+			var file = $("#file_audio_tr")[0].files[0];
+			var upload = new Upload(file, $("#word_id").val(), "audio_TR");
+			// maby check size or type here with upload.getSize() and upload.getType()
+			upload.doUpload();
+		});
+
+		$("#upload-audio-ch-button").off('click').on('click', function (e) {
+			e.preventDefault();
+			$('#message').empty();
+			$('#loading').show();
+			$("#loading_msg").html("uploading...");
+
+			var file = $("#file_audio_ch")[0].files[0];
+			var upload = new Upload(file, $("#word_id").val(), "audio_CH");
+			// maby check size or type here with upload.getSize() and upload.getType()
+			upload.doUpload();
+		});
+
+		$("#btn-trans-tr").off('click').on('click', function (e) {
+			e.preventDefault();
+			$('#message').empty();
+			$('#loading').show();
+			$("#loading_msg").html("auto translate...");
+
+			$.ajax({
+				url: "../auto-trans.php",
+				type: "POST",
+				data: {
+					trans_source: "tr",
+					word_TR: $("#word_TR").val(),
+					word_id: $("#word_id").val()
+				},
+				dataType: "JSON",
+				success: function (data) {
+					$('#loading').hide();
+					if (data["result"]) {
+						$("#word_EN").val(data["word_EN"]);
+						$("#word_CH").val(data["word_CH"]);
+						$("#bopomofo").val(data["bopomofo"]);
+
+						$('#message').html("Translations successful.");
+					}
+					else {
+						$('#message').html("Translations failed.");
+					}
+				}
+			});
+
+		});
+
+		$("#btn-trans-ch").off('click').on('click', function (e) {
+			e.preventDefault();
+			$('#message').empty();
+			$('#loading').show();
+			$("#loading_msg").html("auto translate...");
+
+			$.ajax({
+				url: "../auto-trans.php",
+				type: "POST",
+				data: {
+					trans_source: "ch",
+					word_CH: $("#word_CH").val(),
+					word_id: $("#word_id").val()
+				},
+				dataType: "JSON",
+				success: function (data) {
+					$('#loading').hide();
+					if (data["result"]) {
+						$("#word_TR").val(data["word_TR"]);
+						$("#word_EN").val(data["word_EN"]);
+
+						$('#message').html("Translations successful.");
+					}
+					else {
+						$('#message').html("Translations failed.");
+					}
+				}
+			});
+
+		});
+
+
+		$("#regen-audio-en-button").off('click').on('click', function (e) {
+			e.preventDefault();
+
+			$('#message').empty();
+			$('#loading').show();
+			$("#loading_msg").html("generating audio...");
+
+			$.ajax({
+				url: "../regen-audio.php",
+				type: "POST",
+				data: {
+					target_lang: "en",
+					audio_speed: $("#audio_speed").val(),
+					word_EN: $("#word_EN").val(),
+					word_TR: $("#word_TR").val(),
+					word_CH: $("#word_CH").val(),
+					word_id: $("#word_id").val()
+				},
+				success: function (data) {
+					$('#loading').hide();
+					$('#message').html(data);
+				}
+			});
+		});
+
+		$("#regen-audio-tr-button").off('click').on('click', function (e) {
+			e.preventDefault();
+
+			$('#message').empty();
+			$('#loading').show();
+			$("#loading_msg").html("generating audio...");
+
+			$.ajax({
+				url: "../regen-audio.php",
+				type: "POST",
+				data: {
+					target_lang: "tr",
+					audio_speed: $("#audio_speed").val(),
+					word_EN: $("#word_EN").val(),
+					word_TR: $("#word_TR").val(),
+					word_CH: $("#word_CH").val(),
+					word_id: $("#word_id").val()
+				},
+				success: function (data) {
+					$('#loading').hide();
+					$('#message').html(data);
+				}
+			});
+		});
+
+		$("#regen-audio-ch-button").off('click').on('click', function (e) {
+			e.preventDefault();
+
+			$('#message').empty();
+			$('#loading').show();
+			$("#loading_msg").html("generating audio...");
+
+			$.ajax({
+				url: "../regen-audio.php",
+				type: "POST",
+				data: {
+					target_lang: "ch",
+					audio_speed: $("#audio_speed").val(),
+					word_EN: $("#word_EN").val(),
+					word_TR: $("#word_TR").val(),
+					word_CH: $("#word_CH").val(),
+					word_id: $("#word_id").val()
+				},
+				success: function (data) {
+					$('#loading').hide();
+					$('#message').html(data);
+				}
+			});
+		});
+
+		$('#update-text-fields-button').on('click', function (e) {
+
+			e.preventDefault();
+
+			$('#message').empty();
+			$('#loading').show();
+			$("#loading_msg").html("saving form data...");
+
+			$.ajax({
+				url: "../save-word-data.php",
+				type: "POST",
+				data: {
+					word_id: $("#word_id").val(),
+					word_EN: $("#word_EN").val(),
+					word_TR: $("#word_TR").val(),
+					word_CH: $("#word_CH").val(),
+					bopomofo: $("#bopomofo").val(),
+					category_id: $("#category_id").val(),
+					level: $("#level").val(),
+				},
+				// contentType: false,
+				cache: false,
+				// processData: false,
+				success: function (data) {
+					$('#loading').hide();
+					$('#message').html(data);
+				}
+			});
+
+		});
+
+		$('#image-file').change(function () {
+
+			$('#message').empty();
+
+			var file = this.files[0];
+			var match = ["image/jpeg", "image/png", "image/jpg"];
+
+			if (!((file.type == match[0]) || (file.type == match[1]) || (file.type == match[2]))) {
+				$('#message').html('<div class="alert alert-warning" role="alert">Invalid image format. Allowed formats: JPG, JPEG, PNG.</div>');
+
+				return false;
+			}
+
+			if (file.size > maxsize) {
+				$('#message').html('<div class=\"alert alert-danger\" role=\"alert\">The size of image you are attempting to upload is ' + (file.size / 1024).toFixed(2) + ' KB, maximum size allowed is ' + (maxsize / 1024).toFixed(2) + ' KB</div>');
+
+				return false;
+			}
+
+			// $('#upload-button').removeAttr("disabled");
+
+			var reader = new FileReader();
+			reader.onload = selectImage;
+			reader.readAsDataURL(this.files[0]);
+		});
+	});
 </script>
 </body>
 </html>

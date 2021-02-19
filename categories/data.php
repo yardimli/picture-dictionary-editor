@@ -20,6 +20,7 @@ function loopArray( $arr, $parent ) {
 				array_push( $result, [
 					"id"       => $arr[ $i ]["id"],
 					"name"     => $arr[ $i ]["name"],
+					"parentID" => $arr[ $i ]["parentID"],
 					"parent"   => $parent,
 					"fullpath" => $arr[ $i ]["name"]
 				] );
@@ -30,6 +31,7 @@ function loopArray( $arr, $parent ) {
 				array_push( $result, [
 					"id"       => $arr[ $i ]["id"],
 					"name"     => $arr[ $i ]["name"],
+					"parentID" => $arr[ $i ]["parentID"],
 					"parent"   => $parent,
 					"fullpath" => $parent . " / " . $arr[ $i ]["name"]
 				] );
@@ -41,6 +43,7 @@ function loopArray( $arr, $parent ) {
 			array_push( $result, [
 				"id"       => $arr[ $i ]["id"],
 				"name"     => $arr[ $i ]["name"],
+				"parentID" => $arr[ $i ]["parentID"],
 				"parent"   => $parent,
 				"fullpath" => $parent . " / " . $arr[ $i ]["name"]
 			] );
@@ -48,7 +51,7 @@ function loopArray( $arr, $parent ) {
 	}
 }
 
-loopArray( $cat_array, "" );
+loopArray( $cat_array, "");
 
 echo json_encode( $result );
 ?>
