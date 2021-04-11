@@ -163,7 +163,7 @@ $date     = new DateTime( $lu_date );
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<h4 class="modal-title" id="gridSystemModalLabel"><i class="ion ion-compose"></i> <span id="word_modal_title">Edit Word</span></h4>
+										<h4 class="modal-title" ><i class="ion ion-compose"></i> <span id="word_modal_title">Edit Word</span></h4>
 									</div>
 									<div class="modal-body">
 										<form role="form" method="POST" id="upload-image-form" enctype="multipart/form-data">

@@ -28,14 +28,29 @@ if ( ! $auth_user->is_loggedin() ) {
 	$auth_user->doLogout();
 } else {
 	echo "<div class=\"alert alert-success\" role=\"alert\">";
-	if ( $_POST["word_id"] === "0" ) {
-		if ( $dictionary_list->add_word( $_POST["word_EN"], $_POST["word_TR"], $_POST["word_CH"], $_POST["bopomofo"], $_POST["category_id"], $_POST["level"] ) ) {
-			echo "<p>Word Text data Added</strong></p>";
+	if ( $_POST["language"] === "en" && $_POST["word_id"] === "0" ) {
+		if ( $dictionary_list->add_word_en( $_POST["word_EN"], $_POST["category_id"], $_POST["level"] ) ) {
+			echo "<p>English Word Text data Added</strong></p>";
 		}
 	} else {
-		if ( $dictionary_list->update_word( $_POST["word_id"], $_POST["word_EN"], $_POST["word_TR"], $_POST["word_CH"], $_POST["bopomofo"], $_POST["category_id"], $_POST["level"] ) ) {
-			echo "<p>Word Text data Updated</strong></p>";
+		if ( $_POST["language"] === "en" ) {
+			if ( $dictionary_list->update_word_en( $_POST["word_id"], $_POST["word_EN"], $_POST["category_id"], $_POST["level"] ) ) {
+				echo "<p>English Word Text data Updated</strong></p>";
+			}
 		}
+
+		if ( $_POST["language"] === "tr" ) {
+			if ( $dictionary_list->update_word_tr( $_POST["word_id"], $_POST["word_TR"] ) ) {
+				echo "<p>Turkish Word Text data Updated</strong></p>";
+			}
+		}
+
+		if ( $_POST["language"] === "ch" ) {
+			if ( $dictionary_list->update_word_ch( $_POST["word_id"], $_POST["word_CH"], $_POST["bopomofo"] ) ) {
+				echo "<p>Turkish Word Text data Updated</strong></p>";
+			}
+		}
+
 	}
 	echo "</div>";
 }

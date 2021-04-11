@@ -110,14 +110,15 @@ class CATEGORY {
 
 
 			try {
-				$stmt = $this->conn->prepare( "INSERT INTO category (category_EN, category_TR, category_CH,picture,parent_EN,parentID)
-    		VALUES(:category_EN, :category_TR, :category_CH, :picture, :parent_EN, :parentID)" );
+				$stmt = $this->conn->prepare( "INSERT INTO category (category_EN, category_TR, category_CH,picture,parent_EN,parentID, userid)
+    		VALUES(:category_EN, :category_TR, :category_CH, :picture, :parent_EN, :parentID, :userid)" );
 				$stmt->bindparam( ":category_EN", $category_EN );
 				$stmt->bindparam( ":category_TR", $category_TR );
 				$stmt->bindparam( ":category_CH", $category_CH );
 				$stmt->bindparam( ":picture", $picture );
 				$stmt->bindparam( ":parent_EN", $parent_EN );
 				$stmt->bindparam( ":parentID", $parent_id );
+				$stmt->bindparam( ":userid", $_SESSION['user_session']l );
 				$stmt->execute();
 
 				return $stmt;

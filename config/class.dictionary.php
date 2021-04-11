@@ -16,7 +16,27 @@ class DICTIONARY {
 		return $stmt;
 	}
 
-	public function add_word( $Word_EN, $Word_TR, $Word_CH, $bopomofo, $categoryID, $level ) {
+	public function add_word_en( $Word_EN, $categoryID, $level ) {
+
+		try {
+			$stmt = $this->conn->prepare( "INSERT INTO dictionary (word_EN, categoryID, level, userid)
+    		VALUES(:word_EN, :categoryID, :level, :userid)" );
+			$stmt->bindparam( ":word_EN", $Word_EN );
+			$stmt->bindparam( ":categoryID", $categoryID );
+			$stmt->bindparam( ":level", $level );
+			$stmt->bindparam( ":userid", $_SESSION['user_session']l );
+
+//				$stmt->debugDumpParams();
+			$stmt->execute();
+
+
+			return $stmt;
+		} catch ( PDOException $e ) {
+			echo $e->getMessage() . " (1)";
+		}
+	}
+
+	public function add_word_original( $Word_EN, $Word_TR, $Word_CH, $bopomofo, $categoryID, $level ) {
 
 		$WordFound = false;
 		try {
@@ -35,56 +55,7 @@ class DICTIONARY {
 //			echo "Word Already Exists.";
 //		} else {
 
-			if ($bopomofo==="") {
-
-				$zh = new \DictPedia\ZhuyinPinyin();
-
-				$stmt = $this->conn->prepare( "SELECT * FROM cedict WHERE traditional=:word_CH" );
-				$stmt->bindparam( ":word_CH", $Word_CH );
-				$stmt->execute();
-				if ( $p_word = $stmt->fetch() ) {
-
-					$bopomofo = strtolower( $p_word["pinyin_numbers"]);
-					$bopomofo2 = explode(" ",$bopomofo);
-					$bopomofo3 = "";
-					for ($i=0; $i<count($bopomofo2); $i++) {
-						$bopomofo3 .= $zh->encodeZhuyin($bopomofo2[$i])." ";
-					}
-					$bopomofo3 = trim($bopomofo3);
-					$bopomofo3 = str_replace(" ",":",$bopomofo3);
-					$bopomofo = $bopomofo3;
-				}
-
-			}
-
-			try {
-				$stmt = $this->conn->prepare( "INSERT INTO dictionary (word_EN, word_TR, word_CH, bopomofo, categoryID, level)
-    		VALUES(:word_EN, :word_TR, :word_CH, :bopomofo, :categoryID, :level)" );
-				$stmt->bindparam( ":word_EN", $Word_EN );
-				$stmt->bindparam( ":word_TR", $Word_TR );
-				$stmt->bindparam( ":word_CH", $Word_CH );
-				$stmt->bindparam( ":bopomofo", $bopomofo );
-//				$stmt->bindparam( ":picture", $picture );
-				$stmt->bindparam( ":categoryID", $categoryID );
-				$stmt->bindparam( ":level", $level );
-//				$stmt->bindparam( ":audio_EN", $audio_en );
-//				$stmt->bindparam( ":audio_TR", $audio_tr );
-//				$stmt->bindparam( ":audio_CH", $audio_ch );
-
-//				$stmt->debugDumpParams();
-				$stmt->execute();
-
-
-				return $stmt;
-			} catch ( PDOException $e ) {
-				echo $e->getMessage() . " (1)";
-			}
-//		}
-	}
-
-	public function update_word($id, $Word_EN, $Word_TR, $Word_CH, $bopomofo, $categoryID, $level) {
-
-		if ($bopomofo==="") {
+		if ( $bopomofo === "" ) {
 
 			$zh = new \DictPedia\ZhuyinPinyin();
 
@@ -92,32 +63,56 @@ class DICTIONARY {
 			$stmt->bindparam( ":word_CH", $Word_CH );
 			$stmt->execute();
 			if ( $p_word = $stmt->fetch() ) {
-				$bopomofo = strtolower( $p_word["pinyin_numbers"]);
-				$bopomofo2 = explode(" ",$bopomofo);
+
+				$bopomofo  = strtolower( $p_word["pinyin_numbers"] );
+				$bopomofo2 = explode( " ", $bopomofo );
 				$bopomofo3 = "";
-				for ($i=0; $i<count($bopomofo2); $i++) {
-					$bopomofo3 .= $zh->encodeZhuyin($bopomofo2[$i])." ";
+				for ( $i = 0; $i < count( $bopomofo2 ); $i ++ ) {
+					$bopomofo3 .= $zh->encodeZhuyin( $bopomofo2[ $i ] ) . " ";
 				}
-				$bopomofo3 = trim($bopomofo3);
-				$bopomofo3 = str_replace(" ",":",$bopomofo3);
-				$bopomofo = $bopomofo3;
+				$bopomofo3 = trim( $bopomofo3 );
+				$bopomofo3 = str_replace( " ", ":", $bopomofo3 );
+				$bopomofo  = $bopomofo3;
 			}
+
 		}
+
+		try {
+			$stmt = $this->conn->prepare( "INSERT INTO dictionary (word_EN, word_TR, word_CH, bopomofo, categoryID, level)
+    		VALUES(:word_EN, :word_TR, :word_CH, :bopomofo, :categoryID, :level)" );
+			$stmt->bindparam( ":word_EN", $Word_EN );
+			$stmt->bindparam( ":word_TR", $Word_TR );
+			$stmt->bindparam( ":word_CH", $Word_CH );
+			$stmt->bindparam( ":bopomofo", $bopomofo );
+//				$stmt->bindparam( ":picture", $picture );
+			$stmt->bindparam( ":categoryID", $categoryID );
+			$stmt->bindparam( ":level", $level );
+//				$stmt->bindparam( ":audio_EN", $audio_en );
+//				$stmt->bindparam( ":audio_TR", $audio_tr );
+//				$stmt->bindparam( ":audio_CH", $audio_ch );
+
+//				$stmt->debugDumpParams();
+			$stmt->execute();
+
+
+			return $stmt;
+		} catch ( PDOException $e ) {
+			echo $e->getMessage() . " (1)";
+		}
+//		}
+	}
+
+
+	public function update_word_en( $id, $Word_EN, $categoryID, $level ) {
 
 		try {
 			$stmt = $this->conn->prepare( "UPDATE dictionary SET
 				word_EN=:Word_EN,
-				word_TR=:Word_TR,
-				word_CH=:Word_CH,
-				bopomofo=:bopomofo,
 				categoryID=:categoryID,
 				level=:level,
 				update_time = now()
     			WHERE id=:id" );
 			$stmt->bindparam( ":Word_EN", $Word_EN );
-			$stmt->bindparam( ":Word_TR", $Word_TR );
-			$stmt->bindparam( ":Word_CH", $Word_CH );
-			$stmt->bindparam( ":bopomofo", $bopomofo );
 			$stmt->bindparam( ":categoryID", $categoryID );
 			$stmt->bindparam( ":id", $id );
 			$stmt->bindparam( ":level", $level );
@@ -130,9 +125,27 @@ class DICTIONARY {
 		}
 	}
 
-	public function update_dictionary( $Word_EN, $Word_TR, $Word_CH, $bopomofo, $picture, $categoryID, $id, $level, $audio_en, $audio_tr, $audio_ch ) {
+	public function update_word_tr( $id, $Word_TR) {
 
-		if ($bopomofo==="") {
+		try {
+			$stmt = $this->conn->prepare( "UPDATE dictionary SET
+				word_TR=:Word_TR,
+				update_time = now()
+    			WHERE id=:id" );
+			$stmt->bindparam( ":Word_TR", $Word_TR );
+			$stmt->bindparam( ":id", $id );
+
+			$stmt->execute();
+
+			return $stmt;
+		} catch ( PDOException $e ) {
+			echo $e->getMessage() . " (3)";
+		}
+	}
+
+	public function update_word_ch( $id, $Word_CH, $bopomofo ) {
+
+		if ( $bopomofo === "" ) {
 
 			$zh = new \DictPedia\ZhuyinPinyin();
 
@@ -140,15 +153,56 @@ class DICTIONARY {
 			$stmt->bindparam( ":word_CH", $Word_CH );
 			$stmt->execute();
 			if ( $p_word = $stmt->fetch() ) {
-				$bopomofo = strtolower( $p_word["pinyin_numbers"]);
-				$bopomofo2 = explode(" ",$bopomofo);
+				$bopomofo  = strtolower( $p_word["pinyin_numbers"] );
+				$bopomofo2 = explode( " ", $bopomofo );
 				$bopomofo3 = "";
-				for ($i=0; $i<count($bopomofo2); $i++) {
-					$bopomofo3 .= $zh->encodeZhuyin($bopomofo2[$i])." ";
+				for ( $i = 0; $i < count( $bopomofo2 ); $i ++ ) {
+					$bopomofo3 .= $zh->encodeZhuyin( $bopomofo2[ $i ] ) . " ";
 				}
-				$bopomofo3 = trim($bopomofo3);
-				$bopomofo3 = str_replace(" ",":",$bopomofo3);
-				$bopomofo = $bopomofo3;
+				$bopomofo3 = trim( $bopomofo3 );
+				$bopomofo3 = str_replace( " ", ":", $bopomofo3 );
+				$bopomofo  = $bopomofo3;
+			}
+		}
+
+		try {
+			$stmt = $this->conn->prepare( "UPDATE dictionary SET
+				word_CH=:Word_CH,
+				bopomofo=:bopomofo,
+				update_time = now()
+    			WHERE id=:id" );
+			$stmt->bindparam( ":Word_CH", $Word_CH );
+			$stmt->bindparam( ":bopomofo", $bopomofo );
+			$stmt->bindparam( ":id", $id );
+
+			$stmt->execute();
+
+			return $stmt;
+		} catch ( PDOException $e ) {
+			echo $e->getMessage() . " (3)";
+		}
+	}
+
+
+	public function update_dictionary( $Word_EN, $Word_TR, $Word_CH, $bopomofo, $picture, $categoryID, $id, $level, $audio_en, $audio_tr, $audio_ch ) {
+
+		if ( $bopomofo === "" ) {
+
+			$zh = new \DictPedia\ZhuyinPinyin();
+
+			$stmt = $this->conn->prepare( "SELECT * FROM cedict WHERE traditional=:word_CH" );
+			$stmt->bindparam( ":word_CH", $Word_CH );
+			$stmt->execute();
+			if ( $p_word = $stmt->fetch() ) {
+				$bopomofo  = strtolower( $p_word["pinyin_numbers"] );
+				$bopomofo2 = explode( " ", $bopomofo );
+				$bopomofo3 = "";
+				for ( $i = 0; $i < count( $bopomofo2 ); $i ++ ) {
+					$bopomofo3 .= $zh->encodeZhuyin( $bopomofo2[ $i ] ) . " ";
+				}
+				$bopomofo3 = trim( $bopomofo3 );
+				$bopomofo3 = str_replace( " ", ":", $bopomofo3 );
+				$bopomofo  = $bopomofo3;
 			}
 		}
 

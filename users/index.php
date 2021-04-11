@@ -252,7 +252,7 @@ if(isset($_GET['userID']))
 															<div class="modal-content">
 																<div class="modal-header">
 																	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-																	<h4 class="modal-title" id="gridSystemModalLabel"><i class="ion ion-compose"></i> Edit User</h4>
+																	<h4 class="modal-title" ><i class="ion ion-compose"></i> Edit User</h4>
 																</div>
 																<div class="modal-body">
 																	<form data-toggle="validator" role="form" method="POST" enctype="multipart/form-data">
@@ -323,7 +323,7 @@ if(isset($_GET['userID']))
 										<div class="modal-content">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-												<h4 class="modal-title" id="gridSystemModalLabel"><i class="ion ion-ios-plus"></i> Create New</h4>
+												<h4 class="modal-title" ><i class="ion ion-ios-plus"></i> Create New</h4>
 											</div>
 											<div class="modal-body">
 												<form data-toggle="validator" role="form" method="POST">
