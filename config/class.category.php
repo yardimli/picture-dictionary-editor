@@ -118,7 +118,7 @@ class CATEGORY {
 				$stmt->bindparam( ":picture", $picture );
 				$stmt->bindparam( ":parent_EN", $parent_EN );
 				$stmt->bindparam( ":parentID", $parent_id );
-				$stmt->bindparam( ":userid", $_SESSION['user_session']l );
+				$stmt->bindparam( ":userid", $_SESSION['user_session'] );
 				$stmt->execute();
 
 				return $stmt;

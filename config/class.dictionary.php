@@ -24,7 +24,7 @@ class DICTIONARY {
 			$stmt->bindparam( ":word_EN", $Word_EN );
 			$stmt->bindparam( ":categoryID", $categoryID );
 			$stmt->bindparam( ":level", $level );
-			$stmt->bindparam( ":userid", $_SESSION['user_session']l );
+			$stmt->bindparam( ":userid", $_SESSION['user_session'] );
 
 //				$stmt->debugDumpParams();
 			$stmt->execute();
@@ -104,7 +104,7 @@ class DICTIONARY {
 
 
 	public function update_word_en( $id, $Word_EN, $categoryID, $level ) {
-
+		$categoryID = json_encode($categoryID);
 		try {
 			$stmt = $this->conn->prepare( "UPDATE dictionary SET
 				word_EN=:Word_EN,

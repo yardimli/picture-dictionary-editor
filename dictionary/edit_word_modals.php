@@ -22,7 +22,7 @@
 
 						<div style="margin-top:8px;margin-right:10px; display: inline-block !important;" class="form-group">
 							<label for="sel1">Category:</label>
-							<select class="form-control" required id="category_id" name="category_id" style="width:400px;">
+							<select class="form-control selectpicker" multiple data-max-options="5" required id="category_id" name="category_id" style="width:400px; max-width: 400px;">
 								<?php
 								$cat_array = $category_list->all_categories( 0 );
 								function loopArray( $arr, $parent ) {

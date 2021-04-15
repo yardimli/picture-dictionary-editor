@@ -50,6 +50,8 @@ $date     = new DateTime( $lu_date );
 	<!-- Pace style -->
 	<link rel="stylesheet" href="<?php echo WEB_ROOT; ?>plugins/pace/pace.css">
 
+	<link rel="stylesheet" href="<?php echo WEB_ROOT; ?>/dist/css/bootstrap-select.min.css">
+
 	<link rel="stylesheet" href="dictionary.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -236,6 +238,8 @@ $date     = new DateTime( $lu_date );
 <script src="<?php echo WEB_ROOT; ?>dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo WEB_ROOT; ?>dist/js/demo.js"></script>
+
+<script src="<?php echo WEB_ROOT; ?>dist/js/bootstrap-select.min.js"></script>
 
 <script src="dictionary.js"></script>
 </body>

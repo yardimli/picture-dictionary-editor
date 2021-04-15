@@ -2,6 +2,12 @@ $(document).ready(function () {
 
   $(".progress-wrp").hide();
 
+  $("#category_id").html($("#category_id option").sort(function (a, b) {
+    return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
+  }));
+
+  $('#category_id').selectpicker({"width" : "400px"});
+
   var Upload = function (file, word_id, upload_type) {
     this.file = file;
     this.word_id = word_id;
@@ -98,10 +104,6 @@ $(document).ready(function () {
     return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
   }));
 
-  $("#category_id").html($("#category_id option").sort(function (a, b) {
-    return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
-  }));
-
   $('#example1').DataTable({
     // "ajax": "words.php",
     // "columns": [
@@ -139,6 +141,7 @@ $(document).ready(function () {
 
         $("#word_EN").val($(this).data("word_en"));
         $("#category_id").val($(this).data("category_id"));
+        $('#category_id').selectpicker('refresh');
         $("#picture").val($(this).data("picture"));
         $("#word_id_en").val($(this).data("word_id"));
         $("#level").val($(this).data("level"));
@@ -223,6 +226,8 @@ $(document).ready(function () {
 
     $("#word_EN").val("");
     $("#category_id").val(0);
+    $('#category_id').selectpicker('refresh');
+
     $("#picture").val("");
     $("#word_id_en").val("0");
     $("#level").val("1");
