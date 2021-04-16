@@ -19,16 +19,35 @@ class DICTIONARY {
 	public function add_word_en( $Word_EN, $categoryID, $level ) {
 
 		try {
-			$stmt = $this->conn->prepare( "INSERT INTO dictionary (word_EN, categoryID, level, userid)
-    		VALUES(:word_EN, :categoryID, :level, :userid)" );
+			$stmt = $this->conn->prepare( "INSERT INTO dictionary (word_EN, level, userid)
+    		VALUES(:word_EN, :level, :userid)" );
 			$stmt->bindparam( ":word_EN", $Word_EN );
-			$stmt->bindparam( ":categoryID", $categoryID );
+//			$stmt->bindparam( ":categoryID", $categoryID );
 			$stmt->bindparam( ":level", $level );
 			$stmt->bindparam( ":userid", $_SESSION['user_session'] );
 
 //				$stmt->debugDumpParams();
 			$stmt->execute();
 
+			$id = $this->conn->lastInsertId();
+//			echo $id;
+
+			foreach ( $categoryID as $key => $value ) {
+//				echo $value . "<br />";
+				try {
+					$stmt = $this->conn->prepare( "INSERT INTO word_categories (word_id,cat_id)
+    		VALUES(:word_id, :cat_id)" );
+					$stmt->bindparam( ":word_id", $id );
+					$stmt->bindparam( ":cat_id", $value );
+
+//				$stmt->debugDumpParams();
+					$stmt->execute();
+
+//					return $stmt;
+				} catch ( PDOException $e ) {
+					echo $e->getMessage() . " (1-1)";
+				}
+			}
 
 			return $stmt;
 		} catch ( PDOException $e ) {
@@ -104,20 +123,38 @@ class DICTIONARY {
 
 
 	public function update_word_en( $id, $Word_EN, $categoryID, $level ) {
-		$categoryID = json_encode($categoryID);
 		try {
 			$stmt = $this->conn->prepare( "UPDATE dictionary SET
 				word_EN=:Word_EN,
-				categoryID=:categoryID,
 				level=:level,
 				update_time = now()
     			WHERE id=:id" );
 			$stmt->bindparam( ":Word_EN", $Word_EN );
-			$stmt->bindparam( ":categoryID", $categoryID );
 			$stmt->bindparam( ":id", $id );
 			$stmt->bindparam( ":level", $level );
 
 			$stmt->execute();
+
+			try {
+				$stmt = $this->conn->prepare( "DELETE FROM word_categories WHERE word_id=:word_id" );
+				$stmt->bindparam( ":word_id", $id );
+				$stmt->execute();
+			} catch ( PDOException $e ) {
+				echo $e->getMessage() . " (3-1)";
+			}
+
+			foreach ( $categoryID as $key => $value ) {
+				try {
+					$stmt = $this->conn->prepare( "INSERT INTO word_categories (word_id,cat_id)
+    		VALUES(:word_id, :cat_id)" );
+					$stmt->bindparam( ":word_id", $id );
+					$stmt->bindparam( ":cat_id", $value );
+					$stmt->execute();
+				} catch ( PDOException $e ) {
+					echo $e->getMessage() . " (3-2)";
+				}
+			}
+
 
 			return $stmt;
 		} catch ( PDOException $e ) {
@@ -125,7 +162,7 @@ class DICTIONARY {
 		}
 	}
 
-	public function update_word_tr( $id, $Word_TR) {
+	public function update_word_tr( $id, $Word_TR ) {
 
 		try {
 			$stmt = $this->conn->prepare( "UPDATE dictionary SET

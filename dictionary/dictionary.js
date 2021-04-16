@@ -2,11 +2,11 @@ $(document).ready(function () {
 
   $(".progress-wrp").hide();
 
-  $("#category_id").html($("#category_id option").sort(function (a, b) {
+  $("#multi_category").html($("#multi_category option").sort(function (a, b) {
     return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
   }));
 
-  $('#category_id').selectpicker({"width" : "400px"});
+  $('#multi_category').selectpicker({"width" : "400px", "size" : 10});
 
   var Upload = function (file, word_id, upload_type) {
     this.file = file;
@@ -134,14 +134,16 @@ $(document).ready(function () {
         $("#update-text-fields-button-en").show();
         $(".refresh_page_btn").hide();
 
-        var xcatid = $(this).data("category_id");
+        var xcatid = $(this).data("multi_category");
         $(".refresh_page_btn").each(function () {
           $(this).data("catid", xcatid);
         });
 
         $("#word_EN").val($(this).data("word_en"));
-        $("#category_id").val($(this).data("category_id"));
-        $('#category_id').selectpicker('refresh');
+        console.log( $(this).data("multi_category")  );
+        var temp_cats_str = $(this).data("multi_category")+"";
+        $("#multi_category").selectpicker("val", temp_cats_str.split(",") );
+        $('#multi_category').selectpicker('refresh');
         $("#picture").val($(this).data("picture"));
         $("#word_id_en").val($(this).data("word_id"));
         $("#level").val($(this).data("level"));
@@ -173,7 +175,7 @@ $(document).ready(function () {
         $("#update-text-fields-button-tr").show();
         $(".refresh_page_btn").hide();
 
-        var xcatid = $(this).data("category_id");
+        var xcatid = $(this).data("multi_category");
         $(".refresh_page_btn").each(function () {
           $(this).data("catid", xcatid);
         });
@@ -192,7 +194,7 @@ $(document).ready(function () {
         $("#update-text-fields-button-ch").show();
         $(".refresh_page_btn").hide();
 
-        var xcatid = $(this).data("category_id");
+        var xcatid = $(this).data("multi_category");
         $(".refresh_page_btn").each(function () {
           $(this).data("catid", xcatid);
         });
@@ -225,8 +227,8 @@ $(document).ready(function () {
     $(".refresh_page_btn").hide();
 
     $("#word_EN").val("");
-    $("#category_id").val(0);
-    $('#category_id').selectpicker('refresh');
+    $("#multi_category").val(0);
+    $('#multi_category').selectpicker('refresh');
 
     $("#picture").val("");
     $("#word_id_en").val("0");
@@ -469,7 +471,7 @@ $(document).ready(function () {
     $("#loading_msg_en").html("saving form data...");
 
     $(".refresh_page_btn").each(function () {
-      $(this).data("catid", $("#category_id").val());
+      $(this).data("catid", $("#multi_category").val());
     });
 
     console.log ( $(".refresh_page_btn").data("catid") );
@@ -481,7 +483,7 @@ $(document).ready(function () {
         language: $("#language_en").val(),
         word_id: $("#word_id_en").val(),
         word_EN: $("#word_EN").val(),
-        category_id: $("#category_id").val(),
+        multi_category: $("#multi_category").val(),
         level: $("#level").val(),
       },
       // contentType: false,

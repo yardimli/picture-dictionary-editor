@@ -29,12 +29,12 @@ if ( ! $auth_user->is_loggedin() ) {
 } else {
 	echo "<div class=\"alert alert-success\" role=\"alert\">";
 	if ( $_POST["language"] === "en" && $_POST["word_id"] === "0" ) {
-		if ( $dictionary_list->add_word_en( $_POST["word_EN"], $_POST["category_id"], $_POST["level"] ) ) {
+		if ( $dictionary_list->add_word_en( $_POST["word_EN"], $_POST["multi_category"], $_POST["level"] ) ) {
 			echo "<p>English Word Text data Added</strong></p>";
 		}
 	} else {
 		if ( $_POST["language"] === "en" ) {
-			if ( $dictionary_list->update_word_en( $_POST["word_id"], $_POST["word_EN"], $_POST["category_id"], $_POST["level"] ) ) {
+			if ( $dictionary_list->update_word_en( $_POST["word_id"], $_POST["word_EN"], $_POST["multi_category"], $_POST["level"] ) ) {
 				echo "<p>English Word Text data Updated</strong></p>";
 			}
 		}

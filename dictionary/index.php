@@ -160,8 +160,8 @@ $date     = new DateTime( $lu_date );
 										array_push( $category_id_array, $p_category["id"] );
 									}
 									$cates = "(" . implode( ",", $category_id_array ) . ")";
-
-									$stmt = $dictionary_list->runQuery( 'SELECT * FROM dictionary WHERE deleted=:val AND categoryID IN ' . $cates );
+//									echo $cates;
+									$stmt = $dictionary_list->runQuery( 'SELECT DISTINCT dictionary.* FROM dictionary LEFT JOIN word_categories ON word_categories.word_id=dictionary.id  WHERE word_categories.cat_id IN ' . $cates );
 									$stmt->execute( array( ':val' => 0 ) );
 								} else {
 									$stmt = $dictionary_list->runQuery( 'SELECT * FROM dictionary WHERE deleted=:val' );
@@ -172,23 +172,50 @@ $date     = new DateTime( $lu_date );
 									$dateAdded = new DateTime( $row['update_time'] );
 									$dateadded = $dateAdded->format( 'M. d, Y h:m.s' );
 
+									$stmt_cat = $dictionary_list->runQuery( 'SELECT category.* FROM word_categories LEFT JOIN category ON category.id = word_categories.cat_id WHERE word_id =:word_id' );
+									$stmt_cat->execute( array( ':word_id' => $row['id'] ) );
+									$category_ids = [];
+									$category_strings = "";
+									while ( $row_cat = $stmt_cat->fetch( PDO::FETCH_ASSOC ) ) {
+										array_push($category_ids, $row_cat["id"]);
+										if ($category_strings!=="") {
+											$category_strings .= ", ";
+										}
+
+										$category_strings .= $category_list->category_full_path_string( $row_cat['id'] );
+									}
+
+
 									?>
 									<tr>
 										<td><?php echo $row['id']; ?></td>
 										<td><span class="edit-word-btn edit-word-en-btn" title="edit english word"
-										          data-word_en="<?php echo $row['word_EN']; ?>" data-category_id="<?php echo $row['categoryID']; ?>" data-word_id="<?php echo $row['id']; ?>"
+										          data-word_en="<?php echo $row['word_EN']; ?>" data-multi_category="<?php echo implode(",",$category_ids); ?>"
+										          data-word_id="<?php echo $row['id']; ?>"
 										          data-picture="<?php echo $row['picture']; ?>"
-										          data-level="<?php echo $row['level']; ?>" data-audio_en="<?php echo $row['audio_EN']; ?>"><?php echo $row['word_EN']; if ($row['word_EN']==="" || $row['word_EN']===NULL) { echo ' <i class="fa fa-edit"></i> '; }?></span></td>
+										          data-level="<?php echo $row['level']; ?>" data-audio_en="<?php echo $row['audio_EN']; ?>"><?php echo $row['word_EN'];
+												if ( $row['word_EN'] === "" || $row['word_EN'] === null ) {
+													echo ' <i class="fa fa-edit"></i> ';
+												} ?></span></td>
 
 										<td><span class="edit-word-btn edit-word-tr-btn" title="edit turkish word"
 										          data-word_tr="<?php echo $row['word_TR']; ?>" data-word_id="<?php echo $row['id']; ?>"
-										          data-audio_tr="<?php echo $row['audio_TR']; ?>" data-category_id="<?php echo $row['categoryID']; ?>" ><?php echo $row['word_TR']; if ($row['word_TR']==="" || $row['word_TR']===NULL) { echo ' <i class="fa fa-edit"></i> '; }?></span></td>
+										          data-audio_tr="<?php echo $row['audio_TR']; ?>"><?php echo $row['word_TR'];
+												if ( $row['word_TR'] === "" || $row['word_TR'] === null ) {
+													echo ' <i class="fa fa-edit"></i> ';
+												} ?></span></td>
 
 										<td><span class="edit-word-btn edit-word-ch-btn" title="edit chinese word"
 										          data-word_ch="<?php echo $row['word_CH']; ?>" data-word_id="<?php echo $row['id']; ?>" data-bopomofo="<?php echo $row['bopomofo']; ?>"
-										          data-audio_ch="<?php echo $row['audio_CH']; ?>" data-category_id="<?php echo $row['categoryID']; ?>" ><?php echo $row['word_CH']; if ($row['word_CH']==="" || $row['word_CH']===NULL) { echo ' <i class="fa fa-edit"></i> '; }?></span></td>
+										          data-audio_ch="<?php echo $row['audio_CH']; ?>"><?php echo $row['word_CH'];
+												if ( $row['word_CH'] === "" || $row['word_CH'] === null ) {
+													echo ' <i class="fa fa-edit"></i> ';
+												} ?></span></td>
 
-										<td><?php echo $category_list->category_full_path_string( $row['categoryID'] ); ?></td>
+										<td><?php
+											//echo $category_list->category_full_path_string( $row['categoryID'] );
+											echo $category_strings;
+											?></td>
 										<td><?php echo $row['level']; ?></td>
 										<td><?php echo $dateadded; ?></td>
 									</tr>

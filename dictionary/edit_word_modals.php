@@ -22,7 +22,9 @@
 
 						<div style="margin-top:8px;margin-right:10px; display: inline-block !important;" class="form-group">
 							<label for="sel1">Category:</label>
-							<select class="form-control selectpicker" multiple data-max-options="5" required id="category_id" name="category_id" style="width:400px; max-width: 400px;">
+							<div class="clearfix"></div>
+							<select class="form-control selectpicker" multiple data-max-options="5" required id="multi_category" name="multi_category"
+							        style="width:400px; max-width: 400px;">
 								<?php
 								$cat_array = $category_list->all_categories( 0 );
 								function loopArray( $arr, $parent ) {
@@ -75,18 +77,27 @@
 							</div>
 
 							<div class="form-group" style=" vertical-align: top;">
-								<input type="file" name="image-file" id="image-file">
-								<button id="upload-image-button" class="btn btn-primary btn-flat btn-sm" style="margin-top:4px; margin-right:20px;">Upload Image</button>
-								<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-top:4px; display: none;">Close and Refresh List</button>
+								<input type="file" name="image-file" id="image-file" class="form-control" style="display: inline-block; width: 250px;">
+								<button id="upload-image-button" class="btn btn-primary btn-flat btn-sm" style="margin-top:0px; margin-right:20px; height: 34px; vertical-align: top;">
+									Upload Image
+								</button>
+								<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm"
+								        style="margin-top:0px; display: none;  height: 34px; vertical-align: top;">Close and Refresh List
+								</button>
 							</div>
 
 
 							<div style="margin-top:8px;margin-right:10px; display: inline-block !important;" class="form-group">
 								<label for="exampleInputFile">English Audio (<span id="en_audio_file"></span>):</label> <span id="play_en_audio"
 								                                                                                              class="audio_play_link">Play</span>
-								<input type="file" name="file_audio_en" id="file_audio_en" class="form-control">
-								<button id="upload-audio-en-button" class="btn btn-primary btn-flat btn-sm" style="margin-top:4px; margin-right:20px; ">Upload Audio (en)</button>
-								<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-top:4px; display: none;">Close and Refresh List</button>
+								<br>
+								<input type="file" name="file_audio_en" id="file_audio_en" class="form-control" style="display: inline-block; width: 250px;">
+								<button id="upload-audio-en-button" class="btn btn-primary btn-flat btn-sm"
+								        style="margin-top:0px; vertical-align: top; height: 34px; margin-right:20px; ">Upload Audio (en)
+								</button>
+								<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-top:0px; vertical-align: top; height: 34px; display: none;">
+									Close and Refresh List
+								</button>
 							</div>
 
 							<div style="margin-top:8px; vertical-align: top;" class="form-group">
@@ -96,9 +107,12 @@
 									<option value="2" selected>100%</option>
 									<option value="3">120%</option>
 								</select>
-								<br>
-								<button id="regen-audio-en-button" class="btn btn-danger btn-flat btn-sm" style="margin-right:20px;">Generate Audio (en)</button>
-								<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style=" display: none;">Close and Refresh List</button>
+								<button id="regen-audio-en-button" class="btn btn-danger btn-flat btn-sm" style="margin-right:20px; height: 34px; vertical-align: top;">Generate Audio
+									(en)
+								</button>
+								<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style=" display: none; height: 34px; vertical-align: top;">Close and
+									Refresh List
+								</button>
 							</div>
 
 							<audio
@@ -143,13 +157,16 @@
 						<div style="margin-top:8px;margin-right:10px; display: inline-block !important;" class="form-group">
 							<label>Turkish</label>
 							<div class="clearfix"></div>
-							<input style="width: 300px;" data-minlength="6" type="text" class="form-control" name="word_TR" id="word_TR" placeholder="Turkish"
+							<input style="width: 300px; display: inline-block;" data-minlength="6" type="text" class="form-control" name="word_TR" id="word_TR" placeholder="Turkish"
 							       value="">
-						</div>
 
-						<br>
-						<button id="update-text-fields-button-tr" class="btn btn-primary btn-flat btn-sm" style="margin-right:20px;">Save Changes</button>
-						<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-right:20px; display: none;">Close and Refresh List</button>
+							<button id="update-text-fields-button-tr" class="btn btn-primary btn-flat btn-sm" style="margin-right:20px; vertical-align: top; height: 34px;">Save
+								Changes
+							</button>
+							<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm"
+							        style="margin-right:20px;  vertical-align: top; height: 34px; display: none;">Close and Refresh List
+							</button>
+						</div>
 
 						<hr>
 
@@ -169,9 +186,12 @@
 								<option value="2" selected>100%</option>
 								<option value="3">120%</option>
 							</select>
-							<br>
-							<button id="regen-audio-tr-button" class="btn btn-danger btn-flat btn-sm" style="margin-top:4px; margin-right:20px; ">Generate Audio (tr)</button>
-							<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-top:4px; display: none;">Close and Refresh List</button>
+							<button id="regen-audio-tr-button" class="btn btn-danger btn-flat btn-sm" style="margin-top:0px; margin-right:20px;  vertical-align: top; height: 34px;">
+								Generate Audio (tr)
+							</button>
+							<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-top:0px; display: none;  vertical-align: top; height: 34px;">
+								Close and Refresh List
+							</button>
 						</div>
 
 						<audio
@@ -249,9 +269,8 @@
 								<option value="2" selected>100%</option>
 								<option value="3">120%</option>
 							</select>
-							<br>
-							<button id="regen-audio-ch-button" class="btn btn-danger btn-flat btn-sm" style="margin-top:4px; margin-right:20px;">Generate Audio (ch)</button>
-							<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-top:4px; display: none;">Close and Refresh List</button>
+							<button id="regen-audio-ch-button" class="btn btn-danger btn-flat btn-sm" style="margin-top:0px; margin-right:20px;  vertical-align: top; height: 34px;">Generate Audio (ch)</button>
+							<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-top:0px; display: none; vertical-align: top; height: 34px;">Close and Refresh List</button>
 						</div>
 
 						<audio
