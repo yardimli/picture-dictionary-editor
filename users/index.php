@@ -260,7 +260,7 @@ if(isset($_GET['userID']))
 																			<div style="margin-top:8px;margin-right:10px;" class="form-group">
 																				<label>Username</label>
 																				<div class="clearfix"></div>
-																				<input style="width: 250px;" required data-minlength="6" type="text" class="form-control" name="uname" placeholder="Enter Username" value="<?php echo $row['username']; ?>">
+																				<input style="width: 250px;" required data-minlength="4" type="text" class="form-control" name="uname" placeholder="Enter Username" value="<?php echo $row['username']; ?>">
 																			</div>
 																			<div style="margin-top:8px;margin-right:10px;" class="form-group">
 																				<label>Email</label>
@@ -331,7 +331,7 @@ if(isset($_GET['userID']))
 														<div class="col-md-6">
 															<div class="form-group">
 																<label>Username</label>
-																<input required data-minlength="6" style="text-transform: lowercase;" type="text" class="form-control" name="uname" placeholder="Enter Username (not < 6 characters)">
+																<input required data-minlength="4" style="text-transform: lowercase;" type="text" class="form-control" name="uname" placeholder="Enter Username (not < 6 characters)">
 															</div>
 														</div>
 														<div class="col-md-6">

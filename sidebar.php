@@ -4,7 +4,7 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="<?php echo WEB_ROOT; ?>dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+        <img src="<?php echo WEB_ROOT; ?>dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
         <p><?php echo $lu_uname; ?></p>
@@ -46,6 +46,12 @@
 	    <li class="treeview <?php if(isset($_GET['categories'])) { echo 'active'; } ?>">
 		    <a href="<?php echo WEB_ROOT; ?>categories/?categories">
 			    <i class="fa fa-list"></i>&nbsp;&nbsp;<span>Categories</span>
+		    </a>
+	    </li>
+
+	    <li class="treeview <?php if(isset($_GET['stories'])) { echo 'active'; } ?>">
+		    <a href="<?php echo WEB_ROOT; ?>stories/?stories">
+			    <i class="fa fa-list"></i>&nbsp;&nbsp;<span>Stories</span>
 		    </a>
 	    </li>
 

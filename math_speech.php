@@ -78,14 +78,166 @@ $audio_speed = 1.00;
 
 $textToSpeechClient = new TextToSpeechClient( [ 'credentials' => __DIR__ . "/google-key.json" ] );
 
-$LessonRange = 20;
+$LessonRange = 30;
 
-$LoopTop = 20;
+$LoopTop = 30;
 
 
 $word_en = "3 minus 2 =";
 $word_tr = "3 eksi 2 =";
 $word_ch = "3減2 =";
+
+echo "creating sum words:<br>";
+
+$word_list = ["plus","minus","equals"];
+$file_list = ["plus","minus","equals"];
+for ($i=0; $i<count($word_list); $i++) {
+	$input   = new SynthesisInput();
+	$input->setText( $word_list[$i] );
+	$voice = new VoiceSelectionParams();
+	$voice->setLanguageCode( 'en-US' );
+	$voice->setName( 'en-US-Wavenet-A' );
+	$voice->setSsmlGender( SsmlVoiceGender::FEMALE );
+	$audioConfig = new AudioConfig();
+	$audioConfig->setSpeakingRate( $audio_speed );
+	$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
+
+	$audio_en = filter_filename( $file_list[$i] ) . ".mp3";
+
+	if ( ! file_exists( "./audio/math/en/" . $audio_en ) ) {
+		echo $word_list[$i] . "<br>";
+		$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
+		file_put_contents( "./audio/math/en/" . $audio_en, $resp->getAudioContent() );
+		usleep( 500000 );
+	}
+}
+
+$word_list = ["artı","eksi","eşittir"];
+$file_list = ["plus","minus","equals"];
+for ($i=0; $i<count($word_list); $i++) {
+	$input = new SynthesisInput();
+	$input->setText( $word_list[$i] );
+	$voice = new VoiceSelectionParams();
+	$voice->setLanguageCode( 'tr-TR' );
+	$voice->setName( 'tr-TR-Wavenet-B' );
+	$voice->setSsmlGender( SsmlVoiceGender::FEMALE );
+	$audioConfig = new AudioConfig();
+	$audioConfig->setSpeakingRate( $audio_speed );
+	$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
+
+	$audio_tr = url_make( filter_filename( $file_list[$i] ) ) . ".mp3";
+
+	if ( ! file_exists( "./audio/math/tr/" . $audio_tr ) ) {
+		echo $word_list[$i] . "<br>";
+		$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
+		file_put_contents( "./audio/math/tr/" . $audio_tr, $resp->getAudioContent() );
+		usleep(500000);
+	}
+}
+
+$word_list = ["加","減","="];
+$file_list = ["plus","minus","equals"];
+for ($i=0; $i<count($word_list); $i++) {
+	$input = new SynthesisInput();
+	$input->setText( $word_list[$i] );
+	$voice = new VoiceSelectionParams();
+	$voice->setLanguageCode( 'cmn-TW' );
+	$voice->setName( 'cmn-TW-Wavenet-A' );
+	$voice->setSsmlGender( SsmlVoiceGender::FEMALE );
+	$audioConfig = new AudioConfig();
+	$audioConfig->setSpeakingRate( $audio_speed );
+	$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
+
+	$audio_en = url_make( filter_filename( $file_list[$i] ) ) . ".mp3";
+
+	if ( ! file_exists( "./audio/math/ch/" . $audio_en ) ) {
+		echo $word_list[$i] . "<br>";
+		try {
+			$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
+			file_put_contents( "./audio/math/ch/" . $audio_en, $resp->getAudioContent() );
+			usleep(500000);
+		} catch ( Exception $e ) {
+			echo 'Caught exception: ', $e->getMessage(), "\n";
+		}
+	}
+}
+
+
+
+echo "creating for counting:<br>";
+
+for ( $i = 0; $i <= 100; $i ++ ) {
+
+	$word_en = $i;
+	$input = new SynthesisInput();
+	$input->setText( $word_en );
+	$voice = new VoiceSelectionParams();
+	$voice->setLanguageCode( 'en-US' );
+	$voice->setName( 'en-US-Wavenet-A' );
+	$voice->setSsmlGender( SsmlVoiceGender::FEMALE );
+	$audioConfig = new AudioConfig();
+	$audioConfig->setSpeakingRate( $audio_speed );
+	$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
+
+	$audio_en = filter_filename( $word_en ) . ".mp3";
+
+	if ( ! file_exists( "./audio/math/en/" . $audio_en ) ) {
+		echo $word_en . "<br>";
+		$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
+		file_put_contents( "./audio/math/en/" . $audio_en, $resp->getAudioContent() );
+		usleep(500000);
+	}
+
+
+	$word_tr = $i;
+
+	$input = new SynthesisInput();
+	$input->setText( $word_tr );
+	$voice = new VoiceSelectionParams();
+	$voice->setLanguageCode( 'tr-TR' );
+	$voice->setName( 'tr-TR-Wavenet-B' );
+	$voice->setSsmlGender( SsmlVoiceGender::FEMALE );
+	$audioConfig = new AudioConfig();
+	$audioConfig->setSpeakingRate( $audio_speed );
+	$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
+
+	$audio_tr = url_make( filter_filename( $word_tr ) ) . ".mp3";
+
+	if ( ! file_exists( "./audio/math/tr/" . $audio_tr ) ) {
+		echo $word_tr . "<br>";
+		$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
+		file_put_contents( "./audio/math/tr/" . $audio_tr, $resp->getAudioContent() );
+		usleep(500000);
+	}
+
+	$word_ch = $i;
+
+	$input = new SynthesisInput();
+	$input->setText( $word_ch );
+	$voice = new VoiceSelectionParams();
+	$voice->setLanguageCode( 'cmn-TW' );
+	$voice->setName( 'cmn-TW-Wavenet-A' );
+	$voice->setSsmlGender( SsmlVoiceGender::FEMALE );
+	$audioConfig = new AudioConfig();
+	$audioConfig->setSpeakingRate( $audio_speed );
+	$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
+
+	$audio_en = url_make( filter_filename( $word_en ) ) . ".mp3";
+
+	if ( ! file_exists( "./audio/math/ch/" . $audio_en ) ) {
+		echo $word_ch . "<br>";
+		try {
+			$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
+			file_put_contents( "./audio/math/ch/" . $audio_en, $resp->getAudioContent() );
+			usleep(500000);
+		} catch ( Exception $e ) {
+			echo 'Caught exception: ', $e->getMessage(), "\n";
+		}
+	}
+
+
+
+}
 
 
 echo "creating for english:<br>";
