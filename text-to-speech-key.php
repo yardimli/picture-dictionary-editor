@@ -8,3 +8,5 @@ $translate = new TranslateClient( array(
 
 // Translate text from english to french.
 $textToSpeechClient = new TextToSpeechClient( [ 'credentials' => __DIR__ . "/key.json" ] );
+
+	
