@@ -11,6 +11,8 @@ use Google\Cloud\TextToSpeech\V1\TextToSpeechClient;
 use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
 use Google\Cloud\Translate\V2\TranslateClient;
 
+require_once "text-to-speech-key.php";
+
 require_once( "./config/class.dictionary.php" );
 $dictionary_list = new DICTIONARY();
 
@@ -111,8 +113,6 @@ if ( ! $auth_user->is_loggedin() ) {
 		if ( $audio_speed === "3" ) {
 			$audio_speed = 1.20;
 		}
-
-		$textToSpeechClient = new TextToSpeechClient( [ 'credentials' => __DIR__ . "/google-key.json" ] );
 
 		$word_en = $_POST["word_EN"];
 

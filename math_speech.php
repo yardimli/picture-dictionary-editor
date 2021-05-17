@@ -73,10 +73,10 @@ function url_make( $str ) {
 	return $clean;
 }
 
+require_once "text-to-speech-key.php";
+
 
 $audio_speed = 1.00;
-
-$textToSpeechClient = new TextToSpeechClient( [ 'credentials' => __DIR__ . "/google-key.json" ] );
 
 $LessonRange = 30;
 

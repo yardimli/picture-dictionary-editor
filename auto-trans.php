@@ -35,15 +35,7 @@ if ( ! $auth_user->is_loggedin() ) {
 //	$auth_user->doLogout();
 } else {
 
-
-	$translate = new TranslateClient( array(
-		'keyFilePath' => __DIR__ . "/google-key.json",
-		'projectId'   => 'onyx-cumulus-289504'
-	) );
-
-
-// Translate text from english to french.
-	$textToSpeechClient = new TextToSpeechClient( [ 'credentials' => __DIR__ . "/google-key.json" ] );
+	require_once "text-to-speech-key.php";
 
 	$gen_tr = false;
 	$gen_en = false;

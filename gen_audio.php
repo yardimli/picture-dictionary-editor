@@ -1,16 +1,6 @@
 <?php
 
-
-$translate = new TranslateClient( array(
-	'keyFilePath' => __DIR__ . "/google-key.json",
-	'projectId'   => 'onyx-cumulus-289504'
-) );
-
-
-// Translate text from english to french.
-
-
-$textToSpeechClient = new TextToSpeechClient( [ 'credentials' => __DIR__ . "/google-key.json" ] );
+require_once "text-to-speech-key.php";
 
 $word_en = $_POST["word_EN"];
 

@@ -72,12 +72,7 @@ function url_make($str){
 	return $clean;
 }
 
-$translate = new TranslateClient( array(
-	'keyFilePath' => __DIR__ . "/google-key.json",
-	'projectId'   => 'onyx-cumulus-289504'
-) );
-
-$textToSpeechClient = new TextToSpeechClient( [ 'credentials' => __DIR__ . "/google-key.json" ] );
+require_once "../text-to-speech-key.php";
 
 $x    = 0;
 $stmt = $dictionary_list->runQuery( 'SELECT * FROM dictionary WHERE deleted=:val' );
