@@ -70,7 +70,7 @@
 							<div id="image-preview-div" style="display: none;">
 								<label for="exampleInputFile">Selected image (<span id="image_file_name"></span>):</label>
 								<br>
-								<img id="preview-img" src="noimage.png">
+								<img id="preview-img" src="../images/noimage.png">
 							</div>
 
 							<div class="form-group" style=" vertical-align: top;">

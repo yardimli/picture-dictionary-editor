@@ -674,9 +674,9 @@ $(document).ready(function () {
 
 });
 
-function deleteuser(userID) {
-  if (confirm('Delete this user?')) {
-    window.location.href = 'index.php?userID=' + userID;
+function delete_word(wordID) {
+  if (confirm('Delete this word?')) {
+    window.location.href = 'index.php?delete_word_id=' + wordID;
   }
 }
 

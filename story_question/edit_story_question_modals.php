@@ -9,7 +9,7 @@
 			<div class="modal-body" style="margin-top: 0px; padding-top: 0px;">
 				<form role="form" method="POST" id="upload-image-form" enctype="multipart/form-data">
 					<input type="hidden" id="question_id" name="question_id" value="">
-					<input type="hidden" id="language" name="question_id" value="">
+					<input type="hidden" id="language" name="language" value="">
 					<input type="hidden" id="audio" name="audio" value="">
 					<div class="box-body" style="margin-top: 0px; padding-top: 0px;">
 						<div style="margin-top:8px;margin-right:10px; display: inline-block !important;" class="form-group">

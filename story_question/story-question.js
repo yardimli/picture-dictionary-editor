@@ -285,9 +285,9 @@ $(document).ready(function () {
 
 });
 
-function deleteuser(userID) {
-  if (confirm('Delete this user?')) {
-    window.location.href = 'index.php?userID=' + userID;
+function delete_question(question_id) {
+  if (confirm('Delete this question?')) {
+    window.location.href = 'index.php?delete_question_id=' + question_id;
   }
 }
 

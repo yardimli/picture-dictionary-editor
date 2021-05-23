@@ -23,17 +23,17 @@ class CATEGORY {
 		$result = "";
 		for ( $i = 0; $i < count( $parents ); $i ++ ) {
 			if ( $i === 0 ) {
-				$result = "<a href='?catid=".$parents[ $i ]["id"]."'>" . $parents[ $i ]["name"] . "</a>";
+				$result = "<a href='?catid=" . $parents[ $i ]["id"] . "'>" . $parents[ $i ]["name"] . "</a>";
 			} else {
 
-				if ($parents[ $i ]["parentID"]!=="0") {
-					$result = "<a href='?catid=".$parents[ $i ]["id"]."'>" . $parents[ $i ]["name"] . "</a>" . " - ".$result;
-				} else
-				{
-					$result = "<a href='?catid=0'>" . $parents[ $i ]["name"] . "</a>" . " - ".$result;
+				if ( $parents[ $i ]["parentID"] !== "0" ) {
+					$result = "<a href='?catid=" . $parents[ $i ]["id"] . "'>" . $parents[ $i ]["name"] . "</a>" . " - " . $result;
+				} else {
+					$result = "<a href='?catid=0'>" . $parents[ $i ]["name"] . "</a>" . " - " . $result;
 				}
 			}
 		}
+
 //		print_r( $parents );
 
 		return $result;
@@ -41,7 +41,7 @@ class CATEGORY {
 
 	public function get_parent_path( $parent_id, &$parents ) {
 		try {
-			$stmt = $this->conn->prepare( "SELECT * FROM category WHERE ID=:ID" );
+			$stmt = $this->conn->prepare( "SELECT * FROM category WHERE ID=:ID and deleted=0" );
 			$stmt->bindparam( ":ID", $parent_id );
 			$stmt->execute();
 			$p_category = $stmt->fetch();
@@ -59,12 +59,16 @@ class CATEGORY {
 
 	public function all_categories( $parent_id ) {
 		try {
-			$stmt = $this->conn->prepare( "SELECT * FROM category WHERE parentID=:parentID" );
+			$stmt = $this->conn->prepare( "SELECT * FROM category WHERE parentID=:parentID and deleted=0" );
 			$stmt->bindparam( ":parentID", $parent_id );
 			$stmt->execute();
 			$children = [];
 			while ( $p_category = $stmt->fetch() ) {
-				array_push( $children, [ "id" => $p_category["id"], "name" => $p_category["category_EN"], "parentID" => $p_category["parentID"], "children" => $this->all_categories( $p_category["id"] ) ] );
+				array_push( $children, [ "id"       => $p_category["id"],
+				                         "name"     => $p_category["category_EN"],
+				                         "parentID" => $p_category["parentID"],
+				                         "children" => $this->all_categories( $p_category["id"] )
+				] );
 			}
 		} catch
 		( PDOException $e ) {
@@ -80,10 +84,10 @@ class CATEGORY {
 		$CategoryFound = false;
 
 		try {
-      $stmt = $this->conn->prepare( "SELECT * FROM category WHERE category_EN=:category_EN AND parentID=:parent_id" );
-      $stmt->bindparam( ":category_EN", $category_EN );
-      $stmt->bindparam( ":parent_id", $parent_id );
-      $stmt->execute();
+			$stmt = $this->conn->prepare( "SELECT * FROM category WHERE category_EN=:category_EN AND parentID=:parent_id" );
+			$stmt->bindparam( ":category_EN", $category_EN );
+			$stmt->bindparam( ":parent_id", $parent_id );
+			$stmt->execute();
 			if ( $p_category = $stmt->fetch() ) {
 				$CategoryFound = true;
 			}
@@ -135,7 +139,7 @@ class CATEGORY {
 		try {
 			$stmt = $this->conn->prepare( "SELECT * FROM category WHERE category_EN=:category_EN AND parentID=:parent_id" );
 			$stmt->bindparam( ":category_EN", $category_EN );
-      $stmt->bindparam( ":parent_id", $parent_id );
+			$stmt->bindparam( ":parent_id", $parent_id );
 			$stmt->execute();
 			if ( $p_category = $stmt->fetch() ) {
 				$CategoryFound = true;
@@ -172,10 +176,10 @@ class CATEGORY {
 		}
 	}
 
-	public function delete_word( $id ) {
+	public function delete_category( $id ) {
 		try {
-			$stmt = $this->conn->prepare( "UPDATE dictionary SET deleted=:val WHERE id=:id" );
-			$stmt->execute( array( ":val" => 1, ":id" => $id ) );
+			$stmt = $this->conn->prepare( "UPDATE category SET deleted=1 WHERE id=:id AND userid=:userid" );
+			$stmt->execute( array(  ":id" => $id, ":userid" => $_SESSION['user_session'] ) );
 
 			return $stmt;
 		} catch ( PDOException $e ) {

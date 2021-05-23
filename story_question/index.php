@@ -25,6 +25,32 @@ $lu_uname = $userRow['username'];
 $lu_email = $userRow['useremail'];
 $lu_date  = $userRow['dateadded'];
 $date     = new DateTime( $lu_date );
+
+# for deleting
+if(isset($_GET['delete_question_id']))
+{
+	# check if user is logged-in
+	if(!$auth_user->is_loggedin())
+	{
+		# redirect to login page, gtfo
+		$auth_user->doLogout();
+	}
+	else
+	{
+		$id = intval($_GET['delete_question_id']);
+
+		try
+		{
+			if($story_list->delete_question($id)) {
+				//....
+			}
+		}
+		catch(PDOException $e)
+		{
+			echo $e->getMessage();
+		}
+	}
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -76,7 +102,7 @@ $date     = new DateTime( $lu_date );
 					?>
 					<select class="form-control" required id="story_filter_id" name="story_filter_id" style="width:400px; display: inline-block !important;">
 						echo "
-						<option value=''>Select Story</option>
+						<option value=''>All Stories</option>
 						";
 						<?php
 						for ( $i = 0; $i < count( $cat_array ); $i ++ ) {
@@ -84,7 +110,7 @@ $date     = new DateTime( $lu_date );
 							if ( array_key_exists( "story_id", $_GET ) && $_GET["story_id"] === $cat_array[ $i ]["id"] ) {
 								echo " selected ";
 							}
-							echo ">" . $cat_array[ $i ]["title"] . "</option>";
+							echo ">" . $cat_array[ $i ]["title"] ." (". $cat_array[ $i ]["language"].")" . "</option>";
 						}
 						?>
 					</select>
@@ -136,6 +162,7 @@ $date     = new DateTime( $lu_date );
 									<th>Story</th>
 									<th>Question</th>
 									<th>Last Update</th>
+									<th>Action</th>
 								</tr>
 								</thead>
 								<tbody>
@@ -157,17 +184,20 @@ $date     = new DateTime( $lu_date );
 									<tr>
 										<td><?php echo $row['id']; ?></td>
 										<td><?php echo $row['story_title'] . " (" . $row['language'] . ")"; ?></td>
-										<td><span class="edit-story-question-btn" title="edit story"
-										          data-question="<?php echo $row['question']; ?>"
-										          data-question_id="<?php echo $row['id']; ?>"
-										          data-story_id="<?php echo $row['story_id']; ?>"
-										          data-story="<?php echo $row['story']; ?>"
-										          data-language="<?php echo $row['language']; ?>"
-										          data-audio="<?php echo $row['audio']; ?>"><?php echo $row['question'];
-												if ( $row['question'] === "" || $row['question'] === null ) {
-													echo ' <i class="fa fa-edit"></i> ';
-												} ?></span></td>
+										<td><?php echo $row['question'];  ?></span></td>
 										<td><?php echo $dateadded; ?></td>
+										<td style="white-space: nowrap;">
+											<button type="button" class="btn btn-primary btn-flat edit-story-question-btn" title="edit record"  data-question="<?php echo $row['question']; ?>"
+											        data-question_id="<?php echo $row['id']; ?>"
+											        data-story_id="<?php echo $row['story_id']; ?>"
+											        data-story="<?php echo $row['story']; ?>"
+											        data-language="<?php echo $row['language']; ?>"
+											        data-audio="<?php echo $row['audio']; ?>"><i class="fa fa-edit"></i> Edit</button>
+
+											<a href="/picture-dictionary-editor/story_answer/?question_id=<?php echo $row['id']; ?>" class="btn btn-primary btn-flat"><i class="fa fa-question"></i> Answers</a>
+											&nbsp;
+											<button type="button" class="btn btn-danger btn-flat" onClick="window.location.href='javascript:delete_question(<?php echo $row['id']; ?>);'"><i class="fa fa-trash"></i> Delete</button>
+										</td>
 									</tr>
 								<?php } ?>
 								</tbody>
@@ -177,6 +207,7 @@ $date     = new DateTime( $lu_date );
 									<th>Story</th>
 									<th>Question</th>
 									<th>Last Update</th>
+									<th>Action</th>
 								</tr>
 								</tfoot>
 							</table>

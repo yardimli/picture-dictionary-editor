@@ -112,15 +112,26 @@ $(document).ready(function () {
         $("#update-text-fields-button").show();
         $(".refresh_page_btn").hide();
 
+        $("#image_file_name").html($(this).data("picture"));
+        $("#picture").val($(this).data("picture"));
         $("#language").val($(this).data("language"));
         $("#story_id").val($(this).data("story_id"));
+        $("#question_id").val($(this).data("question_id"));
         $("#answer_id").val($(this).data("answer_id"));
         $("#answer").val($(this).data("answer"));
 
+        $("#is_correct").prop('checked', false);
+        if ($(this).data("is_correct")=="1") {
+          $("#is_correct").prop('checked', true);
+        }
+
         $("#story_text").html( "..." );
+        $("#story_question_text").html( "..." );
+
         for (var i=0; i< stories_array.length; i++) {
           if (stories_array[i]['q_id'] == $(this).data("question_id")) {
-            $("#story_text").html( stories_array[i]['story'] + "<br><br>" + stories_array[i]['question'] );
+            $("#story_text").html( stories_array[i]['story'] );
+            $("#story_question_text").html( stories_array[i]['question'] );
           }
         }
 
@@ -130,6 +141,17 @@ $(document).ready(function () {
         $("#audio_player").attr({"src": "../audio/story-answer/" + $(this).data("audio") + "?cb=" + new Date().getTime()});
 
         $("#audio").val($(this).data("audio"));
+
+        $('#image-file').css("color", "green");
+        $('#image-preview-div').css("display", "inline-block");
+        if ( $(this).data("picture") === "") {
+          $('#preview-img').attr('src', "../pictures/daha-1.jpg");
+        } else
+        {
+          $('#preview-img').attr('src', "../pictures/story-answer/" + $(this).data("picture"));
+        }
+        $('#preview-img').css('max-width', '150px');
+
 
         $("#story_answer_modal_title").html("Edit Answer");
         $("#edit_story_answer_modal").modal("show");
@@ -152,20 +174,34 @@ $(document).ready(function () {
     $(".refresh_page_btn").hide();
 
     $("#question_id").val("");
+    $("#story_id").val("0");
+
     if (new_answer_question_id!==0) {
       $("#question_id").val(new_answer_question_id);
 
       $("#story_text").html( "..." );
+      $("#story_question_text").html( "..." );
+
       for (var i=0; i< stories_array.length; i++) {
         if (stories_array[i]['q_id'] == new_answer_question_id) {
-          $("#story_text").html( stories_array[i]['story'] + "<br><br>" + stories_array[i]['question'] );
+          $("#story_text").html( stories_array[i]['story'] );
+          $("#story_question_text").html( stories_array[i]['question'] );
+          $("#story_id").val(stories_array[i]['s_id']);
         }
       }
-
     }
+
+
     $("#answer").val("");
+    $("#is_correct").prop('checked', false);
     $("#answer_id").val("0");
     $("#audio").val("");
+    $("#image_file_name").html("daha-1.jpg");
+
+    $('#image-file').css("color", "green");
+    $('#image-preview-div').css("display", "inline-block");
+    $('#preview-img').attr('src', "../pictures/daha-1.jpg");
+    $('#preview-img').css('max-width', '150px');
 
     $("#story_answer_modal_title").html("Add Story Answer");
 
@@ -174,10 +210,32 @@ $(document).ready(function () {
   });
 
 
+  function selectImage(e) {
+    $('#image-file').css("color", "green");
+    $('#image-preview-div').css("display", "inline-block");
+    $('#preview-img').attr('src', e.target.result);
+    $('#preview-img').css('max-width', '150px');
+  }
 
   var maxsize = 500 * 1024; // 500 KB
 
   $('#max-size').html((maxsize / 1024).toFixed(2));
+
+  $("#upload-image-button").off('click').on('click', function (e) {
+    e.preventDefault();
+    $('#message').empty();
+    $('#loading').show();
+    $("#loading_msg").html("uploading...");
+    $(".progress-wrp").show();
+
+    current_upload_button_id = "#upload-image-button";
+    progress_text = "#loading";
+    progress_bar_id = "#progress-wrp";
+    var file = $("#image-file")[0].files[0];
+    var upload = new Upload(file, $("#answer_id").val(), "picture");
+    // maby check size or type here with upload.getSize() and upload.getType()
+    upload.doUpload();
+  });
 
   $("#upload-audio-button").off('click').on('click', function (e) {
     e.preventDefault();
@@ -244,8 +302,10 @@ $(document).ready(function () {
       type: "POST",
       data: {
         story_id: $("#story_id").val(),
+        question_id: $("#question_id").val(),
         answer_id: $("#answer_id").val(),
         answer: $("#answer").val(),
+        is_correct: $("#is_correct").attr("checked") ? 1 : 0
       },
       // contentType: false,
       cache: false,
@@ -266,6 +326,33 @@ $(document).ready(function () {
 
   });
 
+  $('#image-file').change(function () {
+
+    $('#message').empty();
+
+    var file = this.files[0];
+    var match = ["image/jpeg", "image/png", "image/jpg"];
+
+    if (!((file.type == match[0]) || (file.type == match[1]) || (file.type == match[2]))) {
+      $('#message').html('<div class="alert alert-warning" role="alert">Invalid image format. Allowed formats: JPG, JPEG, PNG.</div>');
+
+      return false;
+    }
+
+    if (file.size > maxsize) {
+      $('#message').html('<div class=\"alert alert-danger\" role=\"alert\">The size of image you are attempting to upload is ' + (file.size / 1024).toFixed(2) + ' KB, maximum size allowed is ' + (maxsize / 1024).toFixed(2) + ' KB</div>');
+
+      return false;
+    }
+
+    // $('#upload-button').removeAttr("disabled");
+
+    var reader = new FileReader();
+    reader.onload = selectImage;
+    reader.readAsDataURL(this.files[0]);
+  });
+
+
   $(".refresh_page_btn").off('click').on('click',function () {
     var new_url = "https://elosoft.tw/picture-dictionary-editor/story-answer/?catid="+$(this).data("catid");
     window.location.href = new_url;
@@ -275,9 +362,13 @@ $(document).ready(function () {
 
   $("#question_id").on('change', function () {
     $("#story_text").html( "..." );
+    $("#story_question_text").html( "..." );
+
     for (var i=0; i< stories_array.length; i++) {
       if (stories_array[i]['q_id'] === $(this).val()) {
-        $("#story_text").html( stories_array[i]['story'] + "<br><br>" + stories_array[i]['question'] );
+        $("#story_text").html( stories_array[i]['story'] );
+        $("#story_question_text").html( stories_array[i]['question'] );
+        $("#story_id").val( stories_array[i]['s_id'] );
       }
     }
   });
@@ -285,9 +376,9 @@ $(document).ready(function () {
 
 });
 
-function deleteuser(userID) {
-  if (confirm('Delete this user?')) {
-    window.location.href = 'index.php?userID=' + userID;
+function delete_answer(answer_id) {
+  if (confirm('Delete this answer?')) {
+    window.location.href = 'index.php?delete_answer_id=' + answer_id;
   }
 }
 

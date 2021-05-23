@@ -106,7 +106,7 @@ class STORY {
 			$stmt->execute();
 			$stories = [];
 			while ( $p_story = $stmt->fetch() ) {
-				array_push( $stories, [ "id" => $p_story["id"], "title" => $p_story["title"] ] );
+				array_push( $stories, [ "id" => $p_story["id"], "title" => $p_story["title"], "language" => $p_story["language"] ] );
 			}
 		} catch
 		( PDOException $e ) {
@@ -155,6 +155,47 @@ class STORY {
 	}
 
 
+	//------------------------------------------------------------------------------------------------
+	public function add_story_answer( $story_id, $question_id, $answer, $is_correct ) {
+
+		try {
+			$stmt = $this->conn->prepare( "INSERT INTO story_answer (story_id, question_id, answer, is_correct, userid)
+    		VALUES(:story_id, :question_id, :answer, :is_correct, :userid)" );
+			$stmt->bindparam( ":story_id", $story_id );
+			$stmt->bindparam( ":question_id", $question_id );
+			$stmt->bindparam( ":answer", $answer );
+			$stmt->bindparam( ":is_correct", $is_correct );
+			$stmt->bindparam( ":userid", $_SESSION['user_session'] );
+//				$stmt->debugDumpParams();
+			$stmt->execute();
+
+			$id = $this->conn->lastInsertId();
+//			echo $id;
+
+			return $stmt;
+		} catch ( PDOException $e ) {
+			echo $e->getMessage() . " (1)";
+		}
+	}
+
+	public function update_story_answer( $id, $story_id, $question_id, $answer, $is_correct ) {
+
+		try {
+			$stmt = $this->conn->prepare( "UPDATE story_answer SET story_id=:story_id, question_id=:question_id, answer=:answer, is_correct=:is_correct WHERE id=:id" );
+
+			$stmt->bindparam( ":story_id", $story_id );
+			$stmt->bindparam( ":question_id", $question_id );
+			$stmt->bindparam( ":answer", $answer );
+			$stmt->bindparam( ":is_correct", $is_correct );
+			$stmt->bindparam( ":id", $id );
+			$stmt->execute();
+
+			return $stmt;
+		} catch ( PDOException $e ) {
+			echo $e->getMessage() . " (3)";
+		}
+	}
+
 
 
 
@@ -167,8 +208,8 @@ class STORY {
 	//------------------------------------------------------------------------------------------------
 	public function delete_story( $id ) {
 		try {
-			$stmt = $this->conn->prepare( "UPDATE story SET deleted=:val WHERE id=:id" );
-			$stmt->execute( array( ":val" => 1, ":id" => $id ) );
+			$stmt = $this->conn->prepare( "UPDATE story SET deleted=1 WHERE id=:id AND userid=:userid" );
+			$stmt->execute( array( ":id" => $id, ":userid" => $_SESSION['user_session'] ) );
 
 			return $stmt;
 		} catch ( PDOException $e ) {
@@ -176,6 +217,28 @@ class STORY {
 		}
 	}
 
+
+	public function delete_question( $id ) {
+		try {
+			$stmt = $this->conn->prepare( "UPDATE story_question SET deleted=1 WHERE id=:id AND userid=:userid" );
+			$stmt->execute( array( ":id" => $id, ":userid" => $_SESSION['user_session'] ) );
+
+			return $stmt;
+		} catch ( PDOException $e ) {
+			echo $e->getMessage();
+		}
+	}
+
+	public function delete_answer( $id ) {
+		try {
+			$stmt = $this->conn->prepare( "UPDATE story_answer SET deleted=1 WHERE id=:id AND userid=:userid" );
+			$stmt->execute( array( ":id" => $id, ":userid" => $_SESSION['user_session'] ) );
+
+			return $stmt;
+		} catch ( PDOException $e ) {
+			echo $e->getMessage();
+		}
+	}
 
 	public function redirect( $url ) {
 		header( "Location: $url" );

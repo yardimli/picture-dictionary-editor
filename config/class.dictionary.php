@@ -278,8 +278,8 @@ class DICTIONARY {
 
 	public function delete_word( $id ) {
 		try {
-			$stmt = $this->conn->prepare( "UPDATE dictionary SET deleted=:val WHERE id=:id" );
-			$stmt->execute( array( ":val" => 1, ":id" => $id ) );
+			$stmt = $this->conn->prepare( "UPDATE dictionary SET deleted=:val WHERE id=:id AND userid=:userid" );
+			$stmt->execute( array( ":val" => 1, ":id" => $id, ":userid" => $_SESSION['user_session'] ) );
 
 			return $stmt;
 		} catch ( PDOException $e ) {

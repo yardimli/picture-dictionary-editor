@@ -9,7 +9,8 @@
 			<div class="modal-body" style="margin-top: 0px; padding-top: 0px;">
 				<form role="form" method="POST" id="upload-image-form" enctype="multipart/form-data">
 					<input type="hidden" id="answer_id" name="answer_id" value="">
-					<input type="hidden" id="language" name="answer_id" value="">
+					<input type="hidden" id="story_id" name="story_id" value="">
+					<input type="hidden" id="language" name="language" value="">
 					<input type="hidden" id="audio" name="audio" value="">
 					<div class="box-body" style="margin-top: 0px; padding-top: 0px;">
 						<div style="margin-top:8px;margin-right:10px; display: inline-block !important;" class="form-group">
@@ -34,13 +35,19 @@
 						</div>
 
 						<br>
-						<div id="story_text" style="margin-top:5px;margin-right:10px; margin-bottom: 10px; background-color: #eee; padding:10px;" class="form-group">...</div>
+						<div id="story_text" style="margin-top:5px;margin-right:10px; margin-bottom: 0px; background-color: #eee; padding:10px;" class="form-group">...</div>
+						<div id="story_question_text" style="margin-top:1px;margin-right:10px; margin-bottom: 10px; background-color: #ddd; padding:10px;" class="form-group">...</div>
 
 						<div style="margin-top:0px;margin-right:10px; margin-bottom: 0px;" class="form-group">
 							<label>Answer</label>
 							<div class="clearfix"></div>
 							<input style="" required data-minlength="6" type="text" class="form-control" name="answer" id="answer" placeholder="Answer"
 							       value="">
+						</div>
+
+						<div style="margin-top:10px;margin-right:10px; margin-bottom: 0px;" class="form-group">
+							<label>Is Correct?</label>
+							<input required type="checkbox" class="" style="margin-left:10px;  vertical-align: top;" name="is_correct" id="is_correct">
 						</div>
 
 						<br>
@@ -50,10 +57,25 @@
 						<hr>
 
 						<div id="story_answer_media_edit">
+							<div id="image-preview-div" style="display: none;">
+								<label for="exampleInputFile">Selected image (<span id="image_file_name"></span>):</label>
+								<br>
+								<img id="preview-img" src="../images/noimage.png">
+							</div>
 
-							<div style="margin-top:8px;margin-right:10px;" class="form-group">
+							<div class="form-group" style=" vertical-align: top;">
+								<input type="file" name="image-file" id="image-file" class="form-control" style="display: inline-block; width: 250px;">
+								<button id="upload-image-button" class="btn btn-primary btn-flat btn-sm" style="margin-top:0px; margin-right:20px; height: 34px; vertical-align: top;">
+									Upload Image
+								</button>
+								<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm"
+								        style="margin-top:0px; display: none;  height: 34px; vertical-align: top;">Close and Refresh List
+								</button>
+							</div>
+
+							<div style="margin-top:8px;margin-right:10px; display: inline-block !important;" class="form-group">
 								<label for="exampleInputFile">Audio (<span id="audio_file"></span>):</label> <span id="play_audio"
-								                                                                                              class="audio_play_link">Play</span>
+								                                                                                   class="audio_play_link">Play</span>
 								<br>
 								<input type="file" name="file_audio" id="file_audio" class="form-control" style="display: inline-block; width: 200px;">
 								<button id="upload-audio-button" class="btn btn-primary btn-flat btn-sm"

@@ -97,7 +97,11 @@ $(document).ready(function () {
   }
 
   $("#category_filter_id").on('change', function () {
-    window.location.href = "/picture-dictionary-editor/story/?catid=" + $(this).val();
+    window.location.href = "/picture-dictionary-editor/story/?catid=" + $(this).val() + "&lang=" + $("#language_filter_id").val();
+  });
+
+  $("#language_filter_id").on('change', function () {
+    window.location.href = "/picture-dictionary-editor/story/?catid=" + $("#category_filter_id").val() + "&lang=" + $(this).val();
   });
 
   $("#category_filter_id").html($("#category_filter_id option").sort(function (a, b) {
@@ -349,9 +353,9 @@ $(document).ready(function () {
 
 });
 
-function deleteuser(userID) {
-  if (confirm('Delete this user?')) {
-    window.location.href = 'index.php?userID=' + userID;
+function delete_story(story_id) {
+  if (confirm('Delete this story?')) {
+    window.location.href = 'index.php?delete_story_id=' + story_id;
   }
 }
 

@@ -25,6 +25,32 @@ $lu_uname = $userRow['username'];
 $lu_email = $userRow['useremail'];
 $lu_date  = $userRow['dateadded'];
 $date     = new DateTime( $lu_date );
+
+# for deleting
+if(isset($_GET['delete_story_id']))
+{
+	# check if user is logged-in
+	if(!$auth_user->is_loggedin())
+	{
+		# redirect to login page, gtfo
+		$auth_user->doLogout();
+	}
+	else
+	{
+		$id = intval($_GET['delete_story_id']);
+
+		try
+		{
+			if($story_list->delete_story($id)) {
+				//....
+			}
+		}
+		catch(PDOException $e)
+		{
+			echo $e->getMessage();
+		}
+	}
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -80,20 +106,41 @@ $date     = new DateTime( $lu_date );
 							for ( $i = 0; $i < count( $arr ); $i ++ ) {
 								if ( count( $arr[ $i ]["children"] ) > 0 ) {
 									if ( $parent === "" ) {
-										echo "<option value='" . $arr[ $i ]["id"] . "'>" . $arr[ $i ]["name"] . "</option>";
+										echo "<option value=''";
+										if ( array_key_exists( "catid", $_GET ) && ""===$_GET["catid"]) { echo " SELECTED "; }
+										echo ">" . $arr[ $i ]["name"] . "</option>";
 										loopArray2( $arr[ $i ]["children"], $arr[ $i ]["name"] );
 									} else {
-										echo "<option value='" . $arr[ $i ]["id"] . "'>" . $parent . " / " . $arr[ $i ]["name"] . "</option>";
+										echo "<option value='" . $arr[ $i ]["id"] . "'";
+										if ( array_key_exists( "catid", $_GET ) && $arr[ $i ]["id"]===$_GET["catid"]) { echo " SELECTED "; }
+										echo ">". $parent . " / " . $arr[ $i ]["name"] . "</option>";
 										loopArray2( $arr[ $i ]["children"], $parent . " / " . $arr[ $i ]["name"] );
 									}
 								} else {
-									echo "<option value='" . $arr[ $i ]["id"] . "'>" . $parent . " / " . $arr[ $i ]["name"] . "</option>";
+									echo "<option value='" . $arr[ $i ]["id"] . "'";
+									if ( array_key_exists( "catid", $_GET ) && $arr[ $i ]["id"]===$_GET["catid"]) { echo " SELECTED "; }
+									echo ">" . $parent . " / " . $arr[ $i ]["name"] . "</option>";
 								}
 							}
 						}
 
 						loopArray2( $cat_array, "" );
 						?>
+					</select>
+				</div>
+				<small>Language:</small>
+				<div style=" display: inline-block !important;" class="form-group">
+					<select class="form-control" required id="language_filter_id" name="language_filter_id" style="width:130px; display: inline-block !important;">
+						<option value="">All Languages</option>
+						<option value="en" <?php
+						if (array_key_exists( "lang", $_GET ) && $_GET["lang"]==="en" ) { echo " SELECTED "; }
+						?>>English</option>
+						<option value="tr" <?php
+						if (array_key_exists( "lang", $_GET ) && $_GET["lang"]==="tr" ) { echo " SELECTED "; }
+						?>>Turkish</option>
+						<option value="ch" <?php
+						if (array_key_exists( "lang", $_GET ) && $_GET["lang"]==="ch" ) { echo " SELECTED "; }
+						?>>Chinese</option>
 					</select>
 				</div>
 
@@ -144,6 +191,7 @@ $date     = new DateTime( $lu_date );
 									<th>Language</th>
 									<th>Category</th>
 									<th>Last Update</th>
+									<th>Action</th>
 								</tr>
 								</thead>
 								<tbody>
@@ -159,11 +207,23 @@ $date     = new DateTime( $lu_date );
 									}
 									$cates = "(" . implode( ",", $category_id_array ) . ")";
 //									echo $cates;
-									$stmt = $story_list->runQuery( 'SELECT DISTINCT story.* FROM story LEFT JOIN story_categories ON story_categories.story_id=story.id  WHERE story_categories.cat_id IN ' . $cates );
-									$stmt->execute( array( ':val' => 0 ) );
+
+									$language_filter = "%";
+									if (array_key_exists( "lang", $_GET ) && $_GET["lang"]!=="" ) {
+										$language_filter = $_GET["lang"];
+									}
+
+									$stmt = $story_list->runQuery( 'SELECT DISTINCT story.* FROM story LEFT JOIN story_categories ON story_categories.story_id=story.id  WHERE deleted=:val AND language LIKE :language AND story_categories.cat_id IN ' . $cates );
+									$stmt->execute( array( ':val' => 0, ":language"=>$language_filter ) );
 								} else {
-									$stmt = $story_list->runQuery( 'SELECT * FROM story WHERE deleted=:val' );
-									$stmt->execute( array( ':val' => 0 ) );
+
+									$language_filter = "%";
+									if (array_key_exists( "lang", $_GET ) && $_GET["lang"]!=="" ) {
+										$language_filter = $_GET["lang"];
+									}
+
+									$stmt = $story_list->runQuery( 'SELECT * FROM story WHERE deleted=:val AND language LIKE :language ' );
+									$stmt->execute( array( ':val' => 0, ":language"=>$language_filter ) );
 								}
 								while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
 									$x ++;
@@ -187,17 +247,7 @@ $date     = new DateTime( $lu_date );
 									?>
 									<tr>
 										<td><?php echo $row['id']; ?></td>
-										<td><span class="edit-story-btn edit-story-en-btn" title="edit story"
-										          data-title="<?php echo $row['title']; ?>"
-										          data-story="<?php echo $row['story']; ?>"
-										          data-language="<?php echo $row['language']; ?>"
-										          data-multi_category="<?php echo implode(",",$category_ids); ?>"
-										          data-story_id="<?php echo $row['id']; ?>"
-										          data-picture="<?php echo $row['picture']; ?>"
-										          data-audio="<?php echo $row['audio']; ?>"><?php echo $row['title'];
-												if ( $row['title'] === "" || $row['title'] === null ) {
-													echo ' <i class="fa fa-edit"></i> ';
-												} ?></span> [<a href="/picture-dictionary-editor/story_question/?story_id=<?php echo $row['id']; ?>">questions</a>]</td>
+										<td><?php echo $row['title']; ?></td>
 
 										<td><?php echo $row['language']; ?></td>
 										<td><?php
@@ -205,6 +255,19 @@ $date     = new DateTime( $lu_date );
 											echo $category_strings;
 											?></td>
 										<td><?php echo $dateadded; ?></td>
+										<td style="white-space: nowrap;">
+											<button type="button" class="btn btn-primary btn-flat edit-story-btn" title="edit record"  data-title="<?php echo $row['title']; ?>"
+											        data-story="<?php echo $row['story']; ?>"
+											        data-language="<?php echo $row['language']; ?>"
+											        data-multi_category="<?php echo implode(",",$category_ids); ?>"
+											        data-story_id="<?php echo $row['id']; ?>"
+											        data-picture="<?php echo $row['picture']; ?>"
+											        data-audio="<?php echo $row['audio']; ?>"><i class="fa fa-edit"></i> Edit</button>
+
+											<a href="/picture-dictionary-editor/story_question/?story_id=<?php echo $row['id']; ?>" class="btn btn-primary btn-flat"><i class="fa fa-question"></i> Questions</a>
+											&nbsp;
+											<button type="button" class="btn btn-danger btn-flat" onClick="window.location.href='javascript:delete_story(<?php echo $row['id']; ?>);'"><i class="fa fa-trash"></i> Delete</button>
+										</td>
 									</tr>
 								<?php } ?>
 								</tbody>
@@ -215,6 +278,7 @@ $date     = new DateTime( $lu_date );
 									<th>Language</th>
 									<th>Category</th>
 									<th>Last Update</th>
+									<th>Action</th>
 								</tr>
 								</tfoot>
 							</table>

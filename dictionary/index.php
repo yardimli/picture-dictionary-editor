@@ -25,6 +25,33 @@ $lu_uname = $userRow['username'];
 $lu_email = $userRow['useremail'];
 $lu_date  = $userRow['dateadded'];
 $date     = new DateTime( $lu_date );
+
+
+# for deleting
+if(isset($_GET['delete_word_id']))
+{
+	# check if user is logged-in
+	if(!$auth_user->is_loggedin())
+	{
+		# redirect to login page, gtfo
+		$auth_user->doLogout();
+	}
+	else
+	{
+		$id = intval($_GET['delete_word_id']);
+
+		try
+		{
+			if($dictionary_list->delete_word($id)) {
+				//....
+			}
+		}
+		catch(PDOException $e)
+		{
+			echo $e->getMessage();
+		}
+	}
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -146,6 +173,7 @@ $date     = new DateTime( $lu_date );
 									<th>Category</th>
 									<th>Level</th>
 									<th>Last Update</th>
+									<th>Action</th>
 								</tr>
 								</thead>
 								<tbody>
@@ -218,6 +246,14 @@ $date     = new DateTime( $lu_date );
 											?></td>
 										<td><?php echo $row['level']; ?></td>
 										<td><?php echo $dateadded; ?></td>
+										<td style="white-space: nowrap;">
+											<button type="button" class="btn btn-primary btn-flat edit-word-en-btn" title="edit record" data-word_en="<?php echo $row['word_EN']; ?>" data-multi_category="<?php echo implode(",",$category_ids); ?>"
+											        data-word_id="<?php echo $row['id']; ?>"
+											        data-picture="<?php echo $row['picture']; ?>"
+											        data-level="<?php echo $row['level']; ?>" data-audio_en="<?php echo $row['audio_EN']; ?>"><i class="fa fa-edit"></i> Edit</button>
+											&nbsp;
+											<button type="button" class="btn btn-danger btn-flat" onClick="window.location.href='javascript:delete_word(<?php echo $row['id']; ?>);'"><i class="fa fa-trash"></i> Delete</button>
+										</td>
 									</tr>
 								<?php } ?>
 								</tbody>
@@ -227,6 +263,7 @@ $date     = new DateTime( $lu_date );
 									<th>Category</th>
 									<th>Level</th>
 									<th>Date</th>
+									<th>Action</th>
 								</tr>
 								</tfoot>
 							</table>

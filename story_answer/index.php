@@ -25,6 +25,32 @@ $lu_uname = $userRow['username'];
 $lu_email = $userRow['useremail'];
 $lu_date  = $userRow['dateadded'];
 $date     = new DateTime( $lu_date );
+
+# for deleting
+if(isset($_GET['delete_answer_id']))
+{
+	# check if user is logged-in
+	if(!$auth_user->is_loggedin())
+	{
+		# redirect to login page, gtfo
+		$auth_user->doLogout();
+	}
+	else
+	{
+		$id = intval($_GET['delete_answer_id']);
+
+		try
+		{
+			if($story_list->delete_answer($id)) {
+				//....
+			}
+		}
+		catch(PDOException $e)
+		{
+			echo $e->getMessage();
+		}
+	}
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -133,19 +159,26 @@ $date     = new DateTime( $lu_date );
 								<thead>
 								<tr>
 									<th>id</th>
-									<th>Story</th>
+									<th>Story / Question</th>
 									<th>Answer</th>
 									<th>Last Update</th>
+									<th>Action</th>
 								</tr>
 								</thead>
 								<tbody>
 								<?php
 
-								if ( array_key_exists( "story_id", $_GET ) && is_numeric( $_GET["story_id"] ) && $_GET["story_id"] !== "0" ) {
-									$stmt = $story_list->runQuery( 'SELECT story_answer.*,story.title AS story_title, story.language AS language, story.story AS story FROM story_answer LEFT JOIN story ON story.id=story_answer.story_id WHERE story_answer.story_id=:story_id AND story_answer.deleted=:val' );
-									$stmt->execute( array( ':story_id' => $_GET["story_id"], ':val' => 0 ) );
+								if ( array_key_exists( "question_id", $_GET ) && is_numeric( $_GET["question_id"] ) && $_GET["question_id"] !== "0" ) {
+									$stmt = $story_list->runQuery( 'SELECT story_answer.*,story.title AS story_title, story.language AS language, story.story AS story, story_question.question AS story_question FROM story_answer 
+									LEFT JOIN story ON story.id=story_answer.story_id 
+									LEFT JOIN story_question ON story_question.id=story_answer.question_id 
+									WHERE story_answer.question_id=:question_id AND story_answer.deleted=:val' );
+									$stmt->execute( array( ':question_id' => $_GET["question_id"], ':val' => 0 ) );
 								} else {
-									$stmt = $story_list->runQuery( 'SELECT story_answer.*,story.title AS story_title, story.language AS language, story.story AS story FROM story_answer LEFT JOIN story ON story.id=story_answer.story_id WHERE story_answer.deleted=:val' );
+									$stmt = $story_list->runQuery( 'SELECT story_answer.*, story.title AS story_title, story.language AS language, story.story AS story, story_question.question AS story_question FROM story_answer 
+									LEFT JOIN story ON story.id=story_answer.story_id 
+									LEFT JOIN story_question ON story_question.id=story_answer.question_id 
+									WHERE story_answer.deleted=:val' );
 									$stmt->execute( array( ':val' => 0 ) );
 								}
 
@@ -156,18 +189,21 @@ $date     = new DateTime( $lu_date );
 									?>
 									<tr>
 										<td><?php echo $row['id']; ?></td>
-										<td><?php echo $row['story_title'] . " (" . $row['language'] . ")"; ?></td>
-										<td><span class="edit-story-answer-btn" title="edit story"
-										          data-answer="<?php echo $row['answer']; ?>"
-										          data-answer_id="<?php echo $row['id']; ?>"
-										          data-story_id="<?php echo $row['story_id']; ?>"
-										          data-story="<?php echo $row['story']; ?>"
-										          data-language="<?php echo $row['language']; ?>"
-										          data-audio="<?php echo $row['audio']; ?>"><?php echo $row['answer'];
-												if ( $row['answer'] === "" || $row['answer'] === null ) {
-													echo ' <i class="fa fa-edit"></i> ';
-												} ?></span></td>
+										<td><?php echo $row['story_title'] . " (" . $row['language'] . ").<br>".$row['story_question']; ?></td>
+										<td><?php echo $row['answer']; ?></td>
 										<td><?php echo $dateadded; ?></td>
+										<td style="white-space: nowrap;">
+											<button type="button" class="btn btn-primary btn-flat edit-story-answer-btn" title="edit record"     data-picture="<?php echo $row['picture']; ?>"
+											        data-answer="<?php echo $row['answer']; ?>"
+											        data-answer_id="<?php echo $row['id']; ?>"
+											        data-question_id="<?php echo $row['question_id']; ?>"
+											        data-story_id="<?php echo $row['story_id']; ?>"
+											        data-story="<?php echo $row['story']; ?>"
+											        data-language="<?php echo $row['language']; ?>"
+											        data-audio="<?php echo $row['audio']; ?>"><i class="fa fa-edit"></i> Edit</button>
+
+											<button type="button" class="btn btn-danger btn-flat" onClick="window.location.href='javascript:delete_answer(<?php echo $row['id']; ?>);'"><i class="fa fa-trash"></i> Delete</button>
+										</td>
 									</tr>
 								<?php } ?>
 								</tbody>
@@ -177,6 +213,7 @@ $date     = new DateTime( $lu_date );
 									<th>Story</th>
 									<th>Answer</th>
 									<th>Last Update</th>
+									<th>Action</th>
 								</tr>
 								</tfoot>
 							</table>
@@ -226,15 +263,15 @@ $date     = new DateTime( $lu_date );
 		}
 		?>;
 
-	  var stories_array = [<?php
+  var stories_array = [<?php
 
-	  $stmt = $story_list->runQuery( 'SELECT story_question.*, story.title as title, story.story AS story, story.id AS s_id FROM story_question LEFT join story ON story.id=story_question.story_id WHERE story_question.deleted=:val' );
-	  $stmt->execute( array( ':val' => 0 ) );
-	  while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
+		$stmt = $story_list->runQuery( 'SELECT story_question.*, story.title as title, story.story AS story, story.id AS s_id FROM story_question LEFT join story ON story.id=story_question.story_id WHERE story_question.deleted=:val' );
+		$stmt->execute( array( ':val' => 0 ) );
+		while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
 
-		  echo "{ 'q_id' : '" . $row['id'] . "', 's_id' : '" . $row['s_id'] . "', 'story' : '" . $row['story'] . "', 'title' : '" . $row['title'] . "', 'question' : '" . $row['question'] . "'},";
-	  }
-	  ?>];
+			echo "{ 'q_id' : '" . $row['id'] . "', 's_id' : '" . $row['s_id'] . "', 'story' : '" . $row['story'] . "', 'title' : '" . $row['title'] . "', 'question' : '" . $row['question'] . "'},";
+		}
+		?>];
 </script>
 <script src="story-answer.js"></script>
 </body>

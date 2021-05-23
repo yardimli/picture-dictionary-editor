@@ -16,6 +16,32 @@ $lu_uname = $userRow['username'];
 $lu_email = $userRow['useremail'];
 $lu_date  = $userRow['dateadded'];
 $date     = new DateTime( $lu_date );
+
+# for deleting user
+if(isset($_GET['delete_category_id']))
+{
+	# check if user is logged-in
+	if(!$auth_user->is_loggedin())
+	{
+		# redirect to login page, gtfo
+		$auth_user->doLogout();
+	}
+	else
+	{
+		$id = intval($_GET['delete_category_id']);
+
+		try
+		{
+			if($category_list->delete_category($id)) {
+				//....
+			}
+		}
+		catch(PDOException $e)
+		{
+			echo $e->getMessage();
+		}
+	}
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -106,6 +132,7 @@ $date     = new DateTime( $lu_date );
 								<?php
 
 								$cat_array = $category_list->all_categories( 0 );
+
 								function loopArray2( $arr, $parent, $parent_id, $parent_en ) {
 									for ( $i = 0; $i < count( $arr ); $i ++ ) {
 
@@ -124,7 +151,7 @@ $date     = new DateTime( $lu_date );
 												        data-parent_id="<?php echo $parent_id; ?>" data-parent_en="<?php echo $parent_en; ?>"/>
 												<i class="fa fa-edit"></i> Edit</button>
 												&nbsp;
-												<button type="button" class="btn btn-danger btn-flat" onClick="window.location.href='javascript:deleteuser(<?php echo $arr[ $i ]['id']; ?>);'"><i
+												<button type="button" class="btn btn-danger btn-flat" onClick="window.location.href='javascript:delete_category(<?php echo $arr[ $i ]['id']; ?>);'"><i
 														class="fa fa-trash"></i> Delete
 												</button>
 											</td>
@@ -258,9 +285,9 @@ $date     = new DateTime( $lu_date );
 <script src="<?php echo WEB_ROOT; ?>dist/js/demo.js"></script>
 <!-- page script -->
 <script>
-  function deleteuser(userID) {
-    if (confirm('Delete this user?')) {
-      window.location.href = 'index.php?userID=' + userID;
+  function delete_category(categoryID) {
+    if (confirm('Delete this category?')) {
+      window.location.href = 'index.php?delete_category_id=' + categoryID;
     }
   }
 </script>
