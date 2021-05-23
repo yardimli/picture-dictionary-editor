@@ -1,9 +1,9 @@
-.edit-word-btn, .audio_play_link {
+.edit-story-btn, .audio_play_link {
   cursor: pointer;
   color: blue;
 }
 
-.edit-word-btn:hover, .audio_play_link:hover {
+.edit-story-btn:hover, .audio_play_link:hover {
   text-decoration: underline;
 }
 

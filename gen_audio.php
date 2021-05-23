@@ -1,4 +1,14 @@
 <?php
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Google\Cloud\TextToSpeech\V1\AudioConfig;
+use Google\Cloud\TextToSpeech\V1\AudioEncoding;
+use Google\Cloud\TextToSpeech\V1\SsmlVoiceGender;
+use Google\Cloud\TextToSpeech\V1\SynthesisInput;
+use Google\Cloud\TextToSpeech\V1\TextToSpeechClient;
+use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
+use Google\Cloud\Translate\V2\TranslateClient;
+
 
 require_once "text-to-speech-key.php";
 

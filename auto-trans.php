@@ -1,7 +1,7 @@
 <?php
 require_once( "./config/session.php" );
 
-require __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use Google\Cloud\TextToSpeech\V1\AudioConfig;
 use Google\Cloud\TextToSpeech\V1\AudioEncoding;
@@ -10,6 +10,8 @@ use Google\Cloud\TextToSpeech\V1\SynthesisInput;
 use Google\Cloud\TextToSpeech\V1\TextToSpeechClient;
 use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
 use Google\Cloud\Translate\V2\TranslateClient;
+
+require_once "text-to-speech-key.php";
 
 require_once( "./config/class.dictionary.php" );
 $dictionary_list = new DICTIONARY();
@@ -34,8 +36,6 @@ if ( ! $auth_user->is_loggedin() ) {
 	echo json_encode( array( "result" => false ) );
 //	$auth_user->doLogout();
 } else {
-
-	require_once "text-to-speech-key.php";
 
 	$gen_tr = false;
 	$gen_en = false;

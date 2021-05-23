@@ -13,8 +13,8 @@ use Google\Cloud\Translate\V2\TranslateClient;
 
 require_once "text-to-speech-key.php";
 
-require_once( "./config/class.dictionary.php" );
-$dictionary_list = new DICTIONARY();
+require_once( "./config/class.story.php" );
+$story_list = new STORY();
 
 require_once( "./config/class.user.php" );
 $auth_user = new USER();
@@ -95,7 +95,7 @@ if ( ! $auth_user->is_loggedin() ) {
 	$auth_user->doLogout();
 } else {
 
-	if ( $_POST["word_id"] === "0" ) {
+	if ( $_POST["story_id"] === "0" ) {
 		echo "<div class=\"alert alert-success\" role=\"alert\">";
 		echo "<p>Please save and open word in edit mode to update audio.</p>";
 		echo $error_msg;
@@ -114,11 +114,14 @@ if ( ! $auth_user->is_loggedin() ) {
 			$audio_speed = 1.20;
 		}
 
-		$word_en = $_POST["word_EN"];
+		$story = $_POST["story"];
+		$story_id = $_POST["story_id"];
+		$story_lang = $_POST["target_lang"];
+		$audio_file = filter_filename( $story_id  ."_". $story_lang. "_". time()) . ".mp3";
 
-		if ( $word_en !== "" && $_POST["target_lang"] === "en" ) {
+		if ( $story !== "" && $story_lang === "en" ) {
 			$input = new SynthesisInput();
-			$input->setText( $word_en );
+			$input->setText( $story );
 			$voice = new VoiceSelectionParams();
 			$voice->setLanguageCode( 'en-US' );
 			$voice->setName( 'en-US-Wavenet-A' );
@@ -127,28 +130,26 @@ if ( ! $auth_user->is_loggedin() ) {
 			$audioConfig->setSpeakingRate( $audio_speed );
 			$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
 
-			$audio_en = filter_filename( $word_en  ."_".time()) . ".mp3";
 
 			$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
-			if ( file_exists( "./audio/en/" . $audio_en ) ) {
-				unlink( "./audio/en/" . $audio_en );
+			if ( file_exists( "./audio/story/" . $audio_file ) ) {
+				unlink( "./audio/story/" . $audio_file );
 			}
-			file_put_contents( "./audio/en/" . $audio_en, $resp->getAudioContent() );
+			file_put_contents( "./audio/story/" . $audio_file, $resp->getAudioContent() );
 
-			$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set audio_EN="' . $audio_en . '" WHERE id=' . $_POST["word_id"] );
+			$stmt2 = $story_list->runQuery( 'UPDATE story set audio="' . $audio_file . '" WHERE id=' . $story_id );
 			$stmt2->execute();
 			?>
 			<script>
-				$("#en_audio_player").attr({"src": "../audio/en/<?php echo $audio_en; ?>"});
-				$("#en_audio_file").html("<?php echo $audio_en; ?>");
+				$("#en_audio_player").attr({"src": "../audio/story/<?php echo $audio_file; ?>"});
+				$("#en_audio_file").html("<?php echo $audio_file; ?>");
 			</script>
 			<?php
 		}
 
-		$word_tr = $_POST["word_TR"];
-		if ( $word_tr !== "" && $_POST["target_lang"] === "tr" ) {
+		if ( $story !== "" && $story_lang === "tr" ) {
 			$input = new SynthesisInput();
-			$input->setText( $word_tr );
+			$input->setText( $story );
 			$voice = new VoiceSelectionParams();
 			$voice->setLanguageCode( 'tr-TR' );
 			$voice->setName( 'tr-TR-Wavenet-D' );
@@ -157,29 +158,26 @@ if ( ! $auth_user->is_loggedin() ) {
 			$audioConfig->setSpeakingRate( $audio_speed );
 			$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
 
-			$audio_tr = url_make( filter_filename( $word_tr ."_".time() ) ) . ".mp3";
-
 			$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
 
-			if ( file_exists( "./audio/tr/" . $audio_tr ) ) {
-				unlink( "./audio/tr/" . $audio_tr );
+			if ( file_exists( "./audio/story/" . $audio_file ) ) {
+				unlink( "./audio/story/" . $audio_file );
 			}
-			file_put_contents( "./audio/tr/" . $audio_tr, $resp->getAudioContent() );
+			file_put_contents( "./audio/story/" . $audio_file, $resp->getAudioContent() );
 
-			$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set audio_TR="' . $audio_tr . '" WHERE id=' . $_POST["word_id"] );
+			$stmt2 = $story_list->runQuery( 'UPDATE story set audio="' . $audio_file . '" WHERE id=' . $story_id );
 			$stmt2->execute();
 			?>
 			<script>
-				$("#tr_audio_player").attr({"src": "../audio/tr/<?php echo $audio_tr; ?>"});
-				$("#tr_audio_file").html("<?php echo $audio_tr; ?>");
+				$("#tr_audio_player").attr({"src": "../audio/story/<?php echo $audio_file; ?>"});
+				$("#tr_audio_file").html("<?php echo $audio_file; ?>");
 			</script>
 			<?php
 		}
 
-		$word_ch = $_POST["word_CH"];
-		if ( $word_ch !== "" && $_POST["target_lang"] === "ch" ) {
+		if ( $story !== "" && $story_lang === "ch" ) {
 			$input = new SynthesisInput();
-			$input->setText( $word_ch );
+			$input->setText( $story );
 			$voice = new VoiceSelectionParams();
 			$voice->setLanguageCode( 'cmn-TW' );
 			$voice->setName( 'cmn-TW-Wavenet-A' );
@@ -188,29 +186,22 @@ if ( ! $auth_user->is_loggedin() ) {
 			$audioConfig->setSpeakingRate( $audio_speed );
 			$audioConfig->setAudioEncoding( AudioEncoding::MP3 );
 
-			$xtime = time();
-			if ( filter_filename( $word_en ."_".$xtime ) !== "" ) {
-				$audio_ch = filter_filename( $word_en."_".$xtime ) . ".mp3";
-			} else {
-				$audio_ch = $_POST["word_id"] ."_".$xtime . ".mp3";
-			}
-
 			$resp = $textToSpeechClient->synthesizeSpeech( $input, $voice, $audioConfig );
-			if ( file_exists( "./audio/ch/" . $audio_ch ) ) {
-				if ( unlink( "./audio/ch/" . $audio_ch ) ) {
+			if ( file_exists( "./audio/story/" . $audio_file ) ) {
+				if ( unlink( "./audio/story/" . $audio_file ) ) {
 					$error_msg = "Deleted old chinese audio.";
 				} else {
 					$error_msg = "Can't delete old chinese audio.";
 				}
 			}
-			file_put_contents( "./audio/ch/" . $audio_ch, $resp->getAudioContent() );
+			file_put_contents( "./audio/story/" . $audio_file, $resp->getAudioContent() );
 
-			$stmt2 = $dictionary_list->runQuery( 'UPDATE dictionary set audio_CH="' . $audio_ch . '" WHERE id=' . $_POST["word_id"] );
+			$stmt2 = $story_list->runQuery( 'UPDATE story set audio="' . $audio_file . '" WHERE id=' . $story_id );
 			$stmt2->execute();
 			?>
 			<script>
-			$("#ch_audio_player").attr({"src": "../audio/ch/<?php echo $audio_ch; ?>"});
-			$("#ch_audio_file").html("<?php echo $audio_ch; ?>");
+			$("#ch_audio_player").attr({"src": "../audio/story/<?php echo $audio_file; ?>"});
+			$("#ch_audio_file").html("<?php echo $audio_file; ?>");
 			</script>
 <?php
 		}

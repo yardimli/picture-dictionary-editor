@@ -49,9 +49,21 @@
 		    </a>
 	    </li>
 
-	    <li class="treeview <?php if(isset($_GET['stories'])) { echo 'active'; } ?>">
-		    <a href="<?php echo WEB_ROOT; ?>stories/?stories">
+	    <li class="treeview <?php if(isset($_GET['story'])) { echo 'active'; } ?>">
+		    <a href="<?php echo WEB_ROOT; ?>story/?story">
 			    <i class="fa fa-list"></i>&nbsp;&nbsp;<span>Stories</span>
+		    </a>
+	    </li>
+
+	    <li class="treeview <?php if(isset($_GET['story_question'])) { echo 'active'; } ?>">
+		    <a href="<?php echo WEB_ROOT; ?>story_question/?story_question">
+			    <i class="fa fa-list"></i>&nbsp;&nbsp;<span>Stories - Questions</span>
+		    </a>
+	    </li>
+
+	    <li class="treeview <?php if(isset($_GET['story_answer'])) { echo 'active'; } ?>">
+		    <a href="<?php echo WEB_ROOT; ?>story_answer/?story_answer">
+			    <i class="fa fa-list"></i>&nbsp;&nbsp;<span>Stories - Question Answers</span>
 		    </a>
 	    </li>
 

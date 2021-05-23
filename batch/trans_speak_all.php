@@ -1,7 +1,7 @@
 <?php
 require_once( "./config/session.php" );
 
-require __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use Google\Cloud\TextToSpeech\V1\AudioConfig;
 use Google\Cloud\TextToSpeech\V1\AudioEncoding;
@@ -11,6 +11,7 @@ use Google\Cloud\TextToSpeech\V1\TextToSpeechClient;
 use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
 use Google\Cloud\Translate\V2\TranslateClient;
 
+require_once "../text-to-speech-key.php";
 
 require_once( "./config/class.user.php" );
 require_once( "./config/class.dictionary.php" );
@@ -72,7 +73,6 @@ function url_make($str){
 	return $clean;
 }
 
-require_once "../text-to-speech-key.php";
 
 $x    = 0;
 $stmt = $dictionary_list->runQuery( 'SELECT * FROM dictionary WHERE deleted=:val' );

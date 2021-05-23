@@ -8,8 +8,8 @@ require_once( "../config/class.user.php" );
 
 require '../vendor/autoload.php';
 
-require_once( "../config/class.dictionary.php" );
-$dictionary_list = new DICTIONARY();
+require_once( "../config/class.story.php" );
+$story_list = new STORY();
 
 require_once( "../config/class.category.php" );
 $category_list = new CATEGORY();
@@ -31,7 +31,7 @@ $date     = new DateTime( $lu_date );
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Ege Learn Surface | Dictionary</title>
+	<title>Ege Learn Surface | Story Answers</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Bootstrap 3.3.6 -->
@@ -52,7 +52,7 @@ $date     = new DateTime( $lu_date );
 
 	<link rel="stylesheet" href="<?php echo WEB_ROOT; ?>/dist/css/bootstrap-select.min.css">
 
-	<link rel="stylesheet" href="dictionary.css">
+	<link rel="stylesheet" href="story-answer.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -63,36 +63,29 @@ $date     = new DateTime( $lu_date );
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<h1>
-				List of Words
-				<small>Dictionary &nbsp;&nbsp;
-					<button type="button" class="btn btn-primary btn-flat btn-sm" id="add_word_btn"><i class="fa fa-plus-circle"></i> Add Word
+				List of Story Answers
+				<small>Answers &nbsp;&nbsp;
+					<button type="button" class="btn btn-primary btn-flat btn-sm" id="add_story_answer_btn"><i class="fa fa-plus-circle"></i> Add Story Answer
 					</button>
 				</small>
 
-				<small>Filter Category:</small>
+				<small>Filter Story/Question:</small>
 				<div style=" display: inline-block !important;" class="form-group">
-					<?php
-					$cat_array = $category_list->all_categories( 0 );
-					?>
-					<select class="form-control" required id="category_filter_id" name="category_filter_id" style="width:400px; display: inline-block !important;">
+					<select class="form-control" required id="question_filter_id" name="question_filter_id" style="width:400px; display: inline-block !important;">
+						echo "
+						<option value=''>Select Story/Question</option>
+						";
 						<?php
-						function loopArray2( $arr, $parent ) {
-							for ( $i = 0; $i < count( $arr ); $i ++ ) {
-								if ( count( $arr[ $i ]["children"] ) > 0 ) {
-									if ( $parent === "" ) {
-										echo "<option value='" . $arr[ $i ]["id"] . "'>" . $arr[ $i ]["name"] . "</option>";
-										loopArray2( $arr[ $i ]["children"], $arr[ $i ]["name"] );
-									} else {
-										echo "<option value='" . $arr[ $i ]["id"] . "'>" . $parent . " / " . $arr[ $i ]["name"] . "</option>";
-										loopArray2( $arr[ $i ]["children"], $parent . " / " . $arr[ $i ]["name"] );
-									}
-								} else {
-									echo "<option value='" . $arr[ $i ]["id"] . "'>" . $parent . " / " . $arr[ $i ]["name"] . "</option>";
-								}
-							}
-						}
+						$stmt = $story_list->runQuery( 'SELECT story_question.*, story.title as title FROM story_question LEFT join story ON story.id=story_question.story_id WHERE story_question.deleted=:val' );
+						$stmt->execute( array( ':val' => 0 ) );
+						while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
 
-						loopArray2( $cat_array, "" );
+							echo "<option value='" . $row["id"] . "'";
+							if ( array_key_exists( "question_id", $_GET ) && $_GET["question_id"] === $row["id"] ) {
+								echo " selected ";
+							}
+							echo ">" . $row["title"] ." / " . $row["question"] . "</option>";
+						}
 						?>
 					</select>
 				</div>
@@ -100,7 +93,7 @@ $date     = new DateTime( $lu_date );
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="<?php echo WEB_ROOT; ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-				<li class="active">List of Dictionary</li>
+				<li class="active">List of Story Answers</li>
 			</ol>
 		</section>
 		<!-- Main content -->
@@ -140,100 +133,57 @@ $date     = new DateTime( $lu_date );
 								<thead>
 								<tr>
 									<th>id</th>
-									<th>English</th>
-									<th>Turkish</th>
-									<th>Chinese</th>
-									<th>Category</th>
-									<th>Level</th>
+									<th>Story</th>
+									<th>Answer</th>
 									<th>Last Update</th>
 								</tr>
 								</thead>
 								<tbody>
 								<?php
-								$x = 0;
-								if ( array_key_exists( "catid", $_GET ) && is_numeric( $_GET["catid"] ) && $_GET["catid"] !== "0" ) {
-									$stmt = $dictionary_list->runQuery( "SELECT * FROM category WHERE parentID=:val " );
-									$stmt->execute( array( ':val' => $_GET["catid"] ) );
-									$stmt->execute();
-									$category_id_array = [ $_GET["catid"] ];
-									while ( $p_category = $stmt->fetch() ) {
-										array_push( $category_id_array, $p_category["id"] );
-									}
-									$cates = "(" . implode( ",", $category_id_array ) . ")";
-//									echo $cates;
-									$stmt = $dictionary_list->runQuery( 'SELECT DISTINCT dictionary.* FROM dictionary LEFT JOIN word_categories ON word_categories.word_id=dictionary.id  WHERE word_categories.cat_id IN ' . $cates );
-									$stmt->execute( array( ':val' => 0 ) );
+
+								if ( array_key_exists( "story_id", $_GET ) && is_numeric( $_GET["story_id"] ) && $_GET["story_id"] !== "0" ) {
+									$stmt = $story_list->runQuery( 'SELECT story_answer.*,story.title AS story_title, story.language AS language, story.story AS story FROM story_answer LEFT JOIN story ON story.id=story_answer.story_id WHERE story_answer.story_id=:story_id AND story_answer.deleted=:val' );
+									$stmt->execute( array( ':story_id' => $_GET["story_id"], ':val' => 0 ) );
 								} else {
-									$stmt = $dictionary_list->runQuery( 'SELECT * FROM dictionary WHERE deleted=:val' );
+									$stmt = $story_list->runQuery( 'SELECT story_answer.*,story.title AS story_title, story.language AS language, story.story AS story FROM story_answer LEFT JOIN story ON story.id=story_answer.story_id WHERE story_answer.deleted=:val' );
 									$stmt->execute( array( ':val' => 0 ) );
 								}
+
 								while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
-									$x ++;
 									$dateAdded = new DateTime( $row['update_time'] );
 									$dateadded = $dateAdded->format( 'M. d, Y h:m.s' );
-
-									$stmt_cat = $dictionary_list->runQuery( 'SELECT category.* FROM word_categories LEFT JOIN category ON category.id = word_categories.cat_id WHERE word_id =:word_id' );
-									$stmt_cat->execute( array( ':word_id' => $row['id'] ) );
-									$category_ids = [];
-									$category_strings = "";
-									while ( $row_cat = $stmt_cat->fetch( PDO::FETCH_ASSOC ) ) {
-										array_push($category_ids, $row_cat["id"]);
-										if ($category_strings!=="") {
-											$category_strings .= ", ";
-										}
-
-										$category_strings .= $category_list->category_full_path_string( $row_cat['id'] );
-									}
-
 
 									?>
 									<tr>
 										<td><?php echo $row['id']; ?></td>
-										<td><span class="edit-word-btn edit-word-en-btn" title="edit english word"
-										          data-word_en="<?php echo $row['word_EN']; ?>" data-multi_category="<?php echo implode(",",$category_ids); ?>"
-										          data-word_id="<?php echo $row['id']; ?>"
-										          data-picture="<?php echo $row['picture']; ?>"
-										          data-level="<?php echo $row['level']; ?>" data-audio_en="<?php echo $row['audio_EN']; ?>"><?php echo $row['word_EN'];
-												if ( $row['word_EN'] === "" || $row['word_EN'] === null ) {
+										<td><?php echo $row['story_title'] . " (" . $row['language'] . ")"; ?></td>
+										<td><span class="edit-story-answer-btn" title="edit story"
+										          data-answer="<?php echo $row['answer']; ?>"
+										          data-answer_id="<?php echo $row['id']; ?>"
+										          data-story_id="<?php echo $row['story_id']; ?>"
+										          data-story="<?php echo $row['story']; ?>"
+										          data-language="<?php echo $row['language']; ?>"
+										          data-audio="<?php echo $row['audio']; ?>"><?php echo $row['answer'];
+												if ( $row['answer'] === "" || $row['answer'] === null ) {
 													echo ' <i class="fa fa-edit"></i> ';
 												} ?></span></td>
-
-										<td><span class="edit-word-btn edit-word-tr-btn" title="edit turkish word"
-										          data-word_tr="<?php echo $row['word_TR']; ?>" data-word_id="<?php echo $row['id']; ?>"
-										          data-audio_tr="<?php echo $row['audio_TR']; ?>"><?php echo $row['word_TR'];
-												if ( $row['word_TR'] === "" || $row['word_TR'] === null ) {
-													echo ' <i class="fa fa-edit"></i> ';
-												} ?></span></td>
-
-										<td><span class="edit-word-btn edit-word-ch-btn" title="edit chinese word"
-										          data-word_ch="<?php echo $row['word_CH']; ?>" data-word_id="<?php echo $row['id']; ?>" data-bopomofo="<?php echo $row['bopomofo']; ?>"
-										          data-audio_ch="<?php echo $row['audio_CH']; ?>"><?php echo $row['word_CH'];
-												if ( $row['word_CH'] === "" || $row['word_CH'] === null ) {
-													echo ' <i class="fa fa-edit"></i> ';
-												} ?></span></td>
-
-										<td><?php
-											//echo $category_list->category_full_path_string( $row['categoryID'] );
-											echo $category_strings;
-											?></td>
-										<td><?php echo $row['level']; ?></td>
 										<td><?php echo $dateadded; ?></td>
 									</tr>
 								<?php } ?>
 								</tbody>
 								<tfoot>
 								<tr>
-									<th>Word</th>
-									<th>Category</th>
-									<th>Level</th>
-									<th>Date</th>
+									<th>id</th>
+									<th>Story</th>
+									<th>Answer</th>
+									<th>Last Update</th>
 								</tr>
 								</tfoot>
 							</table>
 						</div>
 						<!-- /.box-body -->
 
-						<?php include "edit_word_modals.php"; ?>
+						<?php include "edit_story_answer_modals.php"; ?>
 
 		</section>
 	</div>
@@ -267,7 +217,25 @@ $date     = new DateTime( $lu_date );
 <script src="<?php echo WEB_ROOT; ?>dist/js/demo.js"></script>
 
 <script src="<?php echo WEB_ROOT; ?>dist/js/bootstrap-select.min.js"></script>
+<script>
+  var new_answer_question_id = <?php
+		if ( array_key_exists( "question_id", $_GET ) && is_numeric( $_GET["question_id"] ) && $_GET["question_id"] !== "0" ) {
+			echo $_GET["question_id"];
+		} else {
+			echo "0";
+		}
+		?>;
 
-<script src="dictionary.js"></script>
+	  var stories_array = [<?php
+
+	  $stmt = $story_list->runQuery( 'SELECT story_question.*, story.title as title, story.story AS story, story.id AS s_id FROM story_question LEFT join story ON story.id=story_question.story_id WHERE story_question.deleted=:val' );
+	  $stmt->execute( array( ':val' => 0 ) );
+	  while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
+
+		  echo "{ 'q_id' : '" . $row['id'] . "', 's_id' : '" . $row['s_id'] . "', 'story' : '" . $row['story'] . "', 'title' : '" . $row['title'] . "', 'question' : '" . $row['question'] . "'},";
+	  }
+	  ?>];
+</script>
+<script src="story-answer.js"></script>
 </body>
 </html>

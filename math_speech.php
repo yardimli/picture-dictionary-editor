@@ -1,7 +1,7 @@
 <?php
 require_once( "./config/session.php" );
 
-require __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use Google\Cloud\TextToSpeech\V1\AudioConfig;
 use Google\Cloud\TextToSpeech\V1\AudioEncoding;
@@ -10,6 +10,8 @@ use Google\Cloud\TextToSpeech\V1\SynthesisInput;
 use Google\Cloud\TextToSpeech\V1\TextToSpeechClient;
 use Google\Cloud\TextToSpeech\V1\VoiceSelectionParams;
 use Google\Cloud\Translate\V2\TranslateClient;
+
+require_once "text-to-speech-key.php";
 
 clearstatcache();
 
@@ -73,8 +75,6 @@ function url_make( $str ) {
 	return $clean;
 }
 
-require_once "text-to-speech-key.php";
-
 
 $audio_speed = 1.00;
 
@@ -89,8 +89,8 @@ $word_ch = "3減2 =";
 
 echo "creating sum words:<br>";
 
-$word_list = ["plus","minus","equals"];
-$file_list = ["plus","minus","equals"];
+$word_list = ["plus","minus","equals","times","divided by"];
+$file_list = ["plus","minus","equals","times","divided_by"];
 for ($i=0; $i<count($word_list); $i++) {
 	$input   = new SynthesisInput();
 	$input->setText( $word_list[$i] );
@@ -112,8 +112,8 @@ for ($i=0; $i<count($word_list); $i++) {
 	}
 }
 
-$word_list = ["artı","eksi","eşittir"];
-$file_list = ["plus","minus","equals"];
+$word_list = ["artı","eksi","eşittir",'çarpı','bölü'];
+$file_list = ["plus","minus","equals","times","divided_by"];
 for ($i=0; $i<count($word_list); $i++) {
 	$input = new SynthesisInput();
 	$input->setText( $word_list[$i] );
@@ -135,8 +135,8 @@ for ($i=0; $i<count($word_list); $i++) {
 	}
 }
 
-$word_list = ["加","減","="];
-$file_list = ["plus","minus","equals"];
+$word_list = ["加","減","=","乘","除以"];
+$file_list = ["plus","minus","equals","times","divided_by"];
 for ($i=0; $i<count($word_list); $i++) {
 	$input = new SynthesisInput();
 	$input->setText( $word_list[$i] );
