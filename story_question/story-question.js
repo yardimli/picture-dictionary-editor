@@ -117,6 +117,17 @@ $(document).ready(function () {
         $("#question_id").val($(this).data("question_id"));
         $("#question").val($(this).data("question"));
 
+        $("#show_answer_pictures").prop('checked', false);
+        if ($(this).data("show_answer_pictures")=="1") {
+          $("#show_answer_pictures").prop('checked', true);
+        }
+
+        $("#random_answers_from_other_questions").prop('checked', false);
+        if ($(this).data("random_answers_from_other_questions")=="1") {
+          $("#random_answers_from_other_questions").prop('checked', true);
+        }
+
+
         $("#story_text").html( "..." );
         for (var i=0; i< stories_array.length; i++) {
           if (stories_array[i]['id'] == $(this).data("story_id")) {
@@ -167,6 +178,9 @@ $(document).ready(function () {
     $("#question_id").val("0");
     $("#audio").val("");
 
+    $("#show_answer_pictures").prop('checked', false);
+    $("#random_answers_from_other_questions").prop('checked', false);
+
     $("#story_question_modal_title").html("Add Story Question");
 
     $("#story_question_media_edit").hide();
@@ -210,6 +224,7 @@ $(document).ready(function () {
         audio_speed: $("#audio_speed").val(),
         question: $("#question").val(),
         question_id: $("#question_id").val()
+
       },
       success: function (data) {
         $('#loading').hide();
@@ -246,6 +261,8 @@ $(document).ready(function () {
         story_id: $("#story_id").val(),
         question_id: $("#question_id").val(),
         question: $("#question").val(),
+        show_answer_pictures: $("#show_answer_pictures").prop("checked") ? 1 : 0,
+        random_answers_from_other_questions: $("#random_answers_from_other_questions").prop("checked") ? 1 : 0
       },
       // contentType: false,
       cache: false,

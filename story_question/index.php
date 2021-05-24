@@ -192,6 +192,8 @@ if(isset($_GET['delete_question_id']))
 											        data-story_id="<?php echo $row['story_id']; ?>"
 											        data-story="<?php echo $row['story']; ?>"
 											        data-language="<?php echo $row['language']; ?>"
+											        data-show_answer_pictures="<?php echo $row['show_answer_pictures']; ?>"
+											        data-random_answers_from_other_questions="<?php echo $row['random_answers_from_other_questions']; ?>"
 											        data-audio="<?php echo $row['audio']; ?>"><i class="fa fa-edit"></i> Edit</button>
 
 											<a href="/picture-dictionary-editor/story_answer/?question_id=<?php echo $row['id']; ?>" class="btn btn-primary btn-flat"><i class="fa fa-question"></i> Answers</a>

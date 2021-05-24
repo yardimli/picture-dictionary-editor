@@ -39,6 +39,16 @@
 							       value="">
 						</div>
 
+						<div style="margin-top:10px;margin-right:10px; margin-bottom: 0px;" class="form-group">
+							<label>Show pictures in answers:</label>
+							<input required type="checkbox" class="" style="margin-left:10px;  vertical-align: top;" name="show_answer_pictures" id="show_answer_pictures">
+						</div>
+
+						<div style="margin-top:10px;margin-right:10px; margin-bottom: 0px;" class="form-group">
+							<label>Get random answers from other questions:</label>
+							<input required type="checkbox" class="" style="margin-left:10px;  vertical-align: top;" name="random_answers_from_other_questions" id="random_answers_from_other_questions">
+						</div>
+
 						<br>
 						<button id="update-text-fields-button" class="btn btn-primary btn-flat btn-sm" style="margin-right:20px;">Save Changes</button>
 						<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-right:20px; display: none;">Close and Refresh List</button>

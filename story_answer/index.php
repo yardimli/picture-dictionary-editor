@@ -102,7 +102,7 @@ if(isset($_GET['delete_answer_id']))
 						<option value=''>Select Story/Question</option>
 						";
 						<?php
-						$stmt = $story_list->runQuery( 'SELECT story_question.*, story.title as title FROM story_question LEFT join story ON story.id=story_question.story_id WHERE story_question.deleted=:val' );
+						$stmt = $story_list->runQuery( 'SELECT story_question.*, story.title as title FROM story_question LEFT join story ON story.id=story_question.story_id WHERE story_question.deleted=:val  ORDER by title ASC, question ASC' );
 						$stmt->execute( array( ':val' => 0 ) );
 						while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
 
@@ -190,12 +190,17 @@ if(isset($_GET['delete_answer_id']))
 									<tr>
 										<td><?php echo $row['id']; ?></td>
 										<td><?php echo $row['story_title'] . " (" . $row['language'] . ").<br>".$row['story_question']; ?></td>
-										<td><?php echo $row['answer']; ?></td>
+										<td><?php
+											if ($row['is_correct']==="1") { echo "<span style='font-weight:bold'>"; }
+											echo $row['answer'];
+											if ($row['is_correct']==="1") { echo "</span>"; }
+											?></td>
 										<td><?php echo $dateadded; ?></td>
 										<td style="white-space: nowrap;">
 											<button type="button" class="btn btn-primary btn-flat edit-story-answer-btn" title="edit record"     data-picture="<?php echo $row['picture']; ?>"
 											        data-answer="<?php echo $row['answer']; ?>"
 											        data-answer_id="<?php echo $row['id']; ?>"
+											        data-is_correct="<?php echo $row['is_correct']; ?>"
 											        data-question_id="<?php echo $row['question_id']; ?>"
 											        data-story_id="<?php echo $row['story_id']; ?>"
 											        data-story="<?php echo $row['story']; ?>"

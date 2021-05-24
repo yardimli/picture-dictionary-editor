@@ -305,7 +305,7 @@ $(document).ready(function () {
         question_id: $("#question_id").val(),
         answer_id: $("#answer_id").val(),
         answer: $("#answer").val(),
-        is_correct: $("#is_correct").attr("checked") ? 1 : 0
+        is_correct: $("#is_correct").prop("checked") ? 1 : 0
       },
       // contentType: false,
       cache: false,

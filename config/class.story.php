@@ -119,13 +119,15 @@ class STORY {
 
 
 	//------------------------------------------------------------------------------------------------
-	public function add_story_question( $story_id, $question ) {
+	public function add_story_question( $story_id, $question, $show_answer_pictures, $random_answers_from_other_questions ) {
 
 		try {
-			$stmt = $this->conn->prepare( "INSERT INTO story_question (story_id, question, userid)
-    		VALUES(:story_id, :question, :userid)" );
+			$stmt = $this->conn->prepare( "INSERT INTO story_question (story_id, question, show_answer_pictures, random_answers_from_other_questions, userid)
+    		VALUES(:story_id, :question, :show_answer_pictures, :random_answers_from_other_questions, :userid)" );
 			$stmt->bindparam( ":story_id", $story_id );
 			$stmt->bindparam( ":question", $question );
+			$stmt->bindparam( ":show_answer_pictures", $show_answer_pictures );
+			$stmt->bindparam( ":random_answers_from_other_questions", $random_answers_from_other_questions );
 			$stmt->bindparam( ":userid", $_SESSION['user_session'] );
 //				$stmt->debugDumpParams();
 			$stmt->execute();
@@ -139,12 +141,14 @@ class STORY {
 		}
 	}
 
-	public function update_story_question( $id, $story_id, $question ) {
+	public function update_story_question( $id, $story_id, $question, $show_answer_pictures, $random_answers_from_other_questions ) {
 
 		try {
-			$stmt = $this->conn->prepare( "UPDATE story_question SET story_id=:story_id, question=:question WHERE id=:id" );
+			$stmt = $this->conn->prepare( "UPDATE story_question SET story_id=:story_id, question=:question, show_answer_pictures=:show_answer_pictures, random_answers_from_other_questions=:random_answers_from_other_questions WHERE id=:id" );
 			$stmt->bindparam( ":story_id", $story_id );
 			$stmt->bindparam( ":question", $question );
+			$stmt->bindparam( ":show_answer_pictures", $show_answer_pictures );
+			$stmt->bindparam( ":random_answers_from_other_questions", $random_answers_from_other_questions );
 			$stmt->bindparam( ":id", $id );
 			$stmt->execute();
 
