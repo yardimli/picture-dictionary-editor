@@ -83,9 +83,7 @@
 								</button>
 							</div>
 
-							<audio
-								id="audio_player"
-								src=""></audio>
+							<audio id="audio_player" src=""></audio>
 
 							<div class="progress-wrp" id="progress-wrp">
 								<div class="progress-bar"></div>

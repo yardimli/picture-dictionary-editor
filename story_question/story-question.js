@@ -96,7 +96,7 @@ $(document).ready(function () {
   }
 
   $("#category_filter_id").on('change', function () {
-    window.location.href = "/picture-dictionary-editor/story-question/?catid=" + $(this).val();
+    window.location.href = "/picture-dictionary-editor/story_question/?story_id=" + $(this).val();
   });
 
   $('#example1').DataTable({
@@ -249,10 +249,10 @@ $(document).ready(function () {
     $("#loading_msg").html("saving form data...");
 
     $(".refresh_page_btn").each(function () {
-      $(this).data("catid", $("#multi_category").val());
+      $(this).data("story_id", $("#story_filter_id").val());
     });
 
-    console.log ( $(".refresh_page_btn").data("catid") );
+    console.log ( $(".refresh_page_btn").data("story_id") );
 
     $.ajax({
       url: "../save-story-question-data.php",
@@ -284,7 +284,7 @@ $(document).ready(function () {
   });
 
   $(".refresh_page_btn").off('click').on('click',function () {
-    var new_url = "https://elosoft.tw/picture-dictionary-editor/story-question/?catid="+$(this).data("catid");
+    var new_url = "https://elosoft.tw/picture-dictionary-editor/story_question/?story_id="+$(this).data("story_id");
     window.location.href = new_url;
     return false;
   });
