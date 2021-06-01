@@ -52,7 +52,7 @@
 
 						<br>
 						<button id="update-text-fields-button" class="btn btn-primary btn-flat btn-sm" style="margin-right:20px;">Save Changes</button>
-						<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-right:20px; display: none;">Close and Refresh List</button>
+						<button data-question_id="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-right:20px; display: none;">Close and Refresh List</button>
 
 						<hr>
 
@@ -68,7 +68,7 @@
 								<button id="upload-image-button" class="btn btn-primary btn-flat btn-sm" style="margin-top:0px; margin-right:20px; height: 34px; vertical-align: top;">
 									Upload Image
 								</button>
-								<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm"
+								<button data-question_id="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm"
 								        style="margin-top:0px; display: none;  height: 34px; vertical-align: top;">Close and Refresh List
 								</button>
 							</div>
@@ -80,7 +80,7 @@
 								<input type="file" name="file_audio" id="file_audio" class="form-control" style="display: inline-block; width: 200px;">
 								<button id="upload-audio-button" class="btn btn-primary btn-flat btn-sm"
 								        style="margin-top:0px; vertical-align: top; height: 34px; margin-right:20px; ">Upload Audio</button>
-								<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-top:0px; vertical-align: top; height: 34px; display: none;">
+								<button data-question_id="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-top:0px; vertical-align: top; height: 34px; display: none;">
 									Close and Refresh List
 								</button>
 							</div>
@@ -94,7 +94,7 @@
 								</select>
 								<br>
 								<button id="regen-audio-button" class="btn btn-danger btn-flat btn-sm" style="margin-right:20px; height: 34px; vertical-align: top;">Generate Audio</button>
-								<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style=" display: none; height: 34px; vertical-align: top;">Close and
+								<button data-question_id="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style=" display: none; height: 34px; vertical-align: top;">Close and
 									Refresh List
 								</button>
 							</div>

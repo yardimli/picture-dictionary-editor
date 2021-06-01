@@ -119,21 +119,25 @@ class STORY {
 
 
 	//------------------------------------------------------------------------------------------------
-	public function add_story_question( $story_id, $question, $show_answer_pictures, $random_answers_from_other_questions ) {
+	public function add_story_question( $story_id, $question, $show_answer_pictures, $random_answers_from_other_questions,$random_answers_from_same_question ) {
 
 		try {
-			$stmt = $this->conn->prepare( "INSERT INTO story_question (story_id, question, show_answer_pictures, random_answers_from_other_questions, userid)
-    		VALUES(:story_id, :question, :show_answer_pictures, :random_answers_from_other_questions, :userid)" );
+			$stmt = $this->conn->prepare( "INSERT INTO story_question (story_id, question, show_answer_pictures, random_answers_from_other_questions, random_answers_from_same_question, userid)
+    		VALUES(:story_id, :question, :show_answer_pictures, :random_answers_from_other_questions, :random_answers_from_same_question, :userid)" );
 			$stmt->bindparam( ":story_id", $story_id );
 			$stmt->bindparam( ":question", $question );
 			$stmt->bindparam( ":show_answer_pictures", $show_answer_pictures );
 			$stmt->bindparam( ":random_answers_from_other_questions", $random_answers_from_other_questions );
+			$stmt->bindparam( ":random_answers_from_same_question", $random_answers_from_same_question );
 			$stmt->bindparam( ":userid", $_SESSION['user_session'] );
+//			echo "<pre>";
 //				$stmt->debugDumpParams();
+//			echo "</pre>";
 			$stmt->execute();
 
 			$id = $this->conn->lastInsertId();
 //			echo $id;
+
 
 			return $stmt;
 		} catch ( PDOException $e ) {
@@ -141,14 +145,15 @@ class STORY {
 		}
 	}
 
-	public function update_story_question( $id, $story_id, $question, $show_answer_pictures, $random_answers_from_other_questions ) {
+	public function update_story_question( $id, $story_id, $question, $show_answer_pictures, $random_answers_from_other_questions, $random_answers_from_same_question ) {
 
 		try {
-			$stmt = $this->conn->prepare( "UPDATE story_question SET story_id=:story_id, question=:question, show_answer_pictures=:show_answer_pictures, random_answers_from_other_questions=:random_answers_from_other_questions WHERE id=:id" );
+			$stmt = $this->conn->prepare( "UPDATE story_question SET story_id=:story_id, question=:question, show_answer_pictures=:show_answer_pictures, random_answers_from_other_questions=:random_answers_from_other_questions, random_answers_from_same_question=:random_answers_from_same_question WHERE id=:id" );
 			$stmt->bindparam( ":story_id", $story_id );
 			$stmt->bindparam( ":question", $question );
 			$stmt->bindparam( ":show_answer_pictures", $show_answer_pictures );
 			$stmt->bindparam( ":random_answers_from_other_questions", $random_answers_from_other_questions );
+			$stmt->bindparam( ":random_answers_from_same_question", $random_answers_from_same_question );
 			$stmt->bindparam( ":id", $id );
 			$stmt->execute();
 

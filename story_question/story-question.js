@@ -6,6 +6,11 @@ $(document).ready(function () {
     window.location.href = "/picture-dictionary-editor/story_question/?story_id=" + $(this).val();
   });
 
+  $(".refresh_page_btn").each(function () {
+    $(this).data("story_id", $("#story_filter_id").val());
+  });
+  console.log ( $(".refresh_page_btn").data("story_id") );
+
 
   var Upload = function (file, question_id, upload_type) {
     this.file = file;
@@ -127,11 +132,16 @@ $(document).ready(function () {
           $("#random_answers_from_other_questions").prop('checked', true);
         }
 
+        $("#random_answers_from_same_question").prop('checked', false);
+        if ($(this).data("random_answers_from_same_question")=="1") {
+          $("#random_answers_from_same_question").prop('checked', true);
+        }
+
 
         $("#story_text").html( "..." );
         for (var i=0; i< stories_array.length; i++) {
           if (stories_array[i]['id'] == $(this).data("story_id")) {
-            $("#story_text").html( stories_array[i]['story'] );
+            $("#story_text").html( stories_array[i]['story'].replace("\n","<br>") );
           }
         }
 
@@ -141,6 +151,17 @@ $(document).ready(function () {
         $("#audio_player").attr({"src": "../audio/story-question/" + $(this).data("audio") + "?cb=" + new Date().getTime()});
 
         $("#audio").val($(this).data("audio"));
+
+        $('#image-file').css("color", "green");
+        $('#image-preview-div').css("display", "inline-block");
+        if ( $(this).data("picture") === "") {
+          $('#preview-img').attr('src', "../pictures/daha-1.jpg");
+        } else
+        {
+          $('#preview-img').attr('src', "../pictures/story-question/" + $(this).data("picture"));
+        }
+        $('#preview-img').css('max-width', '150px');
+
 
         $("#story_question_modal_title").html("Edit Question");
         $("#edit_story_question_modal").modal("show");
@@ -169,7 +190,7 @@ $(document).ready(function () {
       $("#story_text").html( "..." );
       for (var i=0; i< stories_array.length; i++) {
         if (stories_array[i]['id'] == new_question_story_id) {
-          $("#story_text").html( stories_array[i]['story'] );
+          $("#story_text").html( stories_array[i]['story'].replace("\n","<br>") );
         }
       }
 
@@ -177,9 +198,16 @@ $(document).ready(function () {
     $("#question").val("");
     $("#question_id").val("0");
     $("#audio").val("");
+    $("#image_file_name").html("daha-1.jpg");
+
+    $('#image-file').css("color", "green");
+    $('#image-preview-div').css("display", "inline-block");
+    $('#preview-img').attr('src', "../pictures/daha-1.jpg");
+    $('#preview-img').css('max-width', '150px');
 
     $("#show_answer_pictures").prop('checked', false);
     $("#random_answers_from_other_questions").prop('checked', false);
+    $("#random_answers_from_same_question").prop('checked', false);
 
     $("#story_question_modal_title").html("Add Story Question");
 
@@ -188,10 +216,32 @@ $(document).ready(function () {
   });
 
 
+  function selectImage(e) {
+    $('#image-file').css("color", "green");
+    $('#image-preview-div').css("display", "inline-block");
+    $('#preview-img').attr('src', e.target.result);
+    $('#preview-img').css('max-width', '150px');
+  }
 
   var maxsize = 500 * 1024; // 500 KB
 
   $('#max-size').html((maxsize / 1024).toFixed(2));
+
+  $("#upload-image-button").off('click').on('click', function (e) {
+    e.preventDefault();
+    $('#message').empty();
+    $('#loading').show();
+    $("#loading_msg").html("uploading...");
+    $(".progress-wrp").show();
+
+    current_upload_button_id = "#upload-image-button";
+    progress_text = "#loading";
+    progress_bar_id = "#progress-wrp";
+    var file = $("#image-file")[0].files[0];
+    var upload = new Upload(file, $("#question_id").val(), "picture");
+    // maby check size or type here with upload.getSize() and upload.getType()
+    upload.doUpload();
+  });
 
   $("#upload-audio-button").off('click').on('click', function (e) {
     e.preventDefault();
@@ -248,12 +298,6 @@ $(document).ready(function () {
     $('#loading').show();
     $("#loading_msg").html("saving form data...");
 
-    $(".refresh_page_btn").each(function () {
-      $(this).data("story_id", $("#story_filter_id").val());
-    });
-
-    console.log ( $(".refresh_page_btn").data("story_id") );
-
     $.ajax({
       url: "../save-story-question-data.php",
       type: "POST",
@@ -262,7 +306,8 @@ $(document).ready(function () {
         question_id: $("#question_id").val(),
         question: $("#question").val(),
         show_answer_pictures: $("#show_answer_pictures").prop("checked") ? 1 : 0,
-        random_answers_from_other_questions: $("#random_answers_from_other_questions").prop("checked") ? 1 : 0
+        random_answers_from_other_questions: $("#random_answers_from_other_questions").prop("checked") ? 1 : 0,
+        random_answers_from_same_question: $("#random_answers_from_same_question").prop("checked") ? 1 : 0
       },
       // contentType: false,
       cache: false,
@@ -283,6 +328,34 @@ $(document).ready(function () {
 
   });
 
+  $('#image-file').change(function () {
+
+    $('#message').empty();
+
+    var file = this.files[0];
+    var match = ["image/jpeg", "image/png", "image/jpg"];
+
+    if (!((file.type == match[0]) || (file.type == match[1]) || (file.type == match[2]))) {
+      $('#message').html('<div class="alert alert-warning" role="alert">Invalid image format. Allowed formats: JPG, JPEG, PNG.</div>');
+
+      return false;
+    }
+
+    if (file.size > maxsize) {
+      $('#message').html('<div class=\"alert alert-danger\" role=\"alert\">The size of image you are attempting to upload is ' + (file.size / 1024).toFixed(2) + ' KB, maximum size allowed is ' + (maxsize / 1024).toFixed(2) + ' KB</div>');
+
+      return false;
+    }
+
+    // $('#upload-button').removeAttr("disabled");
+
+    var reader = new FileReader();
+    reader.onload = selectImage;
+    reader.readAsDataURL(this.files[0]);
+  });
+
+
+
   $(".refresh_page_btn").off('click').on('click',function () {
     var new_url = "https://elosoft.tw/picture-dictionary-editor/story_question/?story_id="+$(this).data("story_id");
     window.location.href = new_url;
@@ -294,7 +367,7 @@ $(document).ready(function () {
     $("#story_text").html( "..." );
     for (var i=0; i< stories_array.length; i++) {
       if (stories_array[i]['id'] === $(this).val()) {
-        $("#story_text").html( stories_array[i]['story'] );
+        $("#story_text").html( stories_array[i]['story'].replace("\n","<br>") );
       }
     }
   });
@@ -304,7 +377,7 @@ $(document).ready(function () {
 
 function delete_question(question_id) {
   if (confirm('Delete this question?')) {
-    window.location.href = 'index.php?delete_question_id=' + question_id;
+    window.location.href = 'index.php?delete_question_id=' + question_id+"&story_id="+$("#story_filter_id").val();
   }
 }
 

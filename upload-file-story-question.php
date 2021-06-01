@@ -99,6 +99,11 @@ if ( ! $auth_user->is_loggedin() ) {
 			$validextensions       = array( "mp3" );
 		}
 
+		if ( $_POST["upload_type"] === "picture" ) {
+			$max_size              = 500 * 1024; // 500 KB
+			$destination_directory = "./pictures/story-question/";
+			$validextensions       = array( "jpeg", "jpg", "png" );
+		}
 
 		if ( isset( $_FILES["file"] ) && $_FILES ["file"] ["error"] == UPLOAD_ERR_OK ) {
 			$temporary      = explode( ".", $_FILES["file"]["name"] );
@@ -128,6 +133,11 @@ if ( ! $auth_user->is_loggedin() ) {
 						echo "<p>Type: <strong>" . $_FILES["file"]["type"] . "</strong></p>";
 						echo "<p>Size: <strong>" . round( $_FILES["file"]["size"] / 1024, 2 ) . " kB</strong></p>";
 						echo "<p>Temp file: <strong>" . $_FILES["file"]["tmp_name"] . "</strong></p>";
+
+						if ( $_POST["upload_type"] === "picture" ) {
+							$stmt2 = $story_list->runQuery( 'UPDATE story_question set picture="' . $new_filename . '" WHERE id=' . $_POST["question_id"] );
+							$stmt2->execute();
+						}
 
 						if ( $_POST["upload_type"] === "audio" ) {
 							$stmt2 = $story_list->runQuery( 'UPDATE story_question set audio="' . $new_filename . '" WHERE id=' . $_POST["question_id"] );

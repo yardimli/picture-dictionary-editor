@@ -29,10 +29,10 @@ if ( ! $auth_user->is_loggedin() ) {
 } else {
 	echo "<div class=\"alert alert-success\" role=\"alert\">";
 	if ( $_POST["question_id"] === "0" ) {
-		if ( $story_list->add_story_question( $_POST["story_id"], $_POST["question"], $_POST["show_answer_pictures"], $_POST["random_answers_from_other_questions"] ) ) {
+		if ( $story_list->add_story_question( $_POST["story_id"], $_POST["question"], $_POST["show_answer_pictures"], $_POST["random_answers_from_other_questions"], $_POST["random_answers_from_same_question"] ) ) {
 			echo "<p>Story Question data Added</strong></p>";
 		}
-	} else if ( $story_list->update_story_question( $_POST["question_id"], $_POST["story_id"], $_POST["question"], $_POST["show_answer_pictures"], $_POST["random_answers_from_other_questions"] ) ) {
+	} else if ( $story_list->update_story_question( $_POST["question_id"], $_POST["story_id"], $_POST["question"], $_POST["show_answer_pictures"], $_POST["random_answers_from_other_questions"], $_POST["random_answers_from_same_question"] ) ) {
 		echo "<p>Story Question data Updated</strong></p>";
 	}
 

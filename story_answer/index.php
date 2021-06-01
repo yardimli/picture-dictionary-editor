@@ -274,7 +274,7 @@ if(isset($_GET['delete_answer_id']))
 		$stmt->execute( array( ':val' => 0 ) );
 		while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
 
-			echo "{ 'q_id' : '" . $row['id'] . "', 's_id' : '" . $row['s_id'] . "', 'story' : '" . $row['story'] . "', 'title' : '" . $row['title'] . "', 'question' : '" . $row['question'] . "'},";
+			echo "{ 'q_id' : '" . $row['id'] . "', 's_id' : '" . $row['s_id'] . "', 'story' : `" . $row['story'] . "`, 'title' : '" . $row['title'] . "', 'question' : '" . $row['question'] . "'},";
 		}
 		?>];
 </script>

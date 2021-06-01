@@ -6,6 +6,11 @@ $(document).ready(function () {
     window.location.href = "/picture-dictionary-editor/story_answer/?question_id=" + $(this).val();
   });
 
+  $(".refresh_page_btn").each(function () {
+    $(this).data("question_id", $("#question_filter_id").val());
+  });
+  console.log ( $(".refresh_page_btn").data("question_id") );
+
 
   var Upload = function (file, answer_id, upload_type) {
     this.file = file;
@@ -94,10 +99,6 @@ $(document).ready(function () {
     var myAudio = document.getElementById(audiodiv);
     return myAudio.paused ? myAudio.play() : myAudio.pause();
   }
-
-  $("#question_filter_id").on('change', function () {
-    window.location.href = "/picture-dictionary-editor/story_answer/?question_id=" + $(this).val();
-  });
 
   $('#example1').DataTable({
     "drawCallback": function (settings) {
@@ -290,12 +291,6 @@ $(document).ready(function () {
     $('#message').empty();
     $('#loading').show();
     $("#loading_msg").html("saving form data...");
-
-    $(".refresh_page_btn").each(function () {
-      $(this).data("question_id", $("#question_filter_id").val());
-    });
-
-    console.log ( $(".refresh_page_btn").data("question_id") );
 
     $.ajax({
       url: "../save-story-answer-data.php",

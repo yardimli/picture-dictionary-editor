@@ -49,13 +49,34 @@
 							<input required type="checkbox" class="" style="margin-left:10px;  vertical-align: top;" name="random_answers_from_other_questions" id="random_answers_from_other_questions">
 						</div>
 
+						<div style="margin-top:10px;margin-right:10px; margin-bottom: 0px;" class="form-group">
+							<label>Get random answers from same question:</label>
+							<input required type="checkbox" class="" style="margin-left:10px;  vertical-align: top;" name="random_answers_from_same_question" id="random_answers_from_same_question">
+						</div>
+
 						<br>
 						<button id="update-text-fields-button" class="btn btn-primary btn-flat btn-sm" style="margin-right:20px;">Save Changes</button>
-						<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-right:20px; display: none;">Close and Refresh List</button>
+						<button data-story_id="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-right:20px; display: none;">Close and Refresh List</button>
 
 						<hr>
 
 						<div id="story_question_media_edit">
+							<div id="image-preview-div" style="display: none;">
+								<label for="exampleInputFile">Selected image (<span id="image_file_name"></span>):</label>
+								<br>
+								<img id="preview-img" src="../images/noimage.png">
+							</div>
+
+							<div class="form-group" style=" vertical-align: top;">
+								<input type="file" name="image-file" id="image-file" class="form-control" style="display: inline-block; width: 250px;">
+								<button id="upload-image-button" class="btn btn-primary btn-flat btn-sm" style="margin-top:0px; margin-right:20px; height: 34px; vertical-align: top;">
+									Upload Image
+								</button>
+								<button data-question_id="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm"
+								        style="margin-top:0px; display: none;  height: 34px; vertical-align: top;">Close and Refresh List
+								</button>
+							</div>
+
 
 							<div style="margin-top:8px;margin-right:10px;" class="form-group">
 								<label for="exampleInputFile">Audio (<span id="audio_file"></span>):</label> <span id="play_audio"
@@ -64,7 +85,7 @@
 								<input type="file" name="file_audio" id="file_audio" class="form-control" style="display: inline-block; width: 200px;">
 								<button id="upload-audio-button" class="btn btn-primary btn-flat btn-sm"
 								        style="margin-top:0px; vertical-align: top; height: 34px; margin-right:20px; ">Upload Audio</button>
-								<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-top:0px; vertical-align: top; height: 34px; display: none;">
+								<button data-story_id="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-top:0px; vertical-align: top; height: 34px; display: none;">
 									Close and Refresh List
 								</button>
 							</div>
@@ -78,7 +99,7 @@
 								</select>
 								<br>
 								<button id="regen-audio-button" class="btn btn-danger btn-flat btn-sm" style="margin-right:20px; height: 34px; vertical-align: top;">Generate Audio</button>
-								<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style=" display: none; height: 34px; vertical-align: top;">Close and
+								<button data-story_id="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style=" display: none; height: 34px; vertical-align: top;">Close and
 									Refresh List
 								</button>
 							</div>

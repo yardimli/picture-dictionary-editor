@@ -184,16 +184,28 @@ if(isset($_GET['delete_question_id']))
 									<tr>
 										<td><?php echo $row['id']; ?></td>
 										<td><?php echo $row['story_title'] . " (" . $row['language'] . ")"; ?></td>
-										<td><?php echo $row['question'];  ?></span></td>
+										<td><?php echo $row['question'];
+
+											$stmt4 = $story_list->runQuery( 'SELECT * FROM story_answer WHERE deleted=:val AND question_id=:question_id AND is_correct = 1' );
+											$stmt4->execute( array( ':val' => 0, ':question_id' => $row['id']  ) );
+											if ( $row4 = $stmt4->fetch( PDO::FETCH_ASSOC ) ) {
+												echo "<br>&nbsp;".$row4["answer"];
+											}
+
+
+											?></span></td>
 										<td><?php echo $dateadded; ?></td>
 										<td style="white-space: nowrap;">
-											<button type="button" class="btn btn-primary btn-flat edit-story-question-btn" title="edit record"  data-question="<?php echo $row['question']; ?>"
+											<button type="button" class="btn btn-primary btn-flat edit-story-question-btn" title="edit record"
+											        data-picture="<?php echo $row['picture']; ?>"
+				                      data-question="<?php echo $row['question']; ?>"
 											        data-question_id="<?php echo $row['id']; ?>"
 											        data-story_id="<?php echo $row['story_id']; ?>"
 											        data-story="<?php echo $row['story']; ?>"
 											        data-language="<?php echo $row['language']; ?>"
 											        data-show_answer_pictures="<?php echo $row['show_answer_pictures']; ?>"
 											        data-random_answers_from_other_questions="<?php echo $row['random_answers_from_other_questions']; ?>"
+											        data-random_answers_from_same_question="<?php echo $row['random_answers_from_same_question']; ?>"
 											        data-audio="<?php echo $row['audio']; ?>"><i class="fa fa-edit"></i> Edit</button>
 
 											<a href="/picture-dictionary-editor/story_answer/?question_id=<?php echo $row['id']; ?>" class="btn btn-primary btn-flat"><i class="fa fa-question"></i> Answers</a>
@@ -263,7 +275,7 @@ if(isset($_GET['delete_question_id']))
 	  $stmt = $story_list->runQuery( 'SELECT * FROM story WHERE deleted=:val' );
 	  $stmt->execute( array( ':val' => 0 ) );
 	  while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
-		  echo "{ 'id' : '" . $row['id'] . "', 'story' : '" . $row['story'] . "'},";
+		  echo "{ 'id' : '" . $row['id'] . "', 'story' : `" . $row['story'] . "`},";
 	  }
 	  ?>];
 </script>
