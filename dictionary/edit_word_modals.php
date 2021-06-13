@@ -62,7 +62,18 @@
 							</select>
 						</div>
 
-						<br>
+
+						<div style="margin-top:8px;margin-right:10px;" class="form-group">
+							<label>Word Sound</label>
+							<div class="clearfix"></div>
+							<input style="width: 150px; display: inline-block;" required data-minlength="6" type="text" class="form-control" name="word_sound" id="word_sound" placeholder="C4,D4,E4" value="">
+
+							<div id="play-word-sound" class="btn btn-danger btn-flat btn-sm" style="margin-left:10px;">Play Sound</div>
+							<div id="check-word-sound" class="btn btn-danger btn-flat btn-sm" style="margin-left:10px;">Check Unique</div>
+							<span id="check-word-sound-result"></span>
+
+						</div>
+
 						<button id="update-text-fields-button-en" class="btn btn-primary btn-flat btn-sm" style="margin-right:20px;">Save Changes</button>
 						<button data-catid="0" class="refresh_page_btn btn btn-primary btn-flat btn-sm" style="margin-right:20px; display: none;">Close and Refresh List</button>
 

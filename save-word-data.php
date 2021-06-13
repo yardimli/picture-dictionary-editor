@@ -28,13 +28,23 @@ if ( ! $auth_user->is_loggedin() ) {
 	$auth_user->doLogout();
 } else {
 	echo "<div class=\"alert alert-success\" role=\"alert\">";
+	if ( $_POST["operation"] === "check_word_sound" ) {
+
+		if ( $dictionary_list->check_word_sound( $_POST["word_id"], $_POST["word_sound"] ) ) {
+			echo "Sound is not Unique.";
+		} else
+		{
+			echo "Sound is Unique.";
+		}
+	} else
+
 	if ( $_POST["language"] === "en" && $_POST["word_id"] === "0" ) {
-		if ( $dictionary_list->add_word_en( $_POST["word_EN"], $_POST["multi_category"], $_POST["level"] ) ) {
+		if ( $dictionary_list->add_word_en( $_POST["word_EN"], $_POST["multi_category"], $_POST["level"], $_POST["word_sound"] ) ) {
 			echo "<p>English Word Text data Added</strong></p>";
 		}
 	} else {
 		if ( $_POST["language"] === "en" ) {
-			if ( $dictionary_list->update_word_en( $_POST["word_id"], $_POST["word_EN"], $_POST["multi_category"], $_POST["level"] ) ) {
+			if ( $dictionary_list->update_word_en( $_POST["word_id"], $_POST["word_EN"], $_POST["multi_category"], $_POST["level"], $_POST["word_sound"] ) ) {
 				echo "<p>English Word Text data Updated</strong></p>";
 			}
 		}

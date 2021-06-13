@@ -16,14 +16,15 @@ class DICTIONARY {
 		return $stmt;
 	}
 
-	public function add_word_en( $Word_EN, $categoryID, $level ) {
+	public function add_word_en( $Word_EN, $categoryID, $level, $word_sound ) {
 
 		try {
-			$stmt = $this->conn->prepare( "INSERT INTO dictionary (word_EN, level, userid)
-    		VALUES(:word_EN, :level, :userid)" );
+			$stmt = $this->conn->prepare( "INSERT INTO dictionary (word_EN, level, word_sound, userid)
+    		VALUES(:word_EN, :level, :word_sound, :userid)" );
 			$stmt->bindparam( ":word_EN", $Word_EN );
 //			$stmt->bindparam( ":categoryID", $categoryID );
 			$stmt->bindparam( ":level", $level );
+			$stmt->bindparam( ":word_sound", $word_sound );
 			$stmt->bindparam( ":userid", $_SESSION['user_session'] );
 
 //				$stmt->debugDumpParams();
@@ -55,7 +56,28 @@ class DICTIONARY {
 		}
 	}
 
-	public function add_word_original( $Word_EN, $Word_TR, $Word_CH, $bopomofo, $categoryID, $level ) {
+
+	public function check_word_sound( $word_id, $word_sound ) {
+
+		$WordFound = false;
+		try {
+			$stmt = $this->conn->prepare( "SELECT * FROM dictionary WHERE word_sound=:word_sound" );
+			$stmt->bindparam( ":word_sound", $word_sound );
+			$stmt->execute();
+			while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
+				if ($row["id"] !== $word_id) {
+					$WordFound = true;
+				}
+			}
+
+		} catch ( PDOException $e ) {
+			echo $e->getMessage() . " (2)";
+		}
+
+		return $WordFound;
+	}
+
+	public function add_word_original( $Word_EN, $Word_TR, $Word_CH, $bopomofo, $categoryID, $level, $word_sound ) {
 
 		$WordFound = false;
 		try {
@@ -97,8 +119,8 @@ class DICTIONARY {
 		}
 
 		try {
-			$stmt = $this->conn->prepare( "INSERT INTO dictionary (word_EN, word_TR, word_CH, bopomofo, categoryID, level)
-    		VALUES(:word_EN, :word_TR, :word_CH, :bopomofo, :categoryID, :level)" );
+			$stmt = $this->conn->prepare( "INSERT INTO dictionary (word_EN, word_TR, word_CH, bopomofo, categoryID, level, word_sound)
+    		VALUES(:word_EN, :word_TR, :word_CH, :bopomofo, :categoryID, :level, :word_sound)" );
 			$stmt->bindparam( ":word_EN", $Word_EN );
 			$stmt->bindparam( ":word_TR", $Word_TR );
 			$stmt->bindparam( ":word_CH", $Word_CH );
@@ -106,6 +128,7 @@ class DICTIONARY {
 //				$stmt->bindparam( ":picture", $picture );
 			$stmt->bindparam( ":categoryID", $categoryID );
 			$stmt->bindparam( ":level", $level );
+			$stmt->bindparam( ":word_sound", $word_sound );
 //				$stmt->bindparam( ":audio_EN", $audio_en );
 //				$stmt->bindparam( ":audio_TR", $audio_tr );
 //				$stmt->bindparam( ":audio_CH", $audio_ch );
@@ -122,16 +145,18 @@ class DICTIONARY {
 	}
 
 
-	public function update_word_en( $id, $Word_EN, $categoryID, $level ) {
+	public function update_word_en( $id, $Word_EN, $categoryID, $level, $word_sound ) {
 		try {
 			$stmt = $this->conn->prepare( "UPDATE dictionary SET
 				word_EN=:Word_EN,
 				level=:level,
+				word_sound=:word_sound,
 				update_time = now()
     			WHERE id=:id" );
 			$stmt->bindparam( ":Word_EN", $Word_EN );
 			$stmt->bindparam( ":id", $id );
 			$stmt->bindparam( ":level", $level );
+			$stmt->bindparam( ":word_sound", $word_sound );
 
 			$stmt->execute();
 

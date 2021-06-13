@@ -79,7 +79,15 @@ if(isset($_GET['delete_word_id']))
 
 	<link rel="stylesheet" href="<?php echo WEB_ROOT; ?>/dist/css/bootstrap-select.min.css">
 
+	<link rel="stylesheet" href="<?php echo WEB_ROOT; ?>/dist/css/bootstrap-select.min.css">
+
+	<script src="<?php echo WEB_ROOT; ?>/tone/build/Tone.js"></script>
+
 	<link rel="stylesheet" href="dictionary.css">
+	<script>
+		var PageCatID='0';
+	</script>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -170,6 +178,7 @@ if(isset($_GET['delete_word_id']))
 									<th>English</th>
 									<th>Turkish</th>
 									<th>Chinese</th>
+									<th>Word Sound</th>
 									<th>Category</th>
 									<th>Level</th>
 									<th>Last Update</th>
@@ -180,6 +189,7 @@ if(isset($_GET['delete_word_id']))
 								<?php
 								$x = 0;
 								if ( array_key_exists( "catid", $_GET ) && is_numeric( $_GET["catid"] ) && $_GET["catid"] !== "0" ) {
+									echo "<script>PageCatID='".$_GET["catid"]."';</script>";
 									$stmt = $dictionary_list->runQuery( "SELECT * FROM category WHERE parentID=:val " );
 									$stmt->execute( array( ':val' => $_GET["catid"] ) );
 									$stmt->execute();
@@ -221,7 +231,7 @@ if(isset($_GET['delete_word_id']))
 										          data-word_en="<?php echo $row['word_EN']; ?>" data-multi_category="<?php echo implode(",",$category_ids); ?>"
 										          data-word_id="<?php echo $row['id']; ?>"
 										          data-picture="<?php echo $row['picture']; ?>"
-										          data-level="<?php echo $row['level']; ?>" data-audio_en="<?php echo $row['audio_EN']; ?>"><?php echo $row['word_EN'];
+										          data-level="<?php echo $row['level']; ?>" data-audio_en="<?php echo $row['audio_EN']; ?>" data-word_sound="<?php echo $row['word_sound']; ?>"><?php echo $row['word_EN'];
 												if ( $row['word_EN'] === "" || $row['word_EN'] === null ) {
 													echo ' <i class="fa fa-edit"></i> ';
 												} ?></span></td>
@@ -239,6 +249,7 @@ if(isset($_GET['delete_word_id']))
 												if ( $row['word_CH'] === "" || $row['word_CH'] === null ) {
 													echo ' <i class="fa fa-edit"></i> ';
 												} ?></span></td>
+										<td><span class="edit-word-btn play-sound-btn" data-word_sound="<?php echo $row['word_sound']; ?>"><?php echo $row['word_sound']; ?></span></td>
 
 										<td><?php
 											//echo $category_list->category_full_path_string( $row['categoryID'] );
@@ -250,7 +261,7 @@ if(isset($_GET['delete_word_id']))
 											<button type="button" class="btn btn-primary btn-flat edit-word-en-btn" title="edit record" data-word_en="<?php echo $row['word_EN']; ?>" data-multi_category="<?php echo implode(",",$category_ids); ?>"
 											        data-word_id="<?php echo $row['id']; ?>"
 											        data-picture="<?php echo $row['picture']; ?>"
-											        data-level="<?php echo $row['level']; ?>" data-audio_en="<?php echo $row['audio_EN']; ?>"><i class="fa fa-edit"></i> Edit</button>
+											        data-level="<?php echo $row['level']; ?>" data-audio_en="<?php echo $row['audio_EN']; ?>"  data-word_sound="<?php echo $row['word_sound']; ?>"><i class="fa fa-edit"></i> Edit</button>
 											&nbsp;
 											<button type="button" class="btn btn-danger btn-flat" onClick="window.location.href='javascript:delete_word(<?php echo $row['id']; ?>);'"><i class="fa fa-trash"></i> Delete</button>
 										</td>
@@ -259,10 +270,14 @@ if(isset($_GET['delete_word_id']))
 								</tbody>
 								<tfoot>
 								<tr>
-									<th>Word</th>
+									<th>id</th>
+									<th>English</th>
+									<th>Turkish</th>
+									<th>Chinese</th>
+									<th>Word Sound</th>
 									<th>Category</th>
 									<th>Level</th>
-									<th>Date</th>
+									<th>Last Update</th>
 									<th>Action</th>
 								</tr>
 								</tfoot>

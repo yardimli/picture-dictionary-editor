@@ -6,7 +6,7 @@ $(document).ready(function () {
     return a.text == b.text ? 0 : a.text < b.text ? -1 : 1
   }));
 
-  $('#multi_category').selectpicker({"width" : "400px", "size" : 10});
+  $('#multi_category').selectpicker({"width": "400px", "size": 10});
 
   var Upload = function (file, word_id, upload_type) {
     this.file = file;
@@ -25,7 +25,7 @@ $(document).ready(function () {
   };
 
   var progress_bar_id = "#progress-wrp-en";
-  var progress_text =  '#loading_en';
+  var progress_text = '#loading_en';
   var current_upload_button_id = "#upload-image-button";
 
 
@@ -57,7 +57,7 @@ $(document).ready(function () {
 
         setTimeout(function () {
           $(progress_text).fadeOut();
-        },1000);
+        }, 1000);
 
         $(current_upload_button_id).hide();
 
@@ -84,7 +84,7 @@ $(document).ready(function () {
       percent = Math.ceil(position / total * 100);
     }
 
-    console.log(percent+"... progress update");
+    console.log(percent + "... progress update");
 
     // update progressbars classes so it fits your code
     $(progress_bar_id + " .progress-bar").css("width", +percent + "%");
@@ -128,6 +128,18 @@ $(document).ready(function () {
         togglePlay("ch_audio_player");
       });
 
+      $(".play-sound-btn").off('click').on('click', function () {
+        const synth = new Tone.Synth().toDestination();
+        const now = Tone.now();
+
+        var toneX = $(this).data("word_sound");
+        var tones = toneX.split(",");
+
+        for (var i = 0; i < tones.length; i++) {
+          synth.triggerAttackRelease(tones[i], "4n", now + (i * 0.6));
+        }
+      });
+
       $(".edit-word-en-btn").off('click').on('click', function () {
         $("#en_word_media_edit").show();
 
@@ -136,13 +148,14 @@ $(document).ready(function () {
 
         var xcatid = $(this).data("multi_category");
         $(".refresh_page_btn").each(function () {
-          $(this).data("catid", xcatid);
+          $(this).data("catid", PageCatID);
         });
 
+        $("#word_sound").val($(this).data("word_sound"));
         $("#word_EN").val($(this).data("word_en"));
-        console.log( $(this).data("multi_category")  );
-        var temp_cats_str = $(this).data("multi_category")+"";
-        $("#multi_category").selectpicker("val", temp_cats_str.split(",") );
+        console.log($(this).data("multi_category"));
+        var temp_cats_str = $(this).data("multi_category") + "";
+        $("#multi_category").selectpicker("val", temp_cats_str.split(","));
         $('#multi_category').selectpicker('refresh');
         $("#picture").val($(this).data("picture"));
         $("#word_id_en").val($(this).data("word_id"));
@@ -158,10 +171,10 @@ $(document).ready(function () {
 
         $('#image-file').css("color", "green");
         $('#image-preview-div').css("display", "inline-block");
-        if ( $(this).data("picture") === "") {
+        if ($(this).data("picture") === "") {
           $('#preview-img').attr('src', "../pictures/daha-1.jpg");
-        } else
-        {
+        }
+        else {
           $('#preview-img').attr('src', "../pictures/" + $(this).data("picture"));
         }
         $('#preview-img').css('max-width', '150px');
@@ -177,7 +190,7 @@ $(document).ready(function () {
 
         var xcatid = $(this).data("multi_category");
         $(".refresh_page_btn").each(function () {
-          $(this).data("catid", xcatid);
+          $(this).data("catid", PageCatID);
         });
 
         $("#word_TR").val($(this).data("word_tr"));
@@ -196,7 +209,7 @@ $(document).ready(function () {
 
         var xcatid = $(this).data("multi_category");
         $(".refresh_page_btn").each(function () {
-          $(this).data("catid", xcatid);
+          $(this).data("catid", PageCatID);
         });
 
         $("#word_CH").val($(this).data("word_ch"));
@@ -226,6 +239,7 @@ $(document).ready(function () {
     $("#update-text-fields-button-en").show();
     $(".refresh_page_btn").hide();
 
+    $("#word_sound").val("");
     $("#word_EN").val("");
     $("#multi_category").val(0);
     $('#multi_category').selectpicker('refresh');
@@ -396,7 +410,7 @@ $(document).ready(function () {
 
         setTimeout(function () {
           $("#message_en").fadeOut();
-        },1000);
+        }, 1000);
 
       }
     });
@@ -426,7 +440,7 @@ $(document).ready(function () {
 
         setTimeout(function () {
           $("#message_tr").fadeOut();
-        },1000);
+        }, 1000);
 
       }
     });
@@ -456,7 +470,7 @@ $(document).ready(function () {
 
         setTimeout(function () {
           $("#message_ch").fadeOut();
-        },1000);
+        }, 1000);
 
       }
     });
@@ -471,10 +485,10 @@ $(document).ready(function () {
     $("#loading_msg_en").html("saving form data...");
 
     $(".refresh_page_btn").each(function () {
-      $(this).data("catid", $("#multi_category").val());
+      $(this).data("catid", PageCatID);
     });
 
-    console.log ( $(".refresh_page_btn").data("catid") );
+    console.log($(".refresh_page_btn").data("catid"));
 
     $.ajax({
       url: "../save-word-data.php",
@@ -483,6 +497,7 @@ $(document).ready(function () {
         language: $("#language_en").val(),
         word_id: $("#word_id_en").val(),
         word_EN: $("#word_EN").val(),
+        word_sound: $("#word_sound").val(),
         multi_category: $("#multi_category").val(),
         level: $("#level").val(),
       },
@@ -496,7 +511,7 @@ $(document).ready(function () {
         setTimeout(function () {
           $("#message_en").fadeOut();
           $('#loading_en').hide();
-        },1000);
+        }, 1000);
 
         $(".refresh_page_btn").show();
 
@@ -531,7 +546,7 @@ $(document).ready(function () {
         setTimeout(function () {
           $('#loading_tr').hide();
           $("#message_tr").fadeOut();
-        },1000);
+        }, 1000);
 
         $(".refresh_page_btn").show();
 
@@ -567,11 +582,55 @@ $(document).ready(function () {
         setTimeout(function () {
           $('#loading_ch').hide();
           $("#message_ch").fadeOut();
-        },1000);
+        }, 1000);
 
         $(".refresh_page_btn").show();
       }
     });
+
+  });
+
+  $("#check-word-sound").on('click', function (e) {
+
+    $.ajax({
+      url: "../save-word-data.php",
+      type: "POST",
+      data: {
+        operation: "check_word_sound",
+        word_id: $("#word_id_en").val(),
+        word_sound: $("#word_sound").val()
+      },
+      cache: false,
+      success: function (data) {
+        $('#check-word-sound-result').fadeIn();
+        $('#check-word-sound-result').html(data);
+        setTimeout(function () {
+          $("#check-word-sound-result").fadeOut();
+        }, 3000);
+      }
+    });
+
+  });
+
+  $("#play-word-sound").on('click', function (e) {
+    e.preventDefault();
+
+    const synth = new Tone.Synth().toDestination();
+    const now = Tone.now();
+
+    var toneX = $("#word_sound").val();
+    var tones = toneX.split(",");
+
+
+    for (var i = 0; i < tones.length; i++) {
+      synth.triggerAttackRelease(tones[i], "4n", now + (i * 0.6));
+    }
+
+    // synth.triggerAttackRelease("C4", "4n", now);
+    // synth.triggerAttackRelease("E4", "4n", now + 0.75);
+    // synth.triggerAttackRelease("G4", "4n", now + 1.5);
+
+    return false;
 
   });
 
@@ -601,77 +660,11 @@ $(document).ready(function () {
     reader.readAsDataURL(this.files[0]);
   });
 
-  $(".refresh_page_btn").off('click').on('click',function () {
-    var new_url = "https://elosoft.tw/picture-dictionary-editor/dictionary/?catid="+$(this).data("catid");
+  $(".refresh_page_btn").off('click').on('click', function () {
+    var new_url = "https://elosoft.tw/picture-dictionary-editor/dictionary/?catid=" + $(this).data("catid");
     window.location.href = new_url;
     return false;
   });
-
-
-  // $("#btn-trans-tr").off('click').on('click', function (e) {
-  //   e.preventDefault();
-  //   $('#message').empty();
-  //   $('#loading').show();
-  //   $("#loading_msg").html("auto translate...");
-  //
-  //   $.ajax({
-  //     url: "../auto-trans.php",
-  //     type: "POST",
-  //     data: {
-  //       trans_source: "tr",
-  //       word_TR: $("#word_TR").val(),
-  //       word_id: $("#word_id").val()
-  //     },
-  //     dataType: "JSON",
-  //     success: function (data) {
-  //       $('#loading').hide();
-  //       if (data["result"]) {
-  //         $("#word_EN").val(data["word_EN"]);
-  //         $("#word_CH").val(data["word_CH"]);
-  //         $("#bopomofo").val(data["bopomofo"]);
-  //
-  //         $('#message').html("Translations successful.");
-  //       }
-  //       else {
-  //         $('#message').html("Translations failed.");
-  //       }
-  //     }
-  //   });
-  //
-  // });
-  //
-  // $("#btn-trans-ch").off('click').on('click', function (e) {
-  //   e.preventDefault();
-  //   $('#message').empty();
-  //   $('#loading').show();
-  //   $("#loading_msg").html("auto translate...");
-  //
-  //   $.ajax({
-  //     url: "../auto-trans.php",
-  //     type: "POST",
-  //     data: {
-  //       trans_source: "ch",
-  //       word_CH: $("#word_CH").val(),
-  //       word_id: $("#word_id").val()
-  //     },
-  //     dataType: "JSON",
-  //     success: function (data) {
-  //       $('#loading').hide();
-  //       if (data["result"]) {
-  //         $("#word_TR").val(data["word_TR"]);
-  //         $("#word_EN").val(data["word_EN"]);
-  //
-  //         $('#message').html("Translations successful.");
-  //       }
-  //       else {
-  //         $('#message').html("Translations failed.");
-  //       }
-  //     }
-  //   });
-  //
-  // });
-
-
 });
 
 function delete_word(wordID) {
