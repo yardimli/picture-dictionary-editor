@@ -56,6 +56,13 @@ while ( $row = $stmt->fetch( PDO::FETCH_ASSOC ) ) {
 
 		$row2['audio_hash'] = $audio_hash;
 
+		$picture_hash = "";
+		if ( file_exists( "../pictures/story-question/" . $row2["picture"] ) && $row2["picture"] !== null && $row2["picture"] !== "" ) {
+			$picture_hash = md5_file( "../pictures/story-question/" . $row2["picture"] );
+		}
+
+		$row2['picture_hash'] = $picture_hash;
+
 
 		//------- answers
 		$stmt3 = $story_list->runQuery( 'SELECT * FROM story_answer WHERE story_id=:story_id AND question_id=:question_id AND deleted=:val' );
