@@ -349,6 +349,7 @@ if ( isset( $_GET['delete_story_id'] ) ) {
 											        data-language="<?php echo $row['language']; ?>"
 											        data-multi_category="<?php echo implode( ",", $category_ids ); ?>"
 											        data-story_id="<?php echo $row['id']; ?>"
+											        data-hide_after_intro="<?php echo $row['hide_after_intro']; ?>"
 											        data-picture="<?php echo $row['picture']; ?>"
 											        data-audio="<?php echo $row['audio']; ?>"><i class="fa fa-edit"></i> Edit
 											</button>

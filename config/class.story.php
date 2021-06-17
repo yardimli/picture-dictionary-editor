@@ -16,15 +16,16 @@ class STORY {
 		return $stmt;
 	}
 
-	public function add_story( $title, $story, $language, $categoryID ) {
+	public function add_story( $title, $story, $language, $hide_after_intro, $categoryID ) {
 
 		try {
-			$stmt = $this->conn->prepare( "INSERT INTO story (title, story, language, userid)
-    		VALUES(:title, :story, :language, :userid)" );
+			$stmt = $this->conn->prepare( "INSERT INTO story (title, story, language, userid, hide_after_intro)
+    		VALUES(:title, :story, :language, :userid, :hide_after_intro)" );
 			$stmt->bindparam( ":title", $title );
 			$stmt->bindparam( ":story", $story );
 			$stmt->bindparam( ":language", $language );
 			$stmt->bindparam( ":userid", $_SESSION['user_session'] );
+			$stmt->bindparam( ":hide_after_intro", $hide_after_intro );
 //				$stmt->debugDumpParams();
 			$stmt->execute();
 
@@ -54,17 +55,19 @@ class STORY {
 		}
 	}
 
-	public function update_story( $id, $title, $story, $language, $categoryID ) {
+	public function update_story( $id, $title, $story, $language, $hide_after_intro, $categoryID ) {
 
 		try {
 			$stmt = $this->conn->prepare( "UPDATE story SET
 				title=:title,
 				story=:story,
-				language=:language
+				language=:language,
+				hide_after_intro=:hide_after_intro
     			WHERE id=:id" );
 			$stmt->bindparam( ":title", $title );
 			$stmt->bindparam( ":story", $story );
 			$stmt->bindparam( ":language", $language );
+			$stmt->bindparam( ":hide_after_intro", $hide_after_intro );
 			$stmt->bindparam( ":id", $id );
 
 			$stmt->execute();
@@ -97,16 +100,19 @@ class STORY {
 	}
 
 
-
-	public function all_stories( ) {
+	public function all_stories() {
 		try {
-			$stmt = $this->conn->prepare( "SELECT * FROM story WHERE deleted=:val" );
+			$stmt    = $this->conn->prepare( "SELECT * FROM story WHERE deleted=:val" );
 			$del_val = 0;
 			$stmt->bindparam( ":val", $del_val );
 			$stmt->execute();
 			$stories = [];
 			while ( $p_story = $stmt->fetch() ) {
-				array_push( $stories, [ "id" => $p_story["id"], "title" => $p_story["title"], "language" => $p_story["language"] ] );
+				array_push( $stories, [ "id"               => $p_story["id"],
+				                        "title"            => $p_story["title"],
+				                        "language"         => $p_story["language"],
+				                        "hide_after_intro" => $p_story["hide_after_intro"]
+				] );
 			}
 		} catch
 		( PDOException $e ) {
@@ -179,6 +185,7 @@ class STORY {
 			$stmt->execute();
 
 			$id = $this->conn->lastInsertId();
+
 //			echo $id;
 
 			return $stmt;
