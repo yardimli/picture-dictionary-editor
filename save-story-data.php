@@ -29,10 +29,10 @@ if ( ! $auth_user->is_loggedin() ) {
 } else {
 	echo "<div class=\"alert alert-success\" role=\"alert\">";
 	if ( $_POST["story_id"] === "0" ) {
-		if ( $story_list->add_story( $_POST["title"], $_POST["story"], $_POST["language"], $_POST["multi_category"] ) ) {
+		if ( $story_list->add_story( $_POST["title"], $_POST["story"], $_POST["language"], $_POST["hide_after_intro"], $_POST["multi_category"] ) ) {
 			echo "<p>Story Title data Added</strong></p>";
 		}
-	} else if ( $story_list->update_story( $_POST["story_id"], $_POST["title"], $_POST["story"], $_POST["language"], $_POST["multi_category"] ) ) {
+	} else if ( $story_list->update_story( $_POST["story_id"], $_POST["title"], $_POST["story"], $_POST["language"], $_POST["hide_after_intro"], $_POST["multi_category"] ) ) {
 		echo "<p>Story data Updated</strong></p>";
 	}
 

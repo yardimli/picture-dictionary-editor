@@ -39,7 +39,7 @@ if ( isset( $_GET['clone_story'] ) ) {
 		if ( $row1 = $stmt1->fetch( PDO::FETCH_ASSOC ) ) {
 
 			//******************* add story
-			if ( $story_list->add_story( $row1["title"] . " [clone]", $row1["story"], $row1["language"], [] ) ) {
+			if ( $story_list->add_story( $row1["title"] . " [clone]", $row1["story"], $row1["language"], $row1["hide_after_intro"], [] ) ) {
 
 				$stmt2 = $story_list->runQuery( 'SELECT * FROM story WHERE deleted=:val ORDER BY id DESC LIMIT 1' );
 				$stmt2->execute( array( ':val' => 0 ) );
